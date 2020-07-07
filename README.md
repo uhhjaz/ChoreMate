@@ -1,7 +1,7 @@
 Original App Design Project - README 
 ===
 
-# ItsChoreTurn
+# ChoreMate
 
 ## Table of Contents
 1. [Overview](#Overview)
