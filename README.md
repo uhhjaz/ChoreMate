@@ -116,8 +116,8 @@ These two stories and a system to do this would be cool and I think I'll need it
 
 
 ## Wireframes
-[Add picture of your hand sketched wireframes in this section]
-<img src="YOUR_WIREFRAME_IMAGE_URL" width=600>
+[hand sketched wireframes]
+<img src="https://github.com/uhhjaz/fbu_final_project/blob/master/Wireframes.pdf" width=600>
 
 ### [BONUS] Digital Wireframes & Mockups
 
