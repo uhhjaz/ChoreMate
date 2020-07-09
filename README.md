@@ -116,7 +116,7 @@ These two stories and a system to do this would be cool and I think I'll need it
 
 
 ## Wireframes
-[hand sketched wireframes]
+
 <img src="https://github.com/uhhjaz/fbu_final_project/blob/master/AppWireframes.png" width=600>
 
 ### [BONUS] Digital Wireframes & Mockups
@@ -124,9 +124,80 @@ These two stories and a system to do this would be cool and I think I'll need it
 ### [BONUS] Interactive Prototype
 
 ## Schema 
-[This section will be completed in Unit 9]
+
 ### Models
-[Add table of models]
+
+#### User Model
+| Property  |  Type | Description |
+|---|---|---|
+|  name | String  | the name of the user  |
+| username  | String  | the users chosen username  |
+|  email |  String | the users inputted email  |
+| password  | String  | the users chosen password  |
+|  in_household |  Boolean | whether the user is in a household or not  |
+| household_id | String | the uniqueID representing the household the user is in |
+|tasks|Array<Tasks>|array containing all the tasks assigned to this user|
+|busy_dates|Array<NSDates>|String of dates the user is not available to do their tasks|
+
+
+#### Household Model
+| Property  |  Type | Description |
+|---|---|---|
+| household_id |String|unique ID to represent this Household|
+|  name | String  | the the chosen name of the household  |
+| created_at | DateTime | the date when the household was created |
+| house_members | Array<User> | array of members in the house |
+
+
+Question - For the tasks: would it be best to have one central task model with all the properties and leave properties that do not apply to a certain task nil or create seperate models for each task? I am leaning towards the first one but I am unsure which would be the best choice in the long run. 
+
+
+#### One Time Task Model
+| Property  |  Type | Description |
+|---|---|---|
+|  type | String  | the type of task: rotational,reoccuring,one_time  |
+| description |  String | the description of the task to complete |
+| assigned_to  | Array<User>  | the users assigned to the task  |
+|  created_at | DateTime  |  date when the task is created (default field) |
+| due_date | DateTime| user selected date to complete the task by|
+| status | Boolean | whether task has been completed or not|
+
+
+#### Reoccuring Task Model
+| Property  |  Type | Description |
+|---|---|---|
+|  type | String  | the type of task: rotational,reoccuring,one_time  |
+| task_id | String | unique ID to represent this Task |
+| description |  String | the description of the task to complete |
+| assigned_to  | Array<User>  | the users assigned to the task  |
+|  created_at | DateTime  |  date when the task is created (default field) |
+| due_date | DateTime| user selected date to complete the task by|
+| status | Boolean | whether task has been completed or not|
+| repeats | String |How this task repeats:  daily,weekly,monthly| 
+| repeat_next 
+
+
+Question - For the repeating and rotational tasks I was having trouble thinking about how to store the "reoccuring and repeating" bit. It seems as if I would need to somehow know which date it currently is and when the next reoccurance of this task is. I was thinking of storing the the next repeat date but then I can only easily get 2 occurences of the task. The current one and the next one.
+So how can I store repeatability in a way that would make it simple to lookup and fetch all the repeating tasks to display in a week or month list/calender. 
+From my current method of thinking about it, I see that if there are multiple events, there could be efficiency problems as I would I have to iterate through each task when rendering the list-- I would like to possibly avoid doing so.
+
+
+#### Reoccuring Task Model
+| Property  |  Type | Description |
+|---|---|---|
+|  type | String  | the type of task: rotational,reoccuring,one_time  |
+| task_id | String | unique ID to represent this Task |
+| description |  String | the description of the task to complete |
+| assigned_to  | Array<User> | the users assigned to the task  |
+|  created_at | DateTime  |  date when the task is created (default field) |
+| due_date | DateTime| user selected date to complete the task by|
+| status | Boolean | whether task has been completed or not|
+| repeats | String |How this task repeats:  daily,weekly,monthly| 
+| repeat_next |||
+| rotational_order|Array<User>|the order the task rotates and gets assigned to a new user on a daily, weekly, monthly basis|
+|current_rotation_user|User|the user currently assigned to the task|
+
+
 ### Networking
 - [Add list of network requests by screen ]
 - [Create basic snippets for each Parse network request]
