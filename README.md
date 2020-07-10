@@ -28,90 +28,108 @@ between residents, ensures chores and payments are completed on time through a t
 ### 1. User Stories (Required and Optional)
 
 **Required Must-have Stories**
-
 * user can register for an account
-* user can upload a profile picture
-* user can login
-* user user can logout
-* users can logout
-* user can create a household
-* user can join a household
-* user can invite a housemate
-* user can create a task
-    * make it one time or reoccuring daily, weekly, monthly
-    * assign a housemate to a task
-* user can create a task
-* user can finish a task
-* user can delete a task
-* user can remind housemate of a task
+* user can login to account with secure credentials
+* user can login with fb authentication
+* user can persistently stay logged unless user manually logs out
+* user can upload profile picture
 * user can view feed of their tasks
+* user can view housemates tasks
+* user can mark task as complete 
+* user can remind housemate of a task
+* user can create new one time task
+* user can create a new rotational task
+* user can create a new reoccuring task
+* user can view household 
+* user can create household 
+* user can join household
+* user can invite another user to household
+* user can update their profile picture
+* user can securely logout 
+* user can mark off unavailability dates
 
-These two stories and a system to do this would be cool and I think I'll need it if I want to add more sophisticated logic into the app thus, I am keeping it in the required section. 
+
+
+
+**Optional Nice-to-have Stories**
+* user can delete tasks
+* user can update tasks
+* user can skip tasks
+* user can name/rename households
+* user can edit their name
+* user can view a housemates profile
 * user can create a payment
 * user can create a charge
 
-**Optional Nice-to-have Stories**
-
-* user can view balances between housemates
-* users can skip tasks
-* users can name/rename households
-* users can view a housemates profile
 
 
 
 ### 2. Screen Archetypes
 
 * Login Screen
-    * login to account with secure credentials
+    * user can login to account with secure credentials
+    * user can login with fb 
+    * user can persistently stay logged unless they manually logout
 * Register Screen
-    * register for an account
-    * upload profile picture
-* Home Screen 
-    * view feed of their tasks
+    * user can register for an account
+    * user can register with fb
+        * https://developers.facebook.com/docs/ios/use-facebook-login
+    * user can upload profile picture
+        * get fb profile picture maybe
+* Task View Screen [home] 
+    * user can view feed of their tasks
+    * user can view housemates tasks
     * user can mark task as complete 
     * user can remind housemate of a task
-* Task Management Screen 
-    * add new task
-    * assign a housemate to a task
+* Task Adding Screen 
+    * user can create new one time task
+    * user can create a new rotational task
+    * user can create a new reoccuring task
 * Household Screen 
-    * view household 
-    * create household 
-    * join household
-    * add to household)
+    * user can view household 
+    * user can create household 
+    * user can join household
+    * user can invite another user to household
+        * https://developers.facebook.com/docs/graph-api/reference/user/friends/
 * Profile Screen
-    * edit profile picture
-    * edit name
+    * user can update their profile picture
+    * user can securely logout 
+    * user can edit their name
+    * user can mark off unavailability dates
 
 
 ### 3. Navigation
 
 **Tab Navigation** (Tab to Screen)
 
-* home screen
-* task management screen
+* task view screen [home]
 * profile screen
+* household screen
 
 **Flow Navigation** (Screen to Screen)
 
 * login screen
     * sign up screen
-    * home screen
+    * task view screen [home]
 
 * sign up screen
     * log in screen
 
-* home screen
-    * task management screen
+* task view screen [home]
+    * task creation screen 
     * household screen
     * profile screen
-    * login screen (via a logout button)
+
+* task creation screen 
+    * task view screen [home]
 
 * household screen
     * profile screen for that user
-    * task management screen
+    * task view screen [home]
 
 * profile screen
-    * task management screen
+    * task view screen [home]
+    * login screen (via a logout button)
 
 
 
@@ -127,6 +145,8 @@ These two stories and a system to do this would be cool and I think I'll need it
 
 ### Models
 
+
+
 #### User Model
 | Property  |  Type | Description |
 |---|---|---|
@@ -134,10 +154,11 @@ These two stories and a system to do this would be cool and I think I'll need it
 | username  | String  | the users chosen username  |
 |  email |  String | the users inputted email  |
 | password  | String  | the users chosen password  |
+| profile_image |File| profile image chosen by user |
 |  in_household |  Boolean | whether the user is in a household or not  |
 | household_id | String | the uniqueID representing the household the user is in |
 |tasks|Array<Tasks>|array containing all the tasks assigned to this user|
-|busy_dates|Array<NSDates>|String of dates the user is not available to do their tasks|
+|busy_dates|Array<NSDates>|Dates the user has marked being unavailable|
 
 
 #### Household Model
@@ -151,7 +172,6 @@ These two stories and a system to do this would be cool and I think I'll need it
 
 Question - For the tasks: would it be best to have one central task model with all the properties and leave properties that do not apply to a certain task nil or create seperate models for each task? I am leaning towards the first one but I am unsure which would be the best choice in the long run. 
 
-
 #### One Time Task Model
 | Property  |  Type | Description |
 |---|---|---|
@@ -161,7 +181,6 @@ Question - For the tasks: would it be best to have one central task model with a
 |  created_at | DateTime  |  date when the task is created (default field) |
 | due_date | DateTime| user selected date to complete the task by|
 | status | Boolean | whether task has been completed or not|
-
 
 #### Reoccuring Task Model
 | Property  |  Type | Description |
@@ -176,11 +195,9 @@ Question - For the tasks: would it be best to have one central task model with a
 | repeats | String |How this task repeats:  daily,weekly,monthly| 
 | repeat_next 
 
-
 Question - For the repeating and rotational tasks I was having trouble thinking about how to store the "reoccuring and repeating" bit. It seems as if I would need to somehow know which date it currently is and when the next reoccurance of this task is. I was thinking of storing the the next repeat date but then I can only easily get 2 occurences of the task. The current one and the next one.
 So how can I store repeatability in a way that would make it simple to lookup and fetch all the repeating tasks to display in a week or month list/calender. 
 From my current method of thinking about it, I see that if there are multiple events, there could be efficiency problems as I would I have to iterate through each task when rendering the list-- I would like to possibly avoid doing so.
-
 
 #### Reoccuring Task Model
 | Property  |  Type | Description |
@@ -195,10 +212,18 @@ From my current method of thinking about it, I see that if there are multiple ev
 | repeats | String |How this task repeats:  daily,weekly,monthly| 
 | repeat_next |||
 | rotational_order|Array<User>|the order the task rotates and gets assigned to a new user on a daily, weekly, monthly basis|
-|current_rotation_user|User|the user currently assigned to the task|
+|current_rotation_user| Pointer to User|the user currently assigned to the task|
+
 
 
 ### Networking
-- [Add list of network requests by screen ]
-- [Create basic snippets for each Parse network request]
+* Login Screen
+* Register Screen
+* Task View Screen [home] 
+* Task Adding Screen 
+* Household Screen 
+* Profile Screen
+
+
+
 - [OPTIONAL: List endpoints if using existing API such as Yelp]
