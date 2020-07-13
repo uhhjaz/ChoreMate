@@ -1,0 +1,584 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		3AA661BB24BCC3CC00EBA89E /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AA661BA24BCC3CC00EBA89E /* AppDelegate.m */; };
+		3AA661BE24BCC3CC00EBA89E /* SceneDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AA661BD24BCC3CC00EBA89E /* SceneDelegate.m */; };
+		3AA661C124BCC3CC00EBA89E /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AA661C024BCC3CC00EBA89E /* ViewController.m */; };
+		3AA661C424BCC3CC00EBA89E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3AA661C224BCC3CC00EBA89E /* Main.storyboard */; };
+		3AA661C624BCC3CE00EBA89E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3AA661C524BCC3CE00EBA89E /* Assets.xcassets */; };
+		3AA661C924BCC3CE00EBA89E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3AA661C724BCC3CE00EBA89E /* LaunchScreen.storyboard */; };
+		3AA661CC24BCC3CE00EBA89E /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AA661CB24BCC3CE00EBA89E /* main.m */; };
+		3AA661D624BCC3CE00EBA89E /* ChoreMateTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AA661D524BCC3CE00EBA89E /* ChoreMateTests.m */; };
+		3AA661E124BCC3CE00EBA89E /* ChoreMateUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AA661E024BCC3CE00EBA89E /* ChoreMateUITests.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		3AA661D224BCC3CE00EBA89E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 3AA661AE24BCC3CC00EBA89E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 3AA661B524BCC3CC00EBA89E;
+			remoteInfo = ChoreMate;
+		};
+		3AA661DD24BCC3CE00EBA89E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 3AA661AE24BCC3CC00EBA89E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 3AA661B524BCC3CC00EBA89E;
+			remoteInfo = ChoreMate;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		3AA661B624BCC3CC00EBA89E /* ChoreMate.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ChoreMate.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		3AA661B924BCC3CC00EBA89E /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		3AA661BA24BCC3CC00EBA89E /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		3AA661BC24BCC3CC00EBA89E /* SceneDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SceneDelegate.h; sourceTree = "<group>"; };
+		3AA661BD24BCC3CC00EBA89E /* SceneDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SceneDelegate.m; sourceTree = "<group>"; };
+		3AA661BF24BCC3CC00EBA89E /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		3AA661C024BCC3CC00EBA89E /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		3AA661C324BCC3CC00EBA89E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		3AA661C524BCC3CE00EBA89E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		3AA661C824BCC3CE00EBA89E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		3AA661CA24BCC3CE00EBA89E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		3AA661CB24BCC3CE00EBA89E /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		3AA661D124BCC3CE00EBA89E /* ChoreMateTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ChoreMateTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		3AA661D524BCC3CE00EBA89E /* ChoreMateTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ChoreMateTests.m; sourceTree = "<group>"; };
+		3AA661D724BCC3CE00EBA89E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		3AA661DC24BCC3CE00EBA89E /* ChoreMateUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ChoreMateUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		3AA661E024BCC3CE00EBA89E /* ChoreMateUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ChoreMateUITests.m; sourceTree = "<group>"; };
+		3AA661E224BCC3CE00EBA89E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		3AA661B324BCC3CC00EBA89E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3AA661CE24BCC3CE00EBA89E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3AA661D924BCC3CE00EBA89E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		3AA661AD24BCC3CC00EBA89E = {
+			isa = PBXGroup;
+			children = (
+				3AA661B824BCC3CC00EBA89E /* ChoreMate */,
+				3AA661D424BCC3CE00EBA89E /* ChoreMateTests */,
+				3AA661DF24BCC3CE00EBA89E /* ChoreMateUITests */,
+				3AA661B724BCC3CC00EBA89E /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		3AA661B724BCC3CC00EBA89E /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				3AA661B624BCC3CC00EBA89E /* ChoreMate.app */,
+				3AA661D124BCC3CE00EBA89E /* ChoreMateTests.xctest */,
+				3AA661DC24BCC3CE00EBA89E /* ChoreMateUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		3AA661B824BCC3CC00EBA89E /* ChoreMate */ = {
+			isa = PBXGroup;
+			children = (
+				3AA661B924BCC3CC00EBA89E /* AppDelegate.h */,
+				3AA661BA24BCC3CC00EBA89E /* AppDelegate.m */,
+				3AA661BC24BCC3CC00EBA89E /* SceneDelegate.h */,
+				3AA661BD24BCC3CC00EBA89E /* SceneDelegate.m */,
+				3AA661BF24BCC3CC00EBA89E /* ViewController.h */,
+				3AA661C024BCC3CC00EBA89E /* ViewController.m */,
+				3AA661C224BCC3CC00EBA89E /* Main.storyboard */,
+				3AA661C524BCC3CE00EBA89E /* Assets.xcassets */,
+				3AA661C724BCC3CE00EBA89E /* LaunchScreen.storyboard */,
+				3AA661CA24BCC3CE00EBA89E /* Info.plist */,
+				3AA661CB24BCC3CE00EBA89E /* main.m */,
+			);
+			path = ChoreMate;
+			sourceTree = "<group>";
+		};
+		3AA661D424BCC3CE00EBA89E /* ChoreMateTests */ = {
+			isa = PBXGroup;
+			children = (
+				3AA661D524BCC3CE00EBA89E /* ChoreMateTests.m */,
+				3AA661D724BCC3CE00EBA89E /* Info.plist */,
+			);
+			path = ChoreMateTests;
+			sourceTree = "<group>";
+		};
+		3AA661DF24BCC3CE00EBA89E /* ChoreMateUITests */ = {
+			isa = PBXGroup;
+			children = (
+				3AA661E024BCC3CE00EBA89E /* ChoreMateUITests.m */,
+				3AA661E224BCC3CE00EBA89E /* Info.plist */,
+			);
+			path = ChoreMateUITests;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		3AA661B524BCC3CC00EBA89E /* ChoreMate */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 3AA661E524BCC3CE00EBA89E /* Build configuration list for PBXNativeTarget "ChoreMate" */;
+			buildPhases = (
+				3AA661B224BCC3CC00EBA89E /* Sources */,
+				3AA661B324BCC3CC00EBA89E /* Frameworks */,
+				3AA661B424BCC3CC00EBA89E /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = ChoreMate;
+			productName = ChoreMate;
+			productReference = 3AA661B624BCC3CC00EBA89E /* ChoreMate.app */;
+			productType = "com.apple.product-type.application";
+		};
+		3AA661D024BCC3CE00EBA89E /* ChoreMateTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 3AA661E824BCC3CE00EBA89E /* Build configuration list for PBXNativeTarget "ChoreMateTests" */;
+			buildPhases = (
+				3AA661CD24BCC3CE00EBA89E /* Sources */,
+				3AA661CE24BCC3CE00EBA89E /* Frameworks */,
+				3AA661CF24BCC3CE00EBA89E /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				3AA661D324BCC3CE00EBA89E /* PBXTargetDependency */,
+			);
+			name = ChoreMateTests;
+			productName = ChoreMateTests;
+			productReference = 3AA661D124BCC3CE00EBA89E /* ChoreMateTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		3AA661DB24BCC3CE00EBA89E /* ChoreMateUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 3AA661EB24BCC3CE00EBA89E /* Build configuration list for PBXNativeTarget "ChoreMateUITests" */;
+			buildPhases = (
+				3AA661D824BCC3CE00EBA89E /* Sources */,
+				3AA661D924BCC3CE00EBA89E /* Frameworks */,
+				3AA661DA24BCC3CE00EBA89E /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				3AA661DE24BCC3CE00EBA89E /* PBXTargetDependency */,
+			);
+			name = ChoreMateUITests;
+			productName = ChoreMateUITests;
+			productReference = 3AA661DC24BCC3CE00EBA89E /* ChoreMateUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		3AA661AE24BCC3CC00EBA89E /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 1150;
+				ORGANIZATIONNAME = jazgill;
+				TargetAttributes = {
+					3AA661B524BCC3CC00EBA89E = {
+						CreatedOnToolsVersion = 11.5;
+					};
+					3AA661D024BCC3CE00EBA89E = {
+						CreatedOnToolsVersion = 11.5;
+						TestTargetID = 3AA661B524BCC3CC00EBA89E;
+					};
+					3AA661DB24BCC3CE00EBA89E = {
+						CreatedOnToolsVersion = 11.5;
+						TestTargetID = 3AA661B524BCC3CC00EBA89E;
+					};
+				};
+			};
+			buildConfigurationList = 3AA661B124BCC3CC00EBA89E /* Build configuration list for PBXProject "ChoreMate" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 3AA661AD24BCC3CC00EBA89E;
+			productRefGroup = 3AA661B724BCC3CC00EBA89E /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				3AA661B524BCC3CC00EBA89E /* ChoreMate */,
+				3AA661D024BCC3CE00EBA89E /* ChoreMateTests */,
+				3AA661DB24BCC3CE00EBA89E /* ChoreMateUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		3AA661B424BCC3CC00EBA89E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3AA661C924BCC3CE00EBA89E /* LaunchScreen.storyboard in Resources */,
+				3AA661C624BCC3CE00EBA89E /* Assets.xcassets in Resources */,
+				3AA661C424BCC3CC00EBA89E /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3AA661CF24BCC3CE00EBA89E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3AA661DA24BCC3CE00EBA89E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		3AA661B224BCC3CC00EBA89E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3AA661C124BCC3CC00EBA89E /* ViewController.m in Sources */,
+				3AA661BB24BCC3CC00EBA89E /* AppDelegate.m in Sources */,
+				3AA661CC24BCC3CE00EBA89E /* main.m in Sources */,
+				3AA661BE24BCC3CC00EBA89E /* SceneDelegate.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3AA661CD24BCC3CE00EBA89E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3AA661D624BCC3CE00EBA89E /* ChoreMateTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3AA661D824BCC3CE00EBA89E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3AA661E124BCC3CE00EBA89E /* ChoreMateUITests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		3AA661D324BCC3CE00EBA89E /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 3AA661B524BCC3CC00EBA89E /* ChoreMate */;
+			targetProxy = 3AA661D224BCC3CE00EBA89E /* PBXContainerItemProxy */;
+		};
+		3AA661DE24BCC3CE00EBA89E /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 3AA661B524BCC3CC00EBA89E /* ChoreMate */;
+			targetProxy = 3AA661DD24BCC3CE00EBA89E /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		3AA661C224BCC3CC00EBA89E /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				3AA661C324BCC3CC00EBA89E /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		3AA661C724BCC3CE00EBA89E /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				3AA661C824BCC3CE00EBA89E /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		3AA661E324BCC3CE00EBA89E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.5;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		3AA661E424BCC3CE00EBA89E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.5;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		3AA661E624BCC3CE00EBA89E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = ChoreMate/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.jazgill.ChoreMate;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		3AA661E724BCC3CE00EBA89E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = ChoreMate/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.jazgill.ChoreMate;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		3AA661E924BCC3CE00EBA89E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = ChoreMateTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.5;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.jazgill.ChoreMateTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ChoreMate.app/ChoreMate";
+			};
+			name = Debug;
+		};
+		3AA661EA24BCC3CE00EBA89E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = ChoreMateTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.5;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.jazgill.ChoreMateTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ChoreMate.app/ChoreMate";
+			};
+			name = Release;
+		};
+		3AA661EC24BCC3CE00EBA89E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = ChoreMateUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.jazgill.ChoreMateUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = ChoreMate;
+			};
+			name = Debug;
+		};
+		3AA661ED24BCC3CE00EBA89E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = ChoreMateUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.jazgill.ChoreMateUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = ChoreMate;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		3AA661B124BCC3CC00EBA89E /* Build configuration list for PBXProject "ChoreMate" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3AA661E324BCC3CE00EBA89E /* Debug */,
+				3AA661E424BCC3CE00EBA89E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		3AA661E524BCC3CE00EBA89E /* Build configuration list for PBXNativeTarget "ChoreMate" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3AA661E624BCC3CE00EBA89E /* Debug */,
+				3AA661E724BCC3CE00EBA89E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		3AA661E824BCC3CE00EBA89E /* Build configuration list for PBXNativeTarget "ChoreMateTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3AA661E924BCC3CE00EBA89E /* Debug */,
+				3AA661EA24BCC3CE00EBA89E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		3AA661EB24BCC3CE00EBA89E /* Build configuration list for PBXNativeTarget "ChoreMateUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3AA661EC24BCC3CE00EBA89E /* Debug */,
+				3AA661ED24BCC3CE00EBA89E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 3AA661AE24BCC3CC00EBA89E /* Project object */;
+}
