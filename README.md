@@ -147,21 +147,22 @@ between residents, ensures chores and payments are completed on time through a t
 |  name | String  | the name of the user  |
 | username  | String  | the users chosen username  |
 |  email |  String | the users inputted email  |
-| password  | String  | the users chosen password  |
-| profile_image |File| profile image chosen by user |
-|  in_household |  Boolean | whether the user is in a household or not  |
-|busy_dates|Array<NSDates>|Dates the user has marked being unavailable|
+| password  | String | the users chosen password  |
+| profile_image |File | profile image chosen by user |
+|  in_household |  String | the uniqueID representing the household the user is in |
+|busy_dates| Array<NSDates> |Dates the user has marked being unavailable|
+
 
 
 #### Household Model
 | Property  |  Type | Description |
 |---|---|---|
-| household_id |String|unique ID to represent this Household|
+| household_id | String | unique ID to represent this Household |
 |  name | String  | the the chosen name of the household  |
 | created_at | DateTime | the date when the household was created |
 
 
-Question - For the tasks: would it be best to have one central task model with all the properties and leave properties that do not apply to a certain task nil or create seperate models for each task? I am leaning towards the first one but I am unsure which would be the best choice in the long run. 
+
 
 #### Task Model
 | Property  |  Type | Description |
@@ -171,17 +172,12 @@ Question - For the tasks: would it be best to have one central task model with a
 | description |  String | the description of the task to complete |
 | assigned_to  | Array<User> | the users assigned to the task  |
 |  created_at | DateTime  |  date when the task is created (default field) |
-| due_date | DateTime| user selected date to complete the task by|
-| status | Boolean | whether task has been completed or not|
-| repeats | String |How this task repeats:  daily,weekly,monthly| 
-| repeat_next |||
-| rotational_order|Array<User>|the order the task rotates and gets assigned to a new user on a daily, weekly, monthly basis|
-|current_rotation_user| Pointer to User|the user currently assigned to the task|
-
-
-Question - For the repeating and rotational tasks I was having trouble thinking about how to store the "reoccuring and repeating" bit. It seems as if I would need to somehow know which date it currently is and when the next reoccurance of this task is. I was thinking of storing the the next repeat date but then I can only easily get 2 occurences of the task. The current one and the next one.
-So how can I store repeatability in a way that would make it simple to lookup and fetch all the repeating tasks to display in a week or month list/calender. 
-From my current method of thinking about it, I see that if there are multiple events, there could be efficiency problems as I would I have to iterate through each task when rendering the list-- I would like to possibly avoid doing so.
+| due_date | DateTime| user selected date to complete the task by |
+| status | Boolean | whether task has been completed or not |
+| repeats | String | How this task repeats:  daily,weekly,monthly | 
+| start_date | DateTime | the starting date of task repeatability |
+| end_date | DateTime | the ending date of task repeatability |
+| rotational_order|Array<User> | the order the task rotates and gets assigned to a new user on a daily, weekly, monthly basis |
 
 
 
