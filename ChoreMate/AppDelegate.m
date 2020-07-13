@@ -9,6 +9,7 @@
 #import "AppDelegate.h"
 #import <Parse/Parse.h>
 
+
 @interface AppDelegate ()
 
 @end
@@ -24,6 +25,30 @@
         
     }];
     [Parse initializeWithConfiguration:configuration];
+    
+    /*
+    ----ONE TIME TASK CREATION TEST (will remove later)----
+    PFObject *newTask = [PFObject objectWithClassName:@"Task"];
+    NSDate *theDate = [NSDate date];
+    NSLog(@"this is the date: %@", theDate);
+    newTask[@"type"] = @"rotational-test";
+    newTask[@"created"] = theDate;
+    newTask[@"due_date"] = theDate;
+    newTask[@"start_date"] = theDate;
+    newTask[@"end_date"] = theDate;
+    newTask[@"repeats"] = @"monthly";
+    newTask[@"description"] = @"this is the description";
+    newTask[@"completed"] = @YES;
+    
+    [newTask saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+      if (succeeded) {
+         NSLog(@"TASK Object saved!");
+      } else {
+         NSLog(@"Error: %@", error.description);
+      }
+    }];
+    */
+    
     return YES;
 }
 

@@ -10,7 +10,11 @@
 
 @interface SceneDelegate : UIResponder <UIWindowSceneDelegate>
 
+// MARK: Properties
 @property (strong, nonatomic) UIWindow * window;
+
+// MARK: Methods
+- (void)changeRootViewController:(UIViewController*)vc :(BOOL)animated;
 
 @end
 
