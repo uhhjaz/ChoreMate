@@ -11,6 +11,7 @@
 #import <Parse/Parse.h>
 
 NS_ASSUME_NONNULL_BEGIN
+
 @import Parse;
 
 @interface User : PFUser
@@ -23,6 +24,8 @@ NS_ASSUME_NONNULL_BEGIN
 // MARK: Methods
 + (User *)user;
 + (BOOL)isLoggedIn;
++ (void) updateUserProfileImage: ( UIImage * _Nullable )image withCompletion: (PFBooleanResultBlock  _Nullable)completion;
++ (PFFileObject *)getPFFileFromImage: (UIImage * _Nullable)image;
 
 @end
 

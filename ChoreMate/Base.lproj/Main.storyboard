@@ -227,10 +227,17 @@
                                     <action selector="didTapGoToLogin:" destination="u8w-f8-P5x" eventType="touchUpInside" id="sfb-Pt-DCZ"/>
                                 </connections>
                             </button>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Wbv-0y-fx5">
+                            <imageView clipsSubviews="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Wbv-0y-fx5" customClass="PFImageView">
                                 <rect key="frame" x="87" y="114" width="240" height="128"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" systemColor="systemGreenColor" red="0.20392156859999999" green="0.78039215689999997" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <accessibility key="accessibilityConfiguration">
+                                    <accessibilityTraits key="traits" button="YES" image="YES"/>
+                                </accessibility>
+                                <gestureRecognizers/>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="awz-5n-WaT" appends="YES" id="aYU-L8-HSj"/>
+                                </connections>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemGray3Color" red="0.78039215689999997" green="0.78039215689999997" blue="0.80000000000000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -238,12 +245,18 @@
                     </view>
                     <connections>
                         <outlet property="emailField" destination="WPH-SK-6le" id="xH0-Sc-0tH"/>
+                        <outlet property="imageView" destination="Wbv-0y-fx5" id="fds-fH-X5Q"/>
                         <outlet property="nameField" destination="cQN-gI-O8A" id="kWf-gV-8d4"/>
                         <outlet property="passwordField" destination="fpZ-D4-LMg" id="KYn-R3-gVO"/>
                         <outlet property="usernameField" destination="ESn-p0-Hpc" id="KOD-Qe-0y9"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hsc-aI-HGj" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="awz-5n-WaT">
+                    <connections>
+                        <action selector="didTapProfilePicture:" destination="u8w-f8-P5x" id="yIp-nz-Uqp"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="1399" y="90"/>
         </scene>

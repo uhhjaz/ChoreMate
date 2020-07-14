@@ -46,46 +46,40 @@
             // username field is empty
             if([self.usernameField.text isEqual:@""]){
                 alert = [UIAlertController alertControllerWithTitle:@"Username Required"
-                       message:@"Please enter a valid username"
-                preferredStyle:(UIAlertControllerStyleAlert)];
-            
+                                                            message:@"Please enter a valid username"
+                                                     preferredStyle:(UIAlertControllerStyleAlert)];
             }
             
             // password field is empty
             else if([self.passwordField.text isEqual:@""]){
-                    alert = [UIAlertController alertControllerWithTitle:@"Password Required"
-                           message:@"Please enter a valid password"
-                    preferredStyle:(UIAlertControllerStyleAlert)];
-                
+                alert = [UIAlertController alertControllerWithTitle:@"Password Required"
+                                                            message:@"Please enter a password"
+                                                     preferredStyle:(UIAlertControllerStyleAlert)];
             }
             
             // other errors: incorrect username/password
             else{
                 alert = [UIAlertController alertControllerWithTitle:error.localizedDescription
                                                             message:error.localizedFailureReason
-                preferredStyle:(UIAlertControllerStyleAlert)];
+                                                     preferredStyle:(UIAlertControllerStyleAlert)];
             }
-            
-            
+             
             UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"Cancel"
-                                                                style:UIAlertActionStyleCancel
-                                                              handler:^(UIAlertAction * _Nonnull action) {
-                                                                     // handle cancel response here. Doing nothing will dismiss the view.
-                                                              }];
+                                                                   style:UIAlertActionStyleCancel
+                                                                 handler:^(UIAlertAction * _Nonnull action){}];
+            
             // add the cancel action to the alertController
             [alert addAction:cancelAction];
 
             // create an OK action
             UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"OK"
                                                                style:UIAlertActionStyleDefault
-                                                             handler:^(UIAlertAction * _Nonnull action) {
-                                                                     // handle response here.
-                                                             }];
+                                                             handler:^(UIAlertAction * _Nonnull action) {}];
+            
             // add the OK action to the alert controller
             [alert addAction:okAction];
             
-            [self presentViewController:alert animated:YES completion:^{
-            }];
+            [self presentViewController:alert animated:YES completion:^{}];
         }
         
         else {
