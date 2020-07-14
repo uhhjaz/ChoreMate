@@ -99,7 +99,7 @@
             
             
             UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-            UINavigationController *taskScreenViewController = [storyboard instantiateViewControllerWithIdentifier:@"TaskScreenNavigationController"];
+            UINavigationController *taskScreenViewController = [storyboard instantiateViewControllerWithIdentifier:@"THE_ROOT_VIEW_NAVIGATOR"];
             SceneDelegate *sceneDelegate = (SceneDelegate *)self.view.window.windowScene.delegate;
             
             [sceneDelegate changeRootViewController:taskScreenViewController :YES];

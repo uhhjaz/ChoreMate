@@ -29,7 +29,7 @@
     
     if (user != nil) {
         NSLog(@"Welcome back %@ 😀", user.name);
-        UIViewController *photosNavigationController = [storyboard instantiateViewControllerWithIdentifier:@"TaskScreenNavigationController"];
+        UIViewController *photosNavigationController = [storyboard instantiateViewControllerWithIdentifier:@"THE_ROOT_VIEW_NAVIGATOR"];
         self.window.rootViewController = photosNavigationController;
     }
     

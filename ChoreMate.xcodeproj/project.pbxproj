@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3A95C6B724BD29CD00C906D7 /* HouseholdViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A95C6B624BD29CD00C906D7 /* HouseholdViewController.m */; };
+		3A95C6BA24BD29D800C906D7 /* ProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A95C6B924BD29D800C906D7 /* ProfileViewController.m */; };
+		3A95C6BD24BD30F000C906D7 /* TheRootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A95C6BC24BD30F000C906D7 /* TheRootViewController.m */; };
+		3A95C6C024BD337400C906D7 /* SideDrawerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A95C6BF24BD337400C906D7 /* SideDrawerViewController.m */; };
 		3AA661BB24BCC3CC00EBA89E /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AA661BA24BCC3CC00EBA89E /* AppDelegate.m */; };
 		3AA661BE24BCC3CC00EBA89E /* SceneDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AA661BD24BCC3CC00EBA89E /* SceneDelegate.m */; };
 		3AA661C424BCC3CC00EBA89E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3AA661C224BCC3CC00EBA89E /* Main.storyboard */; };
@@ -47,6 +51,14 @@
 		1D03C6E251BA5CE479798DFC /* Pods_ChoreMate_ChoreMateUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ChoreMate_ChoreMateUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3144A15ED137EA3F807B9F6D /* Pods-ChoreMate-ChoreMateUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ChoreMate-ChoreMateUITests.debug.xcconfig"; path = "Target Support Files/Pods-ChoreMate-ChoreMateUITests/Pods-ChoreMate-ChoreMateUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		32AE0643AF1A46FFE1C6AB8C /* Pods_ChoreMateTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ChoreMateTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		3A95C6B524BD29CD00C906D7 /* HouseholdViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HouseholdViewController.h; sourceTree = "<group>"; };
+		3A95C6B624BD29CD00C906D7 /* HouseholdViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HouseholdViewController.m; sourceTree = "<group>"; };
+		3A95C6B824BD29D800C906D7 /* ProfileViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ProfileViewController.h; sourceTree = "<group>"; };
+		3A95C6B924BD29D800C906D7 /* ProfileViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ProfileViewController.m; sourceTree = "<group>"; };
+		3A95C6BB24BD30F000C906D7 /* TheRootViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TheRootViewController.h; sourceTree = "<group>"; };
+		3A95C6BC24BD30F000C906D7 /* TheRootViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TheRootViewController.m; sourceTree = "<group>"; };
+		3A95C6BE24BD337400C906D7 /* SideDrawerViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SideDrawerViewController.h; sourceTree = "<group>"; };
+		3A95C6BF24BD337400C906D7 /* SideDrawerViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SideDrawerViewController.m; sourceTree = "<group>"; };
 		3AA661B624BCC3CC00EBA89E /* ChoreMate.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ChoreMate.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3AA661B924BCC3CC00EBA89E /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		3AA661BA24BCC3CC00EBA89E /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -202,6 +214,14 @@
 				3AA661F924BCCE9000EBA89E /* SignUpViewController.m */,
 				3AA661FE24BCFF1800EBA89E /* TaskScreenViewController.h */,
 				3AA661FF24BCFF1800EBA89E /* TaskScreenViewController.m */,
+				3A95C6B524BD29CD00C906D7 /* HouseholdViewController.h */,
+				3A95C6B624BD29CD00C906D7 /* HouseholdViewController.m */,
+				3A95C6B824BD29D800C906D7 /* ProfileViewController.h */,
+				3A95C6B924BD29D800C906D7 /* ProfileViewController.m */,
+				3A95C6BB24BD30F000C906D7 /* TheRootViewController.h */,
+				3A95C6BC24BD30F000C906D7 /* TheRootViewController.m */,
+				3A95C6BE24BD337400C906D7 /* SideDrawerViewController.h */,
+				3A95C6BF24BD337400C906D7 /* SideDrawerViewController.m */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -468,12 +488,16 @@
 			buildActionMask = 2147483647;
 			files = (
 				3AA661FD24BCF0EC00EBA89E /* Task.m in Sources */,
+				3A95C6BD24BD30F000C906D7 /* TheRootViewController.m in Sources */,
 				3AA661F424BCCC7500EBA89E /* User.m in Sources */,
 				3AA661BB24BCC3CC00EBA89E /* AppDelegate.m in Sources */,
 				3AA661FA24BCCE9000EBA89E /* SignUpViewController.m in Sources */,
+				3A95C6BA24BD29D800C906D7 /* ProfileViewController.m in Sources */,
 				3AA661CC24BCC3CE00EBA89E /* main.m in Sources */,
+				3A95C6B724BD29CD00C906D7 /* HouseholdViewController.m in Sources */,
 				3AA661BE24BCC3CC00EBA89E /* SceneDelegate.m in Sources */,
 				3AA661F724BCCE8400EBA89E /* LoginViewController.m in Sources */,
+				3A95C6C024BD337400C906D7 /* SideDrawerViewController.m in Sources */,
 				3AA6620024BCFF1800EBA89E /* TaskScreenViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
