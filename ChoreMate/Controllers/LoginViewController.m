@@ -12,6 +12,8 @@
 
 #import "SceneDelegate.h"
 #import <Parse/Parse.h>
+#import <FBSDKCoreKit/FBSDKCoreKit.h>
+#import <FBSDKLoginKit/FBSDKLoginKit.h>
 
 // MARK: Models
 #import "User.h"
@@ -23,15 +25,62 @@
 @interface LoginViewController ()
 @property (weak, nonatomic) IBOutlet UITextField *usernameField;
 @property (weak, nonatomic) IBOutlet UITextField *passwordField;
+@property (weak, nonatomic) IBOutlet UIButton *loginButton;
+@property (weak, nonatomic) IBOutlet UIButton *toSignUpButton;
+
 
 @end
 
 @implementation LoginViewController
 
+
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    
+     // Add a custom login button to your app
+    UIButton *fbLoginButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    fbLoginButton.backgroundColor=[UIColor colorWithRed: 0.23 green: 0.35 blue: 0.60 alpha: 1.00];
+    fbLoginButton.frame = CGRectMake(0,0,305,34);
+    CGFloat screenWidth = UIScreen.mainScreen.bounds.size.width;
+    fbLoginButton.center = CGPointMake(screenWidth/2, (self.toSignUpButton.layer.position.y + 90));
+    [fbLoginButton setTitle: @"Login with Facebook" forState: UIControlStateNormal];
+
+     // Handle clicks on the button
+    [fbLoginButton
+       addTarget:self
+       action:@selector(fbLoginButtonClicked) forControlEvents:UIControlEventTouchUpInside];
+    
+     // Add the button to the view
+    [self.view addSubview:fbLoginButton];
+
 }
+
+
+// Once the button is clicked, show the login dialog
+-(void)fbLoginButtonClicked {
+    FBSDKLoginManager *login = [[FBSDKLoginManager alloc] init];
+    
+    [login logInWithPermissions: @[@"public_profile"]
+             fromViewController:self
+                        handler:^(FBSDKLoginManagerLoginResult *result, NSError *error) {
+    
+        if (error) {
+            NSLog(@"Process error");
+    
+        } else if (result.isCancelled) {
+            NSLog(@"Cancelled");
+    
+        } else {
+            NSLog(@"Logged in");
+            UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+            UINavigationController *taskScreenViewController = [storyboard instantiateViewControllerWithIdentifier:@"THE_ROOT_VIEW_NAVIGATOR"];
+            SceneDelegate *sceneDelegate = (SceneDelegate *)self.view.window.windowScene.delegate;
+      
+            [sceneDelegate changeRootViewController:taskScreenViewController :YES];
+        }
+    }];
+}
+
 
 - (void)loginUser {
     NSString *username = self.usernameField.text;
@@ -94,7 +143,6 @@
         }
     }];
 }
-
 
 
 #pragma mark - Navigation

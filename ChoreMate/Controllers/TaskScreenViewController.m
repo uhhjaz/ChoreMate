@@ -12,6 +12,8 @@
 
 #import "SceneDelegate.h"
 #import <Parse/Parse.h>
+#import <FBSDKCoreKit/FBSDKCoreKit.h>
+#import <FBSDKLoginKit/FBSDKLoginKit.h>
 
 // MARK: Models
 #import "Task.h"
@@ -33,15 +35,18 @@
 
 @implementation TaskScreenViewController
 
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self setupLeftMenuButton];
 }
 
+
 - (void)setupLeftMenuButton {
     MMDrawerBarButtonItem * leftDrawerButton = [[MMDrawerBarButtonItem alloc] initWithTarget:self action:@selector(leftDrawerButtonPress:)];
     [self.navigationItem setLeftBarButtonItem:leftDrawerButton];
 }
+
 
 - (void)leftDrawerButtonPress:(id)leftDrawerButtonPress {
     [self.mm_drawerController toggleDrawerSide:MMDrawerSideLeft animated:YES completion:nil];
@@ -51,6 +56,13 @@
 #pragma mark - Navigation
 
 - (IBAction)didTapLogout:(id)sender {
+    
+    if ([FBSDKAccessToken currentAccessToken]) {
+        FBSDKLoginManager *login = [[FBSDKLoginManager alloc] init];
+        [login logOut];
+        
+    }
+    
     NSLog(@"user clicked logout");
     SceneDelegate *sceneDelegate = (SceneDelegate *)self.view.window.windowScene.delegate;
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
@@ -62,6 +74,7 @@
         NSLog(@"User logged out suggessfully");
     }];
 }
+
 
 /*
 // In a storyboard-based application, you will often want to do a little preparation before navigation
