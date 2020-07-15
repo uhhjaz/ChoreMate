@@ -60,7 +60,6 @@
     if ([FBSDKAccessToken currentAccessToken]) {
         FBSDKLoginManager *login = [[FBSDKLoginManager alloc] init];
         [login logOut];
-        
     }
     
     NSLog(@"user clicked logout");
@@ -70,9 +69,9 @@
     sceneDelegate.window.rootViewController = loginViewController;
     
     [User logOutInBackgroundWithBlock:^(NSError * _Nullable error) {
-        // PFUser.current() will now be nil
-        NSLog(@"User logged out suggessfully");
+        NSLog(@"User logged out successfully");
     }];
+    
 }
 
 

@@ -48,8 +48,6 @@
     newUser.password = self.passwordField.text;
     newUser.name = self.nameField.text;
     newUser.email = self.emailField.text;
-    newUser.household_id = @"";
-    
     
     // call sign up function on the object
     [newUser signUpInBackgroundWithBlock:^(BOOL succeeded, NSError * error) {
@@ -97,11 +95,7 @@
             NSLog(@"User registered successfully");
             
             if (self.imageView.image == nil){
-                NSLog(@"%@",self.imageView.image);
-                NSLog(@"in here for image is null!!");
                 self.imageView.image = [UIImage imageNamed: @"profile_image_default.png"];
-                NSLog(@"image is now %@",self.imageView.image);
-                
             }
             
             [User updateUserProfileImage:self.imageView.image withCompletion:^(BOOL succeeded, NSError * _Nullable error) {

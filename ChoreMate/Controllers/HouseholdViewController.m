@@ -18,6 +18,7 @@
 
 @implementation HouseholdViewController
 
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self setupLeftMenuButton];

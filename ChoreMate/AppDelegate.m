@@ -8,6 +8,9 @@
 
 #import "AppDelegate.h"
 #import <Parse/Parse.h>
+#import <PFFacebookUtils.h>
+#import <FBSDKCoreKit/FBSDKCoreKit.h>
+#import <FBSDKLoginKit/FBSDKLoginKit.h>
 
 
 @interface AppDelegate ()
@@ -24,33 +27,39 @@
       configuration.server = @"https://jaz-choremate.herokuapp.com/parse";
         
     }];
+    
+    //[Parse setApplicationId:@"ChoreMate" clientKey:@"hello"];
     [Parse initializeWithConfiguration:configuration];
-    
-    /*
-    ----ONE TIME TASK CREATION TEST (will remove later)----
-    PFObject *newTask = [PFObject objectWithClassName:@"Task"];
-    NSDate *theDate = [NSDate date];
-    NSLog(@"this is the date: %@", theDate);
-    newTask[@"type"] = @"rotational-test";
-    newTask[@"created"] = theDate;
-    newTask[@"due_date"] = theDate;
-    newTask[@"start_date"] = theDate;
-    newTask[@"end_date"] = theDate;
-    newTask[@"repeats"] = @"monthly";
-    newTask[@"description"] = @"this is the description";
-    newTask[@"completed"] = @YES;
-    
-    [newTask saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
-      if (succeeded) {
-         NSLog(@"TASK Object saved!");
-      } else {
-         NSLog(@"Error: %@", error.description);
-      }
-    }];
-    */
-    
+    [PFFacebookUtils initializeFacebookWithApplicationLaunchOptions:launchOptions];
+
     return YES;
 }
+
+- (BOOL)application:(UIApplication *)app
+            openURL:(NSURL *)url
+            options:(NSDictionary<UIApplicationOpenURLOptionsKey,id> *)options{
+    
+    return [[FBSDKApplicationDelegate sharedInstance] application:app
+                                                          openURL:url
+                                                          options:options];
+}
+
+//- (BOOL)application:(UIApplication *)application
+//            openURL:(NSURL *)url
+//  sourceApplication:(NSString *)sourceApplication
+//         annotation:(id)annotation {
+//
+//
+//  return [[FBSDKApplicationDelegate sharedInstance] application:application
+//                                                        openURL:url
+//                                              sourceApplication:sourceApplication
+//                                                     annotation:annotation];
+//}
+
+- (void)applicationDidBecomeActive:(UIApplication *)application {
+    [FBSDKAppEvents activateApp];
+}
+
 
 
 #pragma mark - UISceneSession lifecycle

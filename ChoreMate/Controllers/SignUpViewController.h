@@ -16,6 +16,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface SignUpViewController : UIViewController
 
+- (void)registerUser;
+
 @end
 
 NS_ASSUME_NONNULL_END

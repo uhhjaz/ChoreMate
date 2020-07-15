@@ -30,7 +30,7 @@
     
     User *user = [User currentUser];
     
-    if ((user != nil) || ([FBSDKAccessToken currentAccessToken])) {
+    if ((user != nil)) {
         NSLog(@"Welcome back %@ 😀", user.name);
         UIViewController *photosNavigationController = [storyboard instantiateViewControllerWithIdentifier:@"THE_ROOT_VIEW_NAVIGATOR"];
         self.window.rootViewController = photosNavigationController;
