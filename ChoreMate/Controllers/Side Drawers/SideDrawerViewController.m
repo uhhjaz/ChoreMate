@@ -20,9 +20,9 @@
 
 @implementation SideDrawerViewController
 
-int const MENU_FIRST_TASK_HOME = 0;
-int const MENU_SECOND_HOUSEHOLD = 1;
-int const MENU_THIRD_PROFILE = 2;
+int const MENU_FIRST_TASK_HOME = 1;
+int const MENU_SECOND_HOUSEHOLD = 2;
+int const MENU_THIRD_PROFILE = 3;
 
 
 - (void)viewDidLoad {

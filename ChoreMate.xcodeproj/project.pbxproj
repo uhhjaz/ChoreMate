@@ -13,6 +13,7 @@
 		3A2D79EB24C0BBE500D2C31B /* OnceTimeTaskViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A2D79EA24C0BBE500D2C31B /* OnceTimeTaskViewController.m */; };
 		3A2D79EE24C0D09200D2C31B /* RecurringTaskViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A2D79ED24C0D09200D2C31B /* RecurringTaskViewController.m */; };
 		3A2D79F124C0D09F00D2C31B /* RotationalTaskViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A2D79F024C0D09F00D2C31B /* RotationalTaskViewController.m */; };
+		3A2D79F424C103B400D2C31B /* AssignmentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A2D79F324C103B400D2C31B /* AssignmentCell.m */; };
 		3A95C6B724BD29CD00C906D7 /* HouseholdViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A95C6B624BD29CD00C906D7 /* HouseholdViewController.m */; };
 		3A95C6BA24BD29D800C906D7 /* ProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A95C6B924BD29D800C906D7 /* ProfileViewController.m */; };
 		3A95C6BD24BD30F000C906D7 /* TheRootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A95C6BC24BD30F000C906D7 /* TheRootViewController.m */; };
@@ -69,6 +70,8 @@
 		3A2D79ED24C0D09200D2C31B /* RecurringTaskViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RecurringTaskViewController.m; sourceTree = "<group>"; };
 		3A2D79EF24C0D09F00D2C31B /* RotationalTaskViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RotationalTaskViewController.h; sourceTree = "<group>"; };
 		3A2D79F024C0D09F00D2C31B /* RotationalTaskViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RotationalTaskViewController.m; sourceTree = "<group>"; };
+		3A2D79F224C103B400D2C31B /* AssignmentCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = AssignmentCell.h; path = "ChoreMate/Controllers/Task Creation/AssignmentCell.h"; sourceTree = SOURCE_ROOT; };
+		3A2D79F324C103B400D2C31B /* AssignmentCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = AssignmentCell.m; path = "ChoreMate/Controllers/Task Creation/AssignmentCell.m"; sourceTree = SOURCE_ROOT; };
 		3A95C6B524BD29CD00C906D7 /* HouseholdViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HouseholdViewController.h; sourceTree = "<group>"; };
 		3A95C6B624BD29CD00C906D7 /* HouseholdViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HouseholdViewController.m; sourceTree = "<group>"; };
 		3A95C6B824BD29D800C906D7 /* ProfileViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ProfileViewController.h; sourceTree = "<group>"; };
@@ -260,6 +263,8 @@
 		3AA661EF24BCC3E500EBA89E /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				3A2D79F224C103B400D2C31B /* AssignmentCell.h */,
+				3A2D79F324C103B400D2C31B /* AssignmentCell.m */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -573,6 +578,7 @@
 				3AA661BB24BCC3CC00EBA89E /* AppDelegate.m in Sources */,
 				3AA661FA24BCCE9000EBA89E /* SignUpViewController.m in Sources */,
 				3A95C6BA24BD29D800C906D7 /* ProfileViewController.m in Sources */,
+				3A2D79F424C103B400D2C31B /* AssignmentCell.m in Sources */,
 				3A2D79F124C0D09F00D2C31B /* RotationalTaskViewController.m in Sources */,
 				3AA661CC24BCC3CE00EBA89E /* main.m in Sources */,
 				3A95C6B724BD29CD00C906D7 /* HouseholdViewController.m in Sources */,

@@ -76,23 +76,43 @@
     
 }
 
-- (void)didChoose:(NSString *)type{
+- (void)didChoose:(NSNumber *)type{
+    
     NSLog(@"inside did choose, the type is: %@", type);
-    if ([type isEqual: @"one time"]) {
-
-        OnceTimeTaskViewController* controller = [self.storyboard instantiateViewControllerWithIdentifier:@"ONE_TIME_TASK"];
-        [self.navigationController pushViewController:controller animated:YES];
+//    if ([type isEqual: @"one time"]) {
+//
+//        OnceTimeTaskViewController* controller = [self.storyboard instantiateViewControllerWithIdentifier:@"ONE_TIME_TASK"];
+//        [self.navigationController pushViewController:controller animated:YES];
+//    }
+//
+//    else if ([type isEqual: @"recurring"]) {
+//        RecurringTaskViewController* controller = [self.storyboard instantiateViewControllerWithIdentifier:@"RECURRING_TASK"];
+//        [self.navigationController pushViewController:controller animated:YES];
+//    }
+//
+//    else if ([type isEqual: @"rotational"]) {
+//        RotationalTaskViewController* controller = [self.storyboard instantiateViewControllerWithIdentifier:@"ROTATIONAL_TASK"];
+//        [self.navigationController pushViewController:controller animated:YES];
+//    }
+    OnceTimeTaskViewController* controller;
+    switch ([type intValue]) {
+        case 0:
+            controller = [self.storyboard instantiateViewControllerWithIdentifier:@"ONE_TIME_TASK"];
+            break;
+            
+        case 1:
+            controller = [self.storyboard instantiateViewControllerWithIdentifier:@"RECURRING_TASK"];
+            break;
+            
+        case 2:
+            controller = [self.storyboard instantiateViewControllerWithIdentifier:@"ROTATIONAL_TASK"];
+            break;
+            
+        default:
+            break;
     }
+    [self.navigationController pushViewController:controller animated:YES];
     
-    else if ([type isEqual: @"recurring"]) {
-        RecurringTaskViewController* controller = [self.storyboard instantiateViewControllerWithIdentifier:@"RECURRING_TASK"];
-        [self.navigationController pushViewController:controller animated:YES];
-    }
-    
-    else if ([type isEqual: @"rotational"]) {
-        RotationalTaskViewController* controller = [self.storyboard instantiateViewControllerWithIdentifier:@"ROTATIONAL_TASK"];
-        [self.navigationController pushViewController:controller animated:YES];
-    }
 }
 
 #pragma mark - Navigation

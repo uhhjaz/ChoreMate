@@ -107,21 +107,21 @@
 
 - (void)didTapRotationalTask {
     [self dismissViewControllerAnimated:YES completion:^{
-        [self.delegate didChoose:@"rotational"];
+        [self.delegate didChoose:@2];
     }];
 }
 
 
 - (void)didTapRecurringTask {
     [self dismissViewControllerAnimated:YES completion:^{
-        [self.delegate didChoose:@"recurring"];
+        [self.delegate didChoose:@1];
     }];
 }
 
 
 - (void)didTapOneTimeTask {
     [self dismissViewControllerAnimated:YES completion:^{
-        [self.delegate didChoose:@"one time"];
+        [self.delegate didChoose:@0];
     }];
 }
 

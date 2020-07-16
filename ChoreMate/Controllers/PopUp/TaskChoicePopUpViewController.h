@@ -14,7 +14,7 @@ NS_ASSUME_NONNULL_BEGIN
 @protocol TaskChoiceControllerDelegate
 
 // MARK: Methods
-- (void)didChoose:(NSString *)type;
+- (void)didChoose:(NSNumber *)type;
 
 @end
 
