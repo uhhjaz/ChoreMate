@@ -43,7 +43,7 @@
     fbLoginButton.backgroundColor=[UIColor colorWithRed: 0.23 green: 0.35 blue: 0.60 alpha: 1.00];
     fbLoginButton.frame = CGRectMake(0,0,305,34);
     CGFloat screenWidth = UIScreen.mainScreen.bounds.size.width;
-    fbLoginButton.center = CGPointMake(screenWidth/2, (self.toSignUpButton.layer.position.y + 90));
+    fbLoginButton.center = CGPointMake(screenWidth/2, (self.toSignUpButton.layer.position.y + 110));
     [fbLoginButton setTitle: @"Login with Facebook" forState: UIControlStateNormal];
 
     // Handles clicks on the button

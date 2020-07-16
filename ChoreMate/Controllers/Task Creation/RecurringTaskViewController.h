@@ -1,5 +1,5 @@
 //
-//  TaskChoicePopUpViewController.h
+//  RecurringTaskViewController.h
 //  ChoreMate
 //
 //  Created by Jasdeep Gill on 7/16/20.
@@ -10,7 +10,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface TaskChoicePopUpViewController : UIViewController
+@interface RecurringTaskViewController : UIViewController
 
 @end
 

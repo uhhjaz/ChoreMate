@@ -10,6 +10,9 @@
 		0BA29EBB13879B53920B2172 /* Pods_ChoreMate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F4BDF2F0005FD07275C1F61 /* Pods_ChoreMate.framework */; };
 		3A1ECE5B24BFA34D00B5912A /* CoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A1ECE5A24BFA34D00B5912A /* CoreServices.framework */; };
 		3A2D79E324C0A9C400D2C31B /* TaskChoicePopUpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A2D79E224C0A9C400D2C31B /* TaskChoicePopUpViewController.m */; };
+		3A2D79EB24C0BBE500D2C31B /* OnceTimeTaskViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A2D79EA24C0BBE500D2C31B /* OnceTimeTaskViewController.m */; };
+		3A2D79EE24C0D09200D2C31B /* RecurringTaskViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A2D79ED24C0D09200D2C31B /* RecurringTaskViewController.m */; };
+		3A2D79F124C0D09F00D2C31B /* RotationalTaskViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A2D79F024C0D09F00D2C31B /* RotationalTaskViewController.m */; };
 		3A95C6B724BD29CD00C906D7 /* HouseholdViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A95C6B624BD29CD00C906D7 /* HouseholdViewController.m */; };
 		3A95C6BA24BD29D800C906D7 /* ProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A95C6B924BD29D800C906D7 /* ProfileViewController.m */; };
 		3A95C6BD24BD30F000C906D7 /* TheRootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A95C6BC24BD30F000C906D7 /* TheRootViewController.m */; };
@@ -60,6 +63,12 @@
 		3A1ECE5A24BFA34D00B5912A /* CoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreServices.framework; path = System/Library/Frameworks/CoreServices.framework; sourceTree = SDKROOT; };
 		3A2D79E124C0A9C400D2C31B /* TaskChoicePopUpViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TaskChoicePopUpViewController.h; sourceTree = "<group>"; };
 		3A2D79E224C0A9C400D2C31B /* TaskChoicePopUpViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TaskChoicePopUpViewController.m; sourceTree = "<group>"; };
+		3A2D79E924C0BBE500D2C31B /* OnceTimeTaskViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OnceTimeTaskViewController.h; sourceTree = "<group>"; };
+		3A2D79EA24C0BBE500D2C31B /* OnceTimeTaskViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OnceTimeTaskViewController.m; sourceTree = "<group>"; };
+		3A2D79EC24C0D09200D2C31B /* RecurringTaskViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RecurringTaskViewController.h; sourceTree = "<group>"; };
+		3A2D79ED24C0D09200D2C31B /* RecurringTaskViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RecurringTaskViewController.m; sourceTree = "<group>"; };
+		3A2D79EF24C0D09F00D2C31B /* RotationalTaskViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RotationalTaskViewController.h; sourceTree = "<group>"; };
+		3A2D79F024C0D09F00D2C31B /* RotationalTaskViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RotationalTaskViewController.m; sourceTree = "<group>"; };
 		3A95C6B524BD29CD00C906D7 /* HouseholdViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HouseholdViewController.h; sourceTree = "<group>"; };
 		3A95C6B624BD29CD00C906D7 /* HouseholdViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HouseholdViewController.m; sourceTree = "<group>"; };
 		3A95C6B824BD29D800C906D7 /* ProfileViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ProfileViewController.h; sourceTree = "<group>"; };
@@ -147,6 +156,39 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3A2D79E424C0BA4A00D2C31B /* PopUp */ = {
+			isa = PBXGroup;
+			children = (
+				3A2D79E124C0A9C400D2C31B /* TaskChoicePopUpViewController.h */,
+				3A2D79E224C0A9C400D2C31B /* TaskChoicePopUpViewController.m */,
+			);
+			path = PopUp;
+			sourceTree = "<group>";
+		};
+		3A2D79E624C0BA6300D2C31B /* Side Drawers */ = {
+			isa = PBXGroup;
+			children = (
+				3A95C6BB24BD30F000C906D7 /* TheRootViewController.h */,
+				3A95C6BC24BD30F000C906D7 /* TheRootViewController.m */,
+				3A95C6BE24BD337400C906D7 /* SideDrawerViewController.h */,
+				3A95C6BF24BD337400C906D7 /* SideDrawerViewController.m */,
+			);
+			path = "Side Drawers";
+			sourceTree = "<group>";
+		};
+		3A2D79E824C0BBBF00D2C31B /* Task Creation */ = {
+			isa = PBXGroup;
+			children = (
+				3A2D79E924C0BBE500D2C31B /* OnceTimeTaskViewController.h */,
+				3A2D79EA24C0BBE500D2C31B /* OnceTimeTaskViewController.m */,
+				3A2D79EC24C0D09200D2C31B /* RecurringTaskViewController.h */,
+				3A2D79ED24C0D09200D2C31B /* RecurringTaskViewController.m */,
+				3A2D79EF24C0D09F00D2C31B /* RotationalTaskViewController.h */,
+				3A2D79F024C0D09F00D2C31B /* RotationalTaskViewController.m */,
+			);
+			path = "Task Creation";
+			sourceTree = "<group>";
+		};
 		3AA661AD24BCC3CC00EBA89E = {
 			isa = PBXGroup;
 			children = (
@@ -236,6 +278,9 @@
 		3AA661F124BCC3F100EBA89E /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				3A2D79E824C0BBBF00D2C31B /* Task Creation */,
+				3A2D79E624C0BA6300D2C31B /* Side Drawers */,
+				3A2D79E424C0BA4A00D2C31B /* PopUp */,
 				3AA661F524BCCE8400EBA89E /* LoginViewController.h */,
 				3AA661F624BCCE8400EBA89E /* LoginViewController.m */,
 				3AA661F824BCCE9000EBA89E /* SignUpViewController.h */,
@@ -246,12 +291,6 @@
 				3A95C6B624BD29CD00C906D7 /* HouseholdViewController.m */,
 				3A95C6B824BD29D800C906D7 /* ProfileViewController.h */,
 				3A95C6B924BD29D800C906D7 /* ProfileViewController.m */,
-				3A95C6BB24BD30F000C906D7 /* TheRootViewController.h */,
-				3A95C6BC24BD30F000C906D7 /* TheRootViewController.m */,
-				3A95C6BE24BD337400C906D7 /* SideDrawerViewController.h */,
-				3A95C6BF24BD337400C906D7 /* SideDrawerViewController.m */,
-				3A2D79E124C0A9C400D2C31B /* TaskChoicePopUpViewController.h */,
-				3A2D79E224C0A9C400D2C31B /* TaskChoicePopUpViewController.m */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -526,12 +565,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3A2D79EE24C0D09200D2C31B /* RecurringTaskViewController.m in Sources */,
 				3AA661FD24BCF0EC00EBA89E /* Task.m in Sources */,
 				3A95C6BD24BD30F000C906D7 /* TheRootViewController.m in Sources */,
 				3AA661F424BCCC7500EBA89E /* User.m in Sources */,
+				3A2D79EB24C0BBE500D2C31B /* OnceTimeTaskViewController.m in Sources */,
 				3AA661BB24BCC3CC00EBA89E /* AppDelegate.m in Sources */,
 				3AA661FA24BCCE9000EBA89E /* SignUpViewController.m in Sources */,
 				3A95C6BA24BD29D800C906D7 /* ProfileViewController.m in Sources */,
+				3A2D79F124C0D09F00D2C31B /* RotationalTaskViewController.m in Sources */,
 				3AA661CC24BCC3CE00EBA89E /* main.m in Sources */,
 				3A95C6B724BD29CD00C906D7 /* HouseholdViewController.m in Sources */,
 				3A2D79E324C0A9C400D2C31B /* TaskChoicePopUpViewController.m in Sources */,

@@ -29,10 +29,13 @@
 #import "TaskScreenViewController.h"
 #import "LoginViewController.h"
 #import "TaskChoicePopUpViewController.h"
+#import "OnceTimeTaskViewController.h"
+#import "RecurringTaskViewController.h"
+#import "RotationalTaskViewController.h"
 
 
 
-@interface TaskScreenViewController ()
+@interface TaskScreenViewController () <TaskChoiceControllerDelegate>
 @property (weak, nonatomic) IBOutlet UIButton *addTaskButton;
 
 @end
@@ -61,6 +64,8 @@
 - (IBAction)didTapAddTask:(id)sender {
     NSLog(@"Trying to click popup");
     TaskChoicePopUpViewController *popViewController = [TaskChoicePopUpViewController new];
+    
+    popViewController.delegate = self;
     HWPopController *popController = [[HWPopController alloc] initWithViewController:popViewController];
     // popView position
     popController.popPosition = HWPopPositionBottom;
@@ -71,6 +76,25 @@
     
 }
 
+- (void)didChoose:(NSString *)type{
+    NSLog(@"inside did choose, the type is: %@", type);
+    if ([type isEqual: @"one time"]) {
+
+        OnceTimeTaskViewController* controller = [self.storyboard instantiateViewControllerWithIdentifier:@"ONE_TIME_TASK"];
+        [self.navigationController pushViewController:controller animated:YES];
+    }
+    
+    else if ([type isEqual: @"recurring"]) {
+        RecurringTaskViewController* controller = [self.storyboard instantiateViewControllerWithIdentifier:@"RECURRING_TASK"];
+        [self.navigationController pushViewController:controller animated:YES];
+    }
+    
+    else if ([type isEqual: @"rotational"]) {
+        RotationalTaskViewController* controller = [self.storyboard instantiateViewControllerWithIdentifier:@"ROTATIONAL_TASK"];
+        [self.navigationController pushViewController:controller animated:YES];
+    }
+}
+
 #pragma mark - Navigation
 
 - (IBAction)didTapLogout:(id)sender {
@@ -79,17 +103,16 @@
         FBSDKLoginManager *login = [[FBSDKLoginManager alloc] init];
         [login logOut];
     }
+
     
     NSLog(@"user clicked logout");
     SceneDelegate *sceneDelegate = (SceneDelegate *)self.view.window.windowScene.delegate;
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
     LoginViewController *loginViewController = [storyboard instantiateViewControllerWithIdentifier:@"LoginViewController"];
     sceneDelegate.window.rootViewController = loginViewController;
-    
     [User logOutInBackgroundWithBlock:^(NSError * _Nullable error) {
         NSLog(@"User logged out successfully");
     }];
-    
 }
 
 
