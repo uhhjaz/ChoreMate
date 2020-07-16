@@ -1,0 +1,75 @@
+PODS:
+  - Bolts/Tasks (1.9.1)
+  - DateTools (2.0.0)
+  - FBSDKCoreKit (5.15.1):
+    - FBSDKCoreKit/Basics (= 5.15.1)
+    - FBSDKCoreKit/Core (= 5.15.1)
+  - FBSDKCoreKit/Basics (5.15.1)
+  - FBSDKCoreKit/Core (5.15.1):
+    - FBSDKCoreKit/Basics
+  - FBSDKLoginKit (5.15.1):
+    - FBSDKLoginKit/Login (= 5.15.1)
+  - FBSDKLoginKit/Login (5.15.1):
+    - FBSDKCoreKit (~> 5.0)
+  - HWPopController (1.0.6)
+  - Masonry (1.1.0)
+  - MBProgressHUD (1.2.0)
+  - MMDrawerController (0.5.7):
+    - MMDrawerController/Core (= 0.5.7)
+    - MMDrawerController/MMDrawerBarButtonItem (= 0.5.7)
+    - MMDrawerController/MMDrawerVisualStates (= 0.5.7)
+    - MMDrawerController/Subclass (= 0.5.7)
+  - MMDrawerController/Core (0.5.7)
+  - MMDrawerController/MMDrawerBarButtonItem (0.5.7):
+    - MMDrawerController/Core
+  - MMDrawerController/MMDrawerVisualStates (0.5.7):
+    - MMDrawerController/Core
+  - MMDrawerController/Subclass (0.5.7):
+    - MMDrawerController/Core
+  - Parse (1.18.0):
+    - Parse/Core (= 1.18.0)
+  - Parse/Core (1.18.0):
+    - Bolts/Tasks (= 1.9.1)
+  - Parse/FacebookUtils (1.18.0):
+    - Bolts/Tasks (= 1.9.1)
+    - FBSDKLoginKit (~> 5.x)
+    - Parse/Core
+  - Parse/UI (1.18.0):
+    - Parse/Core
+
+DEPENDENCIES:
+  - DateTools
+  - HWPopController (~> 1.0.5)
+  - Masonry
+  - MBProgressHUD
+  - MMDrawerController (~> 0.5.7)
+  - Parse
+  - Parse/FacebookUtils
+  - Parse/UI
+
+SPEC REPOS:
+  trunk:
+    - Bolts
+    - DateTools
+    - FBSDKCoreKit
+    - FBSDKLoginKit
+    - HWPopController
+    - Masonry
+    - MBProgressHUD
+    - MMDrawerController
+    - Parse
+
+SPEC CHECKSUMS:
+  Bolts: 8c1e8aab2f603387b8b9924f57d1d64f43d3ffdc
+  DateTools: 933ac9c490f21f92127cf690ccd8c397e0126caf
+  FBSDKCoreKit: 1d5acf7c9d7a2f92bb1a242dc60cae5b7adb91df
+  FBSDKLoginKit: f1ea8026a58b52d30c9f2e6a58ca7d813619fb83
+  HWPopController: 7a079918fe8ca5bf7de3d971faf1cab7fc905529
+  Masonry: 678fab65091a9290e40e2832a55e7ab731aad201
+  MBProgressHUD: 3ee5efcc380f6a79a7cc9b363dd669c5e1ae7406
+  MMDrawerController: 7a4cf8e25596bf2434e03ce50d22a8608ddee6a1
+  Parse: 79bdda34fdb7eb2a707a43a951c8aae236cb3e34
+
+PODFILE CHECKSUM: 8f77bcf6ffbb7ce51de71fdd1c718ff135a03f2a
+
+COCOAPODS: 1.9.3

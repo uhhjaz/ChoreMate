@@ -14,6 +14,7 @@
 #import <Parse/Parse.h>
 #import <FBSDKCoreKit/FBSDKCoreKit.h>
 #import <FBSDKLoginKit/FBSDKLoginKit.h>
+#import <HWPopController/HWPop.h>
 
 // MARK: Models
 #import "Task.h"
@@ -27,9 +28,11 @@
 #import "LoginViewController.h"
 #import "MMDrawerBarButtonItem.h"
 #import "UIViewController+MMDrawerController.h"
+#import "TaskPopUpViewController.h"
 
 
 @interface TaskScreenViewController ()
+@property (weak, nonatomic) IBOutlet UIButton *addTaskButton;
 
 @end
 
@@ -39,7 +42,30 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self setupLeftMenuButton];
+    
+    UIView *footer = [[UIView alloc] initWithFrame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, 56)];
+    self.addTaskButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    self.addTaskButton.frame = CGRectMake(30, 0, CGRectGetWidth(footer.bounds) - 60, 56);
+    [self.addTaskButton setTitle:@"Pop up" forState:UIControlStateNormal];
+    self.addTaskButton.titleLabel.font = [UIFont boldSystemFontOfSize:30];
+    [self.addTaskButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    self.addTaskButton.backgroundColor = [UIColor colorWithRed:0.000 green:0.590 blue:1.000 alpha:1.00];
+    self.addTaskButton.layer.masksToBounds = YES;
+    self.addTaskButton.layer.cornerRadius = 6.f;
 }
+
+- (IBAction)didTapAddTask:(id)sender {
+    NSLog(@"Trying to click popup");
+    TaskPopUpViewController *popViewController = [TaskPopUpViewController new];
+    HWPopController *popController = [[HWPopController alloc] initWithViewController:popViewController];
+    // popView position
+    popController.popPosition = HWPopPositionBottom;
+    popController.popType = HWPopTypeBounceInFromBottom;
+    popController.dismissType = HWDismissTypeSlideOutToBottom;
+    popController.shouldDismissOnBackgroundTouch = YES;
+    [popController presentInViewController:self];
+}
+
 
 
 - (void)setupLeftMenuButton {

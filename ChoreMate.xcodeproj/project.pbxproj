@@ -7,8 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		0BA29EBB13879B53920B2172 /* Pods_ChoreMate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F4BDF2F0005FD07275C1F61 /* Pods_ChoreMate.framework */; };
+		0E74ECB2AC9097746F3DA8A1 /* Pods_ChoreMate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9BDD9B58EB8C4346AB499BC4 /* Pods_ChoreMate.framework */; };
+		12D728FDA5D5EC94F145B525 /* Pods_ChoreMate_ChoreMateUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A088198954CA497B1EF816B /* Pods_ChoreMate_ChoreMateUITests.framework */; };
 		3A1ECE5B24BFA34D00B5912A /* CoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A1ECE5A24BFA34D00B5912A /* CoreServices.framework */; };
+		3A6D65D724BFB854007BB6B2 /* TaskPopUpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A6D65D624BFB854007BB6B2 /* TaskPopUpViewController.m */; };
+		3A6D65DC24BFBEDA007BB6B2 /* OneTimeTaskViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A6D65DB24BFBEDA007BB6B2 /* OneTimeTaskViewController.m */; };
 		3A95C6B724BD29CD00C906D7 /* HouseholdViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A95C6B624BD29CD00C906D7 /* HouseholdViewController.m */; };
 		3A95C6BA24BD29D800C906D7 /* ProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A95C6B924BD29D800C906D7 /* ProfileViewController.m */; };
 		3A95C6BD24BD30F000C906D7 /* TheRootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A95C6BC24BD30F000C906D7 /* TheRootViewController.m */; };
@@ -18,7 +21,6 @@
 		3A95C6D124BF6DCE00C906D7 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A95C6D024BF6DCE00C906D7 /* CoreGraphics.framework */; };
 		3A95C6D324BF6DD800C906D7 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A95C6D224BF6DD800C906D7 /* CoreLocation.framework */; };
 		3A95C6D724BF6DF200C906D7 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A95C6D624BF6DF200C906D7 /* QuartzCore.framework */; };
-		3A95C6D924BF6DF800C906D7 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A95C6D824BF6DF800C906D7 /* StoreKit.framework */; };
 		3A95C6DB24BF6DFE00C906D7 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A95C6DA24BF6DFE00C906D7 /* SystemConfiguration.framework */; };
 		3AA661BB24BCC3CC00EBA89E /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AA661BA24BCC3CC00EBA89E /* AppDelegate.m */; };
 		3AA661BE24BCC3CC00EBA89E /* SceneDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AA661BD24BCC3CC00EBA89E /* SceneDelegate.m */; };
@@ -33,8 +35,7 @@
 		3AA661FA24BCCE9000EBA89E /* SignUpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AA661F924BCCE9000EBA89E /* SignUpViewController.m */; };
 		3AA661FD24BCF0EC00EBA89E /* Task.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AA661FC24BCF0EC00EBA89E /* Task.m */; };
 		3AA6620024BCFF1800EBA89E /* TaskScreenViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AA661FF24BCFF1800EBA89E /* TaskScreenViewController.m */; };
-		A4D753D915AAFC9326281DD3 /* Pods_ChoreMateTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F8ABD6FFC7352F94315E47B2 /* Pods_ChoreMateTests.framework */; };
-		D826715B4B5ADC833890D1C9 /* Pods_ChoreMate_ChoreMateUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE6062E7CCD60E1E0F25E822 /* Pods_ChoreMate_ChoreMateUITests.framework */; };
+		82D619F8A29F1A2E8F6DF34D /* Pods_ChoreMateTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78A75A2E0F5529A63605F94D /* Pods_ChoreMateTests.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -55,9 +56,12 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		23B66F11622F9DB6C2C3AC39 /* Pods-ChoreMate-ChoreMateUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ChoreMate-ChoreMateUITests.release.xcconfig"; path = "Target Support Files/Pods-ChoreMate-ChoreMateUITests/Pods-ChoreMate-ChoreMateUITests.release.xcconfig"; sourceTree = "<group>"; };
-		334B5F6D1918DEA44C2E2E14 /* Pods-ChoreMateTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ChoreMateTests.debug.xcconfig"; path = "Target Support Files/Pods-ChoreMateTests/Pods-ChoreMateTests.debug.xcconfig"; sourceTree = "<group>"; };
+		0A088198954CA497B1EF816B /* Pods_ChoreMate_ChoreMateUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ChoreMate_ChoreMateUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3A1ECE5A24BFA34D00B5912A /* CoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreServices.framework; path = System/Library/Frameworks/CoreServices.framework; sourceTree = SDKROOT; };
+		3A6D65D524BFB854007BB6B2 /* TaskPopUpViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TaskPopUpViewController.h; sourceTree = "<group>"; };
+		3A6D65D624BFB854007BB6B2 /* TaskPopUpViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TaskPopUpViewController.m; sourceTree = "<group>"; };
+		3A6D65DA24BFBEDA007BB6B2 /* OneTimeTaskViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OneTimeTaskViewController.h; sourceTree = "<group>"; };
+		3A6D65DB24BFBEDA007BB6B2 /* OneTimeTaskViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OneTimeTaskViewController.m; sourceTree = "<group>"; };
 		3A95C6B524BD29CD00C906D7 /* HouseholdViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HouseholdViewController.h; sourceTree = "<group>"; };
 		3A95C6B624BD29CD00C906D7 /* HouseholdViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HouseholdViewController.m; sourceTree = "<group>"; };
 		3A95C6B824BD29D800C906D7 /* ProfileViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ProfileViewController.h; sourceTree = "<group>"; };
@@ -74,7 +78,6 @@
 		3A95C6D224BF6DD800C906D7 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		3A95C6D424BF6DEB00C906D7 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		3A95C6D624BF6DF200C906D7 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
-		3A95C6D824BF6DF800C906D7 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		3A95C6DA24BF6DFE00C906D7 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		3AA661B624BCC3CC00EBA89E /* ChoreMate.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ChoreMate.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3AA661B924BCC3CC00EBA89E /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -102,13 +105,14 @@
 		3AA661FC24BCF0EC00EBA89E /* Task.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Task.m; sourceTree = "<group>"; };
 		3AA661FE24BCFF1800EBA89E /* TaskScreenViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TaskScreenViewController.h; sourceTree = "<group>"; };
 		3AA661FF24BCFF1800EBA89E /* TaskScreenViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TaskScreenViewController.m; sourceTree = "<group>"; };
-		4254BD712506FF58415CD045 /* Pods-ChoreMateTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ChoreMateTests.release.xcconfig"; path = "Target Support Files/Pods-ChoreMateTests/Pods-ChoreMateTests.release.xcconfig"; sourceTree = "<group>"; };
-		4F4BDF2F0005FD07275C1F61 /* Pods_ChoreMate.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ChoreMate.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		971AA37EA7C439CB3CC8BF98 /* Pods-ChoreMate-ChoreMateUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ChoreMate-ChoreMateUITests.debug.xcconfig"; path = "Target Support Files/Pods-ChoreMate-ChoreMateUITests/Pods-ChoreMate-ChoreMateUITests.debug.xcconfig"; sourceTree = "<group>"; };
-		A7466DACB5719F0C841EDAE2 /* Pods-ChoreMate.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ChoreMate.release.xcconfig"; path = "Target Support Files/Pods-ChoreMate/Pods-ChoreMate.release.xcconfig"; sourceTree = "<group>"; };
-		B4E09230E3A97F310E463E7B /* Pods-ChoreMate.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ChoreMate.debug.xcconfig"; path = "Target Support Files/Pods-ChoreMate/Pods-ChoreMate.debug.xcconfig"; sourceTree = "<group>"; };
-		CE6062E7CCD60E1E0F25E822 /* Pods_ChoreMate_ChoreMateUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ChoreMate_ChoreMateUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		F8ABD6FFC7352F94315E47B2 /* Pods_ChoreMateTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ChoreMateTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		4A52784223E156A974FD061C /* Pods-ChoreMate.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ChoreMate.release.xcconfig"; path = "Target Support Files/Pods-ChoreMate/Pods-ChoreMate.release.xcconfig"; sourceTree = "<group>"; };
+		60B8701A34A3B2D6756CF5C9 /* Pods-ChoreMate.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ChoreMate.debug.xcconfig"; path = "Target Support Files/Pods-ChoreMate/Pods-ChoreMate.debug.xcconfig"; sourceTree = "<group>"; };
+		7197C443C0BC76C05AD59E49 /* Pods-ChoreMate-ChoreMateUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ChoreMate-ChoreMateUITests.debug.xcconfig"; path = "Target Support Files/Pods-ChoreMate-ChoreMateUITests/Pods-ChoreMate-ChoreMateUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		78A75A2E0F5529A63605F94D /* Pods_ChoreMateTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ChoreMateTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		90FE5462BED97219169C3EFC /* Pods-ChoreMate-ChoreMateUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ChoreMate-ChoreMateUITests.release.xcconfig"; path = "Target Support Files/Pods-ChoreMate-ChoreMateUITests/Pods-ChoreMate-ChoreMateUITests.release.xcconfig"; sourceTree = "<group>"; };
+		9BDD9B58EB8C4346AB499BC4 /* Pods_ChoreMate.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ChoreMate.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		A18CC040F5E16BCF051A178A /* Pods-ChoreMateTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ChoreMateTests.debug.xcconfig"; path = "Target Support Files/Pods-ChoreMateTests/Pods-ChoreMateTests.debug.xcconfig"; sourceTree = "<group>"; };
+		D1F3990EBDCDD4CED8F1CF68 /* Pods-ChoreMateTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ChoreMateTests.release.xcconfig"; path = "Target Support Files/Pods-ChoreMateTests/Pods-ChoreMateTests.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -117,14 +121,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				3A95C6DB24BF6DFE00C906D7 /* SystemConfiguration.framework in Frameworks */,
-				3A95C6D924BF6DF800C906D7 /* StoreKit.framework in Frameworks */,
 				3A95C6D724BF6DF200C906D7 /* QuartzCore.framework in Frameworks */,
 				3A95C6D324BF6DD800C906D7 /* CoreLocation.framework in Frameworks */,
 				3A1ECE5B24BFA34D00B5912A /* CoreServices.framework in Frameworks */,
 				3A95C6D124BF6DCE00C906D7 /* CoreGraphics.framework in Frameworks */,
 				3A95C6CF24BF6DC600C906D7 /* CFNetwork.framework in Frameworks */,
 				3A95C6CD24BF6DC100C906D7 /* AudioToolbox.framework in Frameworks */,
-				0BA29EBB13879B53920B2172 /* Pods_ChoreMate.framework in Frameworks */,
+				0E74ECB2AC9097746F3DA8A1 /* Pods_ChoreMate.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -132,7 +135,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A4D753D915AAFC9326281DD3 /* Pods_ChoreMateTests.framework in Frameworks */,
+				82D619F8A29F1A2E8F6DF34D /* Pods_ChoreMateTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -140,13 +143,33 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D826715B4B5ADC833890D1C9 /* Pods_ChoreMate_ChoreMateUITests.framework in Frameworks */,
+				12D728FDA5D5EC94F145B525 /* Pods_ChoreMate_ChoreMateUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3A6D65D824BFBE73007BB6B2 /* DrawerNavigation */ = {
+			isa = PBXGroup;
+			children = (
+				3A95C6BB24BD30F000C906D7 /* TheRootViewController.h */,
+				3A95C6BC24BD30F000C906D7 /* TheRootViewController.m */,
+				3A95C6BE24BD337400C906D7 /* SideDrawerViewController.h */,
+				3A95C6BF24BD337400C906D7 /* SideDrawerViewController.m */,
+			);
+			path = DrawerNavigation;
+			sourceTree = "<group>";
+		};
+		3A6D65D924BFBE9E007BB6B2 /* Popups */ = {
+			isa = PBXGroup;
+			children = (
+				3A6D65D524BFB854007BB6B2 /* TaskPopUpViewController.h */,
+				3A6D65D624BFB854007BB6B2 /* TaskPopUpViewController.m */,
+			);
+			path = Popups;
+			sourceTree = "<group>";
+		};
 		3AA661AD24BCC3CC00EBA89E = {
 			isa = PBXGroup;
 			children = (
@@ -236,6 +259,8 @@
 		3AA661F124BCC3F100EBA89E /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				3A6D65D924BFBE9E007BB6B2 /* Popups */,
+				3A6D65D824BFBE73007BB6B2 /* DrawerNavigation */,
 				3AA661F524BCCE8400EBA89E /* LoginViewController.h */,
 				3AA661F624BCCE8400EBA89E /* LoginViewController.m */,
 				3AA661F824BCCE9000EBA89E /* SignUpViewController.h */,
@@ -246,10 +271,8 @@
 				3A95C6B624BD29CD00C906D7 /* HouseholdViewController.m */,
 				3A95C6B824BD29D800C906D7 /* ProfileViewController.h */,
 				3A95C6B924BD29D800C906D7 /* ProfileViewController.m */,
-				3A95C6BB24BD30F000C906D7 /* TheRootViewController.h */,
-				3A95C6BC24BD30F000C906D7 /* TheRootViewController.m */,
-				3A95C6BE24BD337400C906D7 /* SideDrawerViewController.h */,
-				3A95C6BF24BD337400C906D7 /* SideDrawerViewController.m */,
+				3A6D65DA24BFBEDA007BB6B2 /* OneTimeTaskViewController.h */,
+				3A6D65DB24BFBEDA007BB6B2 /* OneTimeTaskViewController.m */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -259,7 +282,6 @@
 			children = (
 				3A1ECE5A24BFA34D00B5912A /* CoreServices.framework */,
 				3A95C6DA24BF6DFE00C906D7 /* SystemConfiguration.framework */,
-				3A95C6D824BF6DF800C906D7 /* StoreKit.framework */,
 				3A95C6D624BF6DF200C906D7 /* QuartzCore.framework */,
 				3A95C6D424BF6DEB00C906D7 /* MobileCoreServices.framework */,
 				3A95C6D224BF6DD800C906D7 /* CoreLocation.framework */,
@@ -267,9 +289,9 @@
 				3A95C6CE24BF6DC600C906D7 /* CFNetwork.framework */,
 				3A95C6CC24BF6DC100C906D7 /* AudioToolbox.framework */,
 				3A95C6C824BF6D9900C906D7 /* Parse.framework */,
-				4F4BDF2F0005FD07275C1F61 /* Pods_ChoreMate.framework */,
-				CE6062E7CCD60E1E0F25E822 /* Pods_ChoreMate_ChoreMateUITests.framework */,
-				F8ABD6FFC7352F94315E47B2 /* Pods_ChoreMateTests.framework */,
+				9BDD9B58EB8C4346AB499BC4 /* Pods_ChoreMate.framework */,
+				0A088198954CA497B1EF816B /* Pods_ChoreMate_ChoreMateUITests.framework */,
+				78A75A2E0F5529A63605F94D /* Pods_ChoreMateTests.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -277,12 +299,12 @@
 		DA53182DC6BFAAE83A1BC992 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				B4E09230E3A97F310E463E7B /* Pods-ChoreMate.debug.xcconfig */,
-				A7466DACB5719F0C841EDAE2 /* Pods-ChoreMate.release.xcconfig */,
-				971AA37EA7C439CB3CC8BF98 /* Pods-ChoreMate-ChoreMateUITests.debug.xcconfig */,
-				23B66F11622F9DB6C2C3AC39 /* Pods-ChoreMate-ChoreMateUITests.release.xcconfig */,
-				334B5F6D1918DEA44C2E2E14 /* Pods-ChoreMateTests.debug.xcconfig */,
-				4254BD712506FF58415CD045 /* Pods-ChoreMateTests.release.xcconfig */,
+				60B8701A34A3B2D6756CF5C9 /* Pods-ChoreMate.debug.xcconfig */,
+				4A52784223E156A974FD061C /* Pods-ChoreMate.release.xcconfig */,
+				7197C443C0BC76C05AD59E49 /* Pods-ChoreMate-ChoreMateUITests.debug.xcconfig */,
+				90FE5462BED97219169C3EFC /* Pods-ChoreMate-ChoreMateUITests.release.xcconfig */,
+				A18CC040F5E16BCF051A178A /* Pods-ChoreMateTests.debug.xcconfig */,
+				D1F3990EBDCDD4CED8F1CF68 /* Pods-ChoreMateTests.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -294,11 +316,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 3AA661E524BCC3CE00EBA89E /* Build configuration list for PBXNativeTarget "ChoreMate" */;
 			buildPhases = (
-				79BB75C556289770C531F0D0 /* [CP] Check Pods Manifest.lock */,
+				B4E0922F3D6249226F558967 /* [CP] Check Pods Manifest.lock */,
 				3AA661B224BCC3CC00EBA89E /* Sources */,
 				3AA661B324BCC3CC00EBA89E /* Frameworks */,
 				3AA661B424BCC3CC00EBA89E /* Resources */,
-				7F47C9095CA51E08EAD7E5B5 /* [CP] Embed Pods Frameworks */,
+				B646DA53CD7BF823DF89BFD2 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -313,7 +335,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 3AA661E824BCC3CE00EBA89E /* Build configuration list for PBXNativeTarget "ChoreMateTests" */;
 			buildPhases = (
-				836CA841F2B5BCD0709EA309 /* [CP] Check Pods Manifest.lock */,
+				88379134D19DE31ED513E205 /* [CP] Check Pods Manifest.lock */,
 				3AA661CD24BCC3CE00EBA89E /* Sources */,
 				3AA661CE24BCC3CE00EBA89E /* Frameworks */,
 				3AA661CF24BCC3CE00EBA89E /* Resources */,
@@ -332,11 +354,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 3AA661EB24BCC3CE00EBA89E /* Build configuration list for PBXNativeTarget "ChoreMateUITests" */;
 			buildPhases = (
-				9930CE804DBA8BF832331A84 /* [CP] Check Pods Manifest.lock */,
+				7EE9D1AA38B2EF1A4D854D6C /* [CP] Check Pods Manifest.lock */,
 				3AA661D824BCC3CE00EBA89E /* Sources */,
 				3AA661D924BCC3CE00EBA89E /* Frameworks */,
 				3AA661DA24BCC3CE00EBA89E /* Resources */,
-				A34902A0C0218BC3CF043B61 /* [CP] Embed Pods Frameworks */,
+				EAE371DEEAFA8750974BA47D /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -418,68 +440,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		79BB75C556289770C531F0D0 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-ChoreMate-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		7F47C9095CA51E08EAD7E5B5 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-ChoreMate/Pods-ChoreMate-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-ChoreMate/Pods-ChoreMate-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-ChoreMate/Pods-ChoreMate-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		836CA841F2B5BCD0709EA309 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-ChoreMateTests-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		9930CE804DBA8BF832331A84 /* [CP] Check Pods Manifest.lock */ = {
+		7EE9D1AA38B2EF1A4D854D6C /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -501,7 +462,68 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		A34902A0C0218BC3CF043B61 /* [CP] Embed Pods Frameworks */ = {
+		88379134D19DE31ED513E205 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-ChoreMateTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		B4E0922F3D6249226F558967 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-ChoreMate-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		B646DA53CD7BF823DF89BFD2 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-ChoreMate/Pods-ChoreMate-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-ChoreMate/Pods-ChoreMate-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-ChoreMate/Pods-ChoreMate-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		EAE371DEEAFA8750974BA47D /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -528,6 +550,7 @@
 				3AA661FD24BCF0EC00EBA89E /* Task.m in Sources */,
 				3A95C6BD24BD30F000C906D7 /* TheRootViewController.m in Sources */,
 				3AA661F424BCCC7500EBA89E /* User.m in Sources */,
+				3A6D65DC24BFBEDA007BB6B2 /* OneTimeTaskViewController.m in Sources */,
 				3AA661BB24BCC3CC00EBA89E /* AppDelegate.m in Sources */,
 				3AA661FA24BCCE9000EBA89E /* SignUpViewController.m in Sources */,
 				3A95C6BA24BD29D800C906D7 /* ProfileViewController.m in Sources */,
@@ -537,6 +560,7 @@
 				3AA661F724BCCE8400EBA89E /* LoginViewController.m in Sources */,
 				3A95C6C024BD337400C906D7 /* SideDrawerViewController.m in Sources */,
 				3AA6620024BCFF1800EBA89E /* TaskScreenViewController.m in Sources */,
+				3A6D65D724BFB854007BB6B2 /* TaskPopUpViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -703,11 +727,13 @@
 		};
 		3AA661E624BCC3CE00EBA89E /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = B4E09230E3A97F310E463E7B /* Pods-ChoreMate.debug.xcconfig */;
+			baseConfigurationReference = 60B8701A34A3B2D6756CF5C9 /* Pods-ChoreMate.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = ChoreMate/ChoreMate.entitlements;
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = ChoreMate/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -715,17 +741,19 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.jazgill.ChoreMate;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
 		3AA661E724BCC3CE00EBA89E /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = A7466DACB5719F0C841EDAE2 /* Pods-ChoreMate.release.xcconfig */;
+			baseConfigurationReference = 4A52784223E156A974FD061C /* Pods-ChoreMate.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = ChoreMate/ChoreMate.entitlements;
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = ChoreMate/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -733,13 +761,14 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.jazgill.ChoreMate;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};
 		3AA661E924BCC3CE00EBA89E /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 334B5F6D1918DEA44C2E2E14 /* Pods-ChoreMateTests.debug.xcconfig */;
+			baseConfigurationReference = A18CC040F5E16BCF051A178A /* Pods-ChoreMateTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
@@ -759,7 +788,7 @@
 		};
 		3AA661EA24BCC3CE00EBA89E /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 4254BD712506FF58415CD045 /* Pods-ChoreMateTests.release.xcconfig */;
+			baseConfigurationReference = D1F3990EBDCDD4CED8F1CF68 /* Pods-ChoreMateTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
@@ -779,7 +808,7 @@
 		};
 		3AA661EC24BCC3CE00EBA89E /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 971AA37EA7C439CB3CC8BF98 /* Pods-ChoreMate-ChoreMateUITests.debug.xcconfig */;
+			baseConfigurationReference = 7197C443C0BC76C05AD59E49 /* Pods-ChoreMate-ChoreMateUITests.debug.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = ChoreMateUITests/Info.plist;
@@ -797,7 +826,7 @@
 		};
 		3AA661ED24BCC3CE00EBA89E /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 23B66F11622F9DB6C2C3AC39 /* Pods-ChoreMate-ChoreMateUITests.release.xcconfig */;
+			baseConfigurationReference = 90FE5462BED97219169C3EFC /* Pods-ChoreMate-ChoreMateUITests.release.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = ChoreMateUITests/Info.plist;

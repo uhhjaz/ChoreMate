@@ -10,6 +10,7 @@
 #import "TaskPopUpViewController.h"
 #import <HWPopController/HWPop.h>
 #import <Masonry/View+MASAdditions.h>
+#import "OneTimeTaskViewController.h"
 
 
 @interface TaskPopUpViewController ()
@@ -24,7 +25,7 @@
     self.view.backgroundColor = [UIColor whiteColor];
 
     self.navigationItem.title = @"Cat";
-    UIBarButtonItem *doneItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(didTapToDismiss)];
+    UIBarButtonItem *doneItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(didTapOneTimeTask)];
     self.navigationItem.rightBarButtonItem = doneItem;
 
     self.contentSizeInPop = CGSizeMake(CGRectGetWidth([UIScreen mainScreen].bounds) - 30, 300);
@@ -52,7 +53,10 @@
 }
 
 - (void)didTapOneTimeTask {
+    NSLog(@"One time task click registered");
 //    [self.popController dismiss];
+    OneTimeTaskViewController *controller = [[OneTimeTaskViewController alloc] init];
+    [self.navigationController pushViewController:controller animated:YES];
     [self dismissViewControllerAnimated:YES completion:NULL];
     
 }

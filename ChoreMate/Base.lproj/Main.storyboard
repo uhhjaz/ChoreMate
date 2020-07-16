@@ -288,7 +288,20 @@
                     <view key="view" contentMode="scaleToFill" id="eHQ-l3-leT">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" systemColor="systemYellowColor" red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EVF-dz-d1H">
+                                <rect key="frame" x="20" y="641" width="374" height="44"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" systemColor="systemBlueColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <state key="normal" title="Add Task">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="didTapAddTask:" destination="0pg-wd-GFw" eventType="touchUpInside" id="XL4-gH-nN7"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemGray4Color" red="0.81960784310000001" green="0.81960784310000001" blue="0.83921568629999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <viewLayoutGuide key="safeArea" id="CvG-SG-6vk"/>
                     </view>
                     <navigationItem key="navigationItem" title="Task Feed" id="asJ-Oe-Wzg">
@@ -298,10 +311,44 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="addTaskButton" destination="EVF-dz-d1H" id="ctl-ex-fzx"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gag-2A-xbo" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5003" y="1016"/>
+            <point key="canvasLocation" x="5002.898550724638" y="1015.8482142857142"/>
+        </scene>
+        <!--Task Pop Up View Controller-->
+        <scene sceneID="cfc-f9-5iq">
+            <objects>
+                <viewController id="Fhb-Sw-yxU" customClass="TaskPopUpViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="6Xj-BH-CT8">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="1tY-Mp-ybq"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="gg7-Q9-cC6" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="5898" y="1017"/>
+        </scene>
+        <!--One Time Task View Controller-->
+        <scene sceneID="v1W-nb-K22">
+            <objects>
+                <viewController storyboardIdentifier="ONE_TIME_TASK_VIEW" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Jjn-6V-7em" customClass="OneTimeTaskViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="QdN-IZ-AVv">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemIndigoColor" red="0.34509803919999998" green="0.33725490200000002" blue="0.83921568629999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <viewLayoutGuide key="safeArea" id="YtV-dV-RJo"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="WYK-V7-632"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="9YI-xo-bkj" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="7914" y="1017"/>
         </scene>
         <!--My Household-->
         <scene sceneID="eZh-e5-I4K">
@@ -408,20 +455,23 @@
             </objects>
             <point key="canvasLocation" x="251" y="1016"/>
         </scene>
-        <!--Test View Controller-->
-        <scene sceneID="CfQ-6Y-RtD">
+        <!--Navigation Controller-->
+        <scene sceneID="EwC-it-yhc">
             <objects>
-                <viewController id="B2C-gK-B8j" customClass="TestViewController" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="Zhp-xZ-Nod">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                        <viewLayoutGuide key="safeArea" id="qx4-yK-fUY"/>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="pnA-Hd-WTy" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="vX3-2l-Afa" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="4z0-j8-ESf">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="Jjn-6V-7em" kind="relationship" relationship="rootViewController" id="pa5-BM-NLv"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Bkr-Xq-utV" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="601" y="1903"/>
+            <point key="canvasLocation" x="7042" y="1016"/>
         </scene>
     </scenes>
 </document>
