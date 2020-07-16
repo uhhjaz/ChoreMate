@@ -14,6 +14,10 @@
 #import <Parse/Parse.h>
 #import <FBSDKCoreKit/FBSDKCoreKit.h>
 #import <FBSDKLoginKit/FBSDKLoginKit.h>
+#import <HWPopController/HWPop.h>
+#import "UIViewController+MMDrawerController.h"
+#import "MMDrawerBarButtonItem.h"
+
 
 // MARK: Models
 #import "Task.h"
@@ -21,15 +25,15 @@
 
 // MARK: Views
 
-
 // MARK: Controllers
 #import "TaskScreenViewController.h"
 #import "LoginViewController.h"
-#import "MMDrawerBarButtonItem.h"
-#import "UIViewController+MMDrawerController.h"
+#import "TaskChoicePopUpViewController.h"
+
 
 
 @interface TaskScreenViewController ()
+@property (weak, nonatomic) IBOutlet UIButton *addTaskButton;
 
 @end
 
@@ -52,6 +56,20 @@
     [self.mm_drawerController toggleDrawerSide:MMDrawerSideLeft animated:YES completion:nil];
 }
 
+
+
+- (IBAction)didTapAddTask:(id)sender {
+    NSLog(@"Trying to click popup");
+    TaskChoicePopUpViewController *popViewController = [TaskChoicePopUpViewController new];
+    HWPopController *popController = [[HWPopController alloc] initWithViewController:popViewController];
+    // popView position
+    popController.popPosition = HWPopPositionBottom;
+    popController.popType = HWPopTypeBounceInFromBottom;
+    popController.dismissType = HWDismissTypeSlideOutToBottom;
+    popController.shouldDismissOnBackgroundTouch = YES;
+    [popController presentInViewController:self];
+    
+}
 
 #pragma mark - Navigation
 

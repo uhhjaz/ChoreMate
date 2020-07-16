@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		0BA29EBB13879B53920B2172 /* Pods_ChoreMate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F4BDF2F0005FD07275C1F61 /* Pods_ChoreMate.framework */; };
 		3A1ECE5B24BFA34D00B5912A /* CoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A1ECE5A24BFA34D00B5912A /* CoreServices.framework */; };
+		3A2D79E324C0A9C400D2C31B /* TaskChoicePopUpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A2D79E224C0A9C400D2C31B /* TaskChoicePopUpViewController.m */; };
 		3A95C6B724BD29CD00C906D7 /* HouseholdViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A95C6B624BD29CD00C906D7 /* HouseholdViewController.m */; };
 		3A95C6BA24BD29D800C906D7 /* ProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A95C6B924BD29D800C906D7 /* ProfileViewController.m */; };
 		3A95C6BD24BD30F000C906D7 /* TheRootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A95C6BC24BD30F000C906D7 /* TheRootViewController.m */; };
@@ -18,7 +19,6 @@
 		3A95C6D124BF6DCE00C906D7 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A95C6D024BF6DCE00C906D7 /* CoreGraphics.framework */; };
 		3A95C6D324BF6DD800C906D7 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A95C6D224BF6DD800C906D7 /* CoreLocation.framework */; };
 		3A95C6D724BF6DF200C906D7 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A95C6D624BF6DF200C906D7 /* QuartzCore.framework */; };
-		3A95C6D924BF6DF800C906D7 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A95C6D824BF6DF800C906D7 /* StoreKit.framework */; };
 		3A95C6DB24BF6DFE00C906D7 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A95C6DA24BF6DFE00C906D7 /* SystemConfiguration.framework */; };
 		3AA661BB24BCC3CC00EBA89E /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AA661BA24BCC3CC00EBA89E /* AppDelegate.m */; };
 		3AA661BE24BCC3CC00EBA89E /* SceneDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AA661BD24BCC3CC00EBA89E /* SceneDelegate.m */; };
@@ -58,6 +58,8 @@
 		23B66F11622F9DB6C2C3AC39 /* Pods-ChoreMate-ChoreMateUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ChoreMate-ChoreMateUITests.release.xcconfig"; path = "Target Support Files/Pods-ChoreMate-ChoreMateUITests/Pods-ChoreMate-ChoreMateUITests.release.xcconfig"; sourceTree = "<group>"; };
 		334B5F6D1918DEA44C2E2E14 /* Pods-ChoreMateTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ChoreMateTests.debug.xcconfig"; path = "Target Support Files/Pods-ChoreMateTests/Pods-ChoreMateTests.debug.xcconfig"; sourceTree = "<group>"; };
 		3A1ECE5A24BFA34D00B5912A /* CoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreServices.framework; path = System/Library/Frameworks/CoreServices.framework; sourceTree = SDKROOT; };
+		3A2D79E124C0A9C400D2C31B /* TaskChoicePopUpViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TaskChoicePopUpViewController.h; sourceTree = "<group>"; };
+		3A2D79E224C0A9C400D2C31B /* TaskChoicePopUpViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TaskChoicePopUpViewController.m; sourceTree = "<group>"; };
 		3A95C6B524BD29CD00C906D7 /* HouseholdViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HouseholdViewController.h; sourceTree = "<group>"; };
 		3A95C6B624BD29CD00C906D7 /* HouseholdViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HouseholdViewController.m; sourceTree = "<group>"; };
 		3A95C6B824BD29D800C906D7 /* ProfileViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ProfileViewController.h; sourceTree = "<group>"; };
@@ -74,7 +76,6 @@
 		3A95C6D224BF6DD800C906D7 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		3A95C6D424BF6DEB00C906D7 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		3A95C6D624BF6DF200C906D7 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
-		3A95C6D824BF6DF800C906D7 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		3A95C6DA24BF6DFE00C906D7 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		3AA661B624BCC3CC00EBA89E /* ChoreMate.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ChoreMate.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3AA661B924BCC3CC00EBA89E /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -117,7 +118,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				3A95C6DB24BF6DFE00C906D7 /* SystemConfiguration.framework in Frameworks */,
-				3A95C6D924BF6DF800C906D7 /* StoreKit.framework in Frameworks */,
 				3A95C6D724BF6DF200C906D7 /* QuartzCore.framework in Frameworks */,
 				3A95C6D324BF6DD800C906D7 /* CoreLocation.framework in Frameworks */,
 				3A1ECE5B24BFA34D00B5912A /* CoreServices.framework in Frameworks */,
@@ -250,6 +250,8 @@
 				3A95C6BC24BD30F000C906D7 /* TheRootViewController.m */,
 				3A95C6BE24BD337400C906D7 /* SideDrawerViewController.h */,
 				3A95C6BF24BD337400C906D7 /* SideDrawerViewController.m */,
+				3A2D79E124C0A9C400D2C31B /* TaskChoicePopUpViewController.h */,
+				3A2D79E224C0A9C400D2C31B /* TaskChoicePopUpViewController.m */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -259,7 +261,6 @@
 			children = (
 				3A1ECE5A24BFA34D00B5912A /* CoreServices.framework */,
 				3A95C6DA24BF6DFE00C906D7 /* SystemConfiguration.framework */,
-				3A95C6D824BF6DF800C906D7 /* StoreKit.framework */,
 				3A95C6D624BF6DF200C906D7 /* QuartzCore.framework */,
 				3A95C6D424BF6DEB00C906D7 /* MobileCoreServices.framework */,
 				3A95C6D224BF6DD800C906D7 /* CoreLocation.framework */,
@@ -533,6 +534,7 @@
 				3A95C6BA24BD29D800C906D7 /* ProfileViewController.m in Sources */,
 				3AA661CC24BCC3CE00EBA89E /* main.m in Sources */,
 				3A95C6B724BD29CD00C906D7 /* HouseholdViewController.m in Sources */,
+				3A2D79E324C0A9C400D2C31B /* TaskChoicePopUpViewController.m in Sources */,
 				3AA661BE24BCC3CC00EBA89E /* SceneDelegate.m in Sources */,
 				3AA661F724BCCE8400EBA89E /* LoginViewController.m in Sources */,
 				3A95C6C024BD337400C906D7 /* SideDrawerViewController.m in Sources */,
@@ -707,7 +709,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = ChoreMate/ChoreMate.entitlements;
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = ChoreMate/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -715,6 +718,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.jazgill.ChoreMate;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -725,7 +729,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = ChoreMate/ChoreMate.entitlements;
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = ChoreMate/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -733,6 +738,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.jazgill.ChoreMate;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
