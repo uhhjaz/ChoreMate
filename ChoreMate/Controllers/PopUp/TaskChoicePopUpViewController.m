@@ -19,6 +19,10 @@
 
 @implementation TaskChoicePopUpViewController
 
+int const TASK_CHOSEN_ONETIME = 0;
+int const TASK_CHOSEN_RECURRING = 1;
+int const TASK_CHOSEN_ROTATIONAL = 2;
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
@@ -107,21 +111,21 @@
 
 - (void)didTapRotationalTask {
     [self dismissViewControllerAnimated:YES completion:^{
-        [self.delegate didChoose:@2];
+        [self.delegate didChoose:TASK_CHOSEN_ROTATIONAL];
     }];
 }
 
 
 - (void)didTapRecurringTask {
     [self dismissViewControllerAnimated:YES completion:^{
-        [self.delegate didChoose:@1];
+        [self.delegate didChoose:TASK_CHOSEN_RECURRING];
     }];
 }
 
 
 - (void)didTapOneTimeTask {
     [self dismissViewControllerAnimated:YES completion:^{
-        [self.delegate didChoose:@0];
+        [self.delegate didChoose:TASK_CHOSEN_ONETIME];
     }];
 }
 

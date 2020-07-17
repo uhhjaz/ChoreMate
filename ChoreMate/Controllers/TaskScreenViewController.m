@@ -42,6 +42,9 @@
 
 @implementation TaskScreenViewController
 
+int const TASK_TYPE_ONETIME = 0;
+int const TASK_TYPE_RECURRING = 1;
+int const TASK_TYPE_ROTATIONAL = 2;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -76,9 +79,9 @@
     
 }
 
-- (void)didChoose:(NSNumber *)type{
+- (void)didChoose:(int)type{
     
-    NSLog(@"inside did choose, the type is: %@", type);
+    NSLog(@"inside did choose, the type is: %d", type);
 //    if ([type isEqual: @"one time"]) {
 //
 //        OnceTimeTaskViewController* controller = [self.storyboard instantiateViewControllerWithIdentifier:@"ONE_TIME_TASK"];
@@ -95,16 +98,16 @@
 //        [self.navigationController pushViewController:controller animated:YES];
 //    }
     OnceTimeTaskViewController* controller;
-    switch ([type intValue]) {
-        case 0:
+    switch (type) {
+        case TASK_TYPE_ONETIME:
             controller = [self.storyboard instantiateViewControllerWithIdentifier:@"ONE_TIME_TASK"];
             break;
             
-        case 1:
+        case TASK_TYPE_RECURRING:
             controller = [self.storyboard instantiateViewControllerWithIdentifier:@"RECURRING_TASK"];
             break;
             
-        case 2:
+        case TASK_TYPE_ROTATIONAL:
             controller = [self.storyboard instantiateViewControllerWithIdentifier:@"ROTATIONAL_TASK"];
             break;
             
@@ -112,8 +115,8 @@
             break;
     }
     [self.navigationController pushViewController:controller animated:YES];
-    
 }
+
 
 #pragma mark - Navigation
 

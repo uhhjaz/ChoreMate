@@ -14,13 +14,18 @@ NS_ASSUME_NONNULL_BEGIN
 @protocol TaskChoiceControllerDelegate
 
 // MARK: Methods
-- (void)didChoose:(NSNumber *)type;
+- (void)didChoose:(int)type;
 
 @end
 
 @interface TaskChoicePopUpViewController : UIViewController
 
 @property (nonatomic, weak) id<TaskChoiceControllerDelegate> delegate;
+
+FOUNDATION_EXPORT int const TASK_CHOSEN_ONETIME;
+FOUNDATION_EXPORT int const TASK_CHOSEN_RECURRING;
+FOUNDATION_EXPORT int const TASK_CHOSEN_ROTATIONAL;
+
 
 @end
 

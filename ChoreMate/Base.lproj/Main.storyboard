@@ -350,7 +350,7 @@
         <!--Task Choice Pop Up View Controller-->
         <scene sceneID="FGx-Qv-h8i">
             <objects>
-                <viewController id="a8i-KK-AqB" customClass="TaskChoicePopUpViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="TASK_CHOICE_POPUP" id="a8i-KK-AqB" customClass="TaskChoicePopUpViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="pDH-pj-dAl">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -404,43 +404,56 @@
                                         </subviews>
                                         <color key="backgroundColor" systemColor="systemGray3Color" red="0.78039215689999997" green="0.78039215689999997" blue="0.80000000000000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     </view>
-                                    <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="0st-Kh-oBp">
-                                        <rect key="frame" x="25" y="144" width="365" height="75"/>
+                                    <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" fixedFrame="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="0st-Kh-oBp">
+                                        <rect key="frame" x="25" y="144" width="365" height="86"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <color key="backgroundColor" systemColor="systemYellowColor" red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="hN7-fW-eq1">
-                                            <size key="itemSize" width="70" height="76"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="hN7-fW-eq1">
+                                            <size key="itemSize" width="74" height="80"/>
                                             <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                             <size key="footerReferenceSize" width="0.0" height="0.0"/>
                                             <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                         </collectionViewFlowLayout>
                                         <cells>
                                             <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="AssignmentCell" id="SAL-cS-LcT" customClass="AssignmentCell">
-                                                <rect key="frame" x="0.0" y="0.0" width="70" height="76"/>
+                                                <rect key="frame" x="0.0" y="3" width="74" height="80"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="wh2-j4-nuZ">
-                                                    <rect key="frame" x="0.0" y="0.0" width="70" height="76"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="74" height="80"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <subviews>
-                                                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XUg-p3-vjH">
-                                                            <rect key="frame" x="3" y="1" width="63" height="56"/>
-                                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                            <state key="normal" backgroundImage="square" catalog="system">
-                                                                <color key="titleColor" red="0.46746141969999999" green="0.46746141969999999" blue="0.46746141969999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                                            </state>
-                                                        </button>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wKF-25-V9P">
-                                                            <rect key="frame" x="15" y="56" width="39" height="20"/>
-                                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                            <fontDescription key="fontDescription" type="system" weight="light" pointSize="16"/>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wKF-25-V9P">
+                                                            <rect key="frame" x="20" y="55" width="34.5" height="24"/>
+                                                            <fontDescription key="fontDescription" type="system" weight="light" pointSize="14"/>
                                                             <color key="textColor" systemColor="systemGray3Color" red="0.78039215689999997" green="0.78039215689999997" blue="0.80000000000000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
+                                                        <button opaque="NO" clipsSubviews="YES" contentMode="scaleAspectFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XUg-p3-vjH">
+                                                            <rect key="frame" x="12" y="8" width="50" height="48.5"/>
+                                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="width" constant="50" id="gEH-AT-hoJ"/>
+                                                                <constraint firstAttribute="height" constant="48.5" id="iXA-0t-0Yy"/>
+                                                            </constraints>
+                                                            <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                            <state key="normal" image="uncheckedbox">
+                                                                <color key="titleColor" red="0.46746141969999999" green="0.46746141969999999" blue="0.46746141969999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                            </state>
+                                                            <state key="selected" image="checked"/>
+                                                        </button>
                                                     </subviews>
+                                                    <constraints>
+                                                        <constraint firstItem="XUg-p3-vjH" firstAttribute="top" secondItem="wh2-j4-nuZ" secondAttribute="top" constant="8" id="72C-7z-5sM"/>
+                                                        <constraint firstItem="wKF-25-V9P" firstAttribute="top" secondItem="XUg-p3-vjH" secondAttribute="bottom" constant="-1.5" id="Duy-AI-Aqm"/>
+                                                        <constraint firstItem="wKF-25-V9P" firstAttribute="top" secondItem="XUg-p3-vjH" secondAttribute="bottom" constant="-1.5" id="FXj-b2-8us"/>
+                                                        <constraint firstAttribute="bottom" secondItem="wKF-25-V9P" secondAttribute="bottom" constant="1" id="Inw-VV-wYa"/>
+                                                        <constraint firstItem="XUg-p3-vjH" firstAttribute="centerX" secondItem="wh2-j4-nuZ" secondAttribute="centerX" id="gIv-L0-cww"/>
+                                                        <constraint firstItem="wKF-25-V9P" firstAttribute="centerX" secondItem="wh2-j4-nuZ" secondAttribute="centerX" id="hlA-GF-lLd"/>
+                                                    </constraints>
                                                 </collectionViewCellContentView>
-                                                <color key="backgroundColor" systemColor="systemPinkColor" red="1" green="0.1764705882" blue="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <color key="tintColor" systemColor="systemGray3Color" red="0.78039215689999997" green="0.78039215689999997" blue="0.80000000000000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                <size key="customSize" width="70" height="76"/>
+                                                <size key="customSize" width="74" height="80"/>
                                                 <connections>
                                                     <outlet property="checkButton" destination="XUg-p3-vjH" id="VzG-6B-3Cn"/>
                                                     <outlet property="userLabel" destination="wKF-25-V9P" id="sHf-X2-Mzg"/>
@@ -623,25 +636,10 @@
             </objects>
             <point key="canvasLocation" x="251" y="1016"/>
         </scene>
-        <!--Test View Controller-->
-        <scene sceneID="CfQ-6Y-RtD">
-            <objects>
-                <viewController id="B2C-gK-B8j" customClass="TestViewController" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="Zhp-xZ-Nod">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                        <viewLayoutGuide key="safeArea" id="qx4-yK-fUY"/>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="pnA-Hd-WTy" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="601" y="1903"/>
-        </scene>
         <!--Navigation Controller-->
         <scene sceneID="bKe-Uo-UaT">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="ybl-z7-q7P" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="ONE_TIME_TASK_NAVIGATION" automaticallyAdjustsScrollViewInsets="NO" id="ybl-z7-q7P" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationItem key="navigationItem" id="6Cv-mA-3Vi"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="G8O-Z3-pYT">
@@ -660,7 +658,7 @@
         <!--Navigation Controller-->
         <scene sceneID="pGL-sm-e22">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Prv-OB-X1m" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="RUCURRING_TASK_NAVIGATION" automaticallyAdjustsScrollViewInsets="NO" id="Prv-OB-X1m" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="KRV-hn-C2N">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
@@ -694,7 +692,7 @@
         <!--Navigation Controller-->
         <scene sceneID="Y4N-Va-6Kr">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Ygt-gx-ZXd" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="ROTATIONAL_TASK_NAVIGATION" automaticallyAdjustsScrollViewInsets="NO" id="Ygt-gx-ZXd" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="Nlf-oT-gcV">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
@@ -712,7 +710,8 @@
     </scenes>
     <resources>
         <image name="calendar" width="256" height="256"/>
+        <image name="checked" width="300" height="300"/>
         <image name="profile_image_default" width="225" height="225"/>
-        <image name="square" catalog="system" width="128" height="114"/>
+        <image name="uncheckedbox" width="300" height="300"/>
     </resources>
 </document>

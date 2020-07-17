@@ -11,7 +11,7 @@
 #import <Parse/Parse.h>
 #import "User.h"
 
-@interface OnceTimeTaskViewController () <UICollectionViewDataSource, UICollectionViewDelegate>
+@interface OnceTimeTaskViewController () <UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout>
 @property (weak, nonatomic) IBOutlet UITextField *descriptionField;
 @property (weak, nonatomic) IBOutlet UIButton *dueDateButton;
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
@@ -28,6 +28,14 @@
     self.collectionView.dataSource = self;
     
     [self getHousehold];
+    
+    UICollectionViewFlowLayout *collectionViewFlowLayout = [[UICollectionViewFlowLayout alloc] init];
+    [collectionViewFlowLayout setScrollDirection:UICollectionViewScrollDirectionHorizontal];
+    self.collectionView.collectionViewLayout = collectionViewFlowLayout;
+    
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(dismissKeyboard)];
+
+    [self.view addGestureRecognizer:tap];
 }
 
 - (void) getHousehold{
@@ -55,6 +63,20 @@
 }
 
 
+- (UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(nonnull UICollectionViewLayout *)collectionViewLayout insetForSectionAtIndex:(NSInteger)section {
+    CGFloat totalCellWidth = 80 * self.household.count;
+    CGFloat totalSpacingWidth = 10 * (((float)self.household.count - 1) < 0 ? 0 :self.household.count - 1);
+    CGFloat leftInset = (self.view.bounds.size.width - (totalCellWidth + totalSpacingWidth)) / 2;
+    CGFloat rightInset = leftInset;
+    UIEdgeInsets sectionInset = UIEdgeInsetsMake(0, leftInset/4, 0, rightInset);
+    return sectionInset;
+}
+
+
+- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath{
+    return CGSizeMake(100, 80);
+}
+
 // set cells to choose who the task is assigned to
 - (nonnull __kindof UICollectionViewCell *)collectionView:(nonnull UICollectionView *)collectionView cellForItemAtIndexPath:(nonnull NSIndexPath *)indexPath {
     AssignmentCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"AssignmentCell" forIndexPath:indexPath];
@@ -68,6 +90,11 @@
     return self.household.count;
 }
 
+
+-(void)dismissKeyboard
+{
+    [self.descriptionField resignFirstResponder];
+}
 
 
 /*
