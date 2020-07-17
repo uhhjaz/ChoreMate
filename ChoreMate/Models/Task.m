@@ -32,21 +32,36 @@
 }
 
 
-+ (void) postTaskwithCompletion: (PFBooleanResultBlock  _Nullable)completion {
++ (void) postTask: (NSString * _Nullable)description
+         WithDate: (NSString * _Nullable )dueDate
+        Assignees:(NSArray *)assignees
+   withCompletion: (PFBooleanResultBlock  _Nullable)completion {
+
+
+    Task *newTask = [Task new];
+    PFRelation *relation = [newTask relationForKey:@"assignedTo"];
+    for(User * eachAssignee in assignees){
+        NSLog(@"the assignees are: %@", eachAssignee);
+        [relation addObject:eachAssignee];
+    }
     
-//
-//    Task *newTask = [Task new];
-//    NSDateFormatter *dateFormatter=[[NSDateFormatter alloc] init];
-//    [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
-//    NSString *theDate = [dateFormatter stringFromDate:[NSDate date]];
-//    NSLog(@"this is the date: %@", theDate);
-//    newTask.type = @"one-time-test";
-//    newTask.createdDate = theDate;
-//    newTask.dueDate = theDate;
-//    newTask.startDate = theDate;
-//    newTask.endDate = theDate;
-//    newTask.taskDescription = @"this would be the description";
-//    [newTask saveInBackgroundWithBlock: completion];
+     [newTask saveInBackground];
+
+    
+    NSDateFormatter *dateFormatter=[[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:@"dd/MM/yyyy --- HH:mm"];
+    NSString *theDate = [dateFormatter stringFromDate:[NSDate date]];
+    NSLog(@"this is the date: %@", theDate);
+    newTask.type = @"one_time_task";
+    
+    newTask.createdDate = theDate;
+    newTask.startDate = theDate;
+    
+    newTask.dueDate = dueDate ;
+    newTask.endDate = dueDate;
+    newTask.completed = FALSE;
+    newTask.taskDescription = description;
+    [newTask saveInBackgroundWithBlock: completion];
 }
 
 

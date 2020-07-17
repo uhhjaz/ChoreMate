@@ -7,10 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <THCalendarDatePicker-umbrella.h>
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface OnceTimeTaskViewController : UIViewController
+@interface OnceTimeTaskViewController : UIViewController<THDatePickerDelegate>
+
+@property (nonatomic, strong) THDatePickerViewController * datePicker;
 
 @end
 

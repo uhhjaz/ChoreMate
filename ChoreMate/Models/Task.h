@@ -14,13 +14,16 @@
 NS_ASSUME_NONNULL_BEGIN
 
 
+
+@import Parse;
+
 @interface Task : PFObject<PFSubclassing>
 @property (nonatomic, strong) NSString *postID;
 @property (nonatomic, strong) NSString *userID;
 @property (nonatomic, strong) User *author;
 @property (nonatomic, strong) NSString *type;
 @property (nonatomic, strong) NSString *taskDescription;
-@property (nonatomic, strong) NSArray *assignedTo;
+@property (nonatomic, strong) PFRelation *assignedTo;
 @property (nonatomic, strong) NSString *createdDate;
 @property (nonatomic, strong) NSString *dueDate;
 @property (nonatomic, assign) BOOL completed; // not sure what the difference is between assign and strong
@@ -29,6 +32,10 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) NSArray *rotationalOrder;
 @property (nonatomic, strong) NSString *repeats;
 
++ (void) postTask: (NSString * _Nullable)description
+         WithDate: (NSString * _Nullable )dueDate
+        Assignees:(NSArray *)assignees
+   withCompletion: (PFBooleanResultBlock  _Nullable)completion;
 
 @end
 

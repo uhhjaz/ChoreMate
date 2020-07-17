@@ -221,7 +221,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2Qd-iJ-Fvh" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2844.9275362318845" y="1015.8482142857142"/>
+            <point key="canvasLocation" x="2736" y="1016"/>
         </scene>
         <!--Sign Up View Controller-->
         <scene sceneID="gvE-FM-HQD">
@@ -317,17 +317,32 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RST-sI-rgj">
-                                <rect key="frame" x="65" y="732" width="284" height="30"/>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="RKD-8Q-ZBN">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <state key="normal" title=" Add Task ">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                </state>
-                                <connections>
-                                    <action selector="didTapAddTask:" destination="0pg-wd-GFw" eventType="touchUpInside" id="yr9-MS-Zwy"/>
-                                </connections>
-                            </button>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RST-sI-rgj">
+                                        <rect key="frame" x="65" y="723" width="284" height="30"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <state key="normal" title=" Add Task ">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="didTapAddTask:" destination="0pg-wd-GFw" eventType="touchUpInside" id="yr9-MS-Zwy"/>
+                                        </connections>
+                                    </button>
+                                    <containerView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="zE4-eD-UNL">
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="693"/>
+                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                                        <connections>
+                                            <segue destination="D5f-P4-a9j" kind="embed" id="erX-bb-heW"/>
+                                        </connections>
+                                    </containerView>
+                                </subviews>
+                                <viewLayoutGuide key="contentLayoutGuide" id="nFX-QW-sWn"/>
+                                <viewLayoutGuide key="frameLayoutGuide" id="KPx-Dg-SIm"/>
+                            </scrollView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="CvG-SG-6vk"/>
@@ -345,7 +360,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gag-2A-xbo" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5002.898550724638" y="1015.8482142857142"/>
+            <point key="canvasLocation" x="4227.536231884058" y="258.48214285714283"/>
         </scene>
         <!--Task Choice Pop Up View Controller-->
         <scene sceneID="FGx-Qv-h8i">
@@ -360,7 +375,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7AY-Va-LTt" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5972.4637681159429" y="1021.875"/>
+            <point key="canvasLocation" x="6087" y="1016"/>
         </scene>
         <!--Add New One Time Task-->
         <scene sceneID="z3E-qt-q8O">
@@ -478,6 +493,9 @@
                                                 <state key="normal" title="July 16" image="calendar">
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </state>
+                                                <connections>
+                                                    <action selector="dateButtonTouched:" destination="NRj-Jv-WGX" eventType="touchUpInside" id="a8W-OX-akR"/>
+                                                </connections>
                                             </button>
                                         </subviews>
                                         <color key="backgroundColor" red="0.73761713500000003" green="0.77224212879999998" blue="0.78823894260000005" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
@@ -505,16 +523,23 @@
                         <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="ogX-Ns-WiG"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Add New One Time Task" id="2Rv-ek-5O4"/>
+                    <navigationItem key="navigationItem" title="Add New One Time Task" id="2Rv-ek-5O4">
+                        <barButtonItem key="rightBarButtonItem" title="Add Task" id="p3i-5z-Ioe">
+                            <connections>
+                                <action selector="didTapAddTask:" destination="NRj-Jv-WGX" id="2jU-lE-Uun"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="collectionView" destination="0st-Kh-oBp" id="6zh-8K-shb"/>
                         <outlet property="descriptionField" destination="3Oq-S6-LwX" id="Kpb-Yo-Qgc"/>
                         <outlet property="dueDateButton" destination="yJZ-du-Ogo" id="cXO-Hx-pxd"/>
+                        <segue destination="0pg-wd-GFw" kind="show" identifier="added_OT_Task" id="f4L-Vv-G80"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="CQR-bW-9SF" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="7989.8550724637689" y="1033.9285714285713"/>
+            <point key="canvasLocation" x="5003" y="-574"/>
         </scene>
         <!--Add New Recurring Task-->
         <scene sceneID="4S3-hg-on4">
@@ -581,7 +606,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8pf-Ds-Uph" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3851" y="1016"/>
+            <point key="canvasLocation" x="3461" y="259"/>
         </scene>
         <!--Navigation for Household-->
         <scene sceneID="SJv-kx-n4U">
@@ -636,6 +661,73 @@
             </objects>
             <point key="canvasLocation" x="251" y="1016"/>
         </scene>
+        <!--Table View Controller-->
+        <scene sceneID="RCs-8e-KuH">
+            <objects>
+                <tableViewController id="D5f-P4-a9j" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="Yhc-Zg-7p1">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="693"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <sections>
+                            <tableViewSection id="WfG-si-A57">
+                                <cells>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="139" id="PGS-VX-egk">
+                                        <rect key="frame" x="0.0" y="28" width="414" height="139"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="PGS-VX-egk" id="Ptg-cY-gOd">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="139"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="r6k-j7-B6a" userLabel="Single Task View">
+                                                    <rect key="frame" x="17" y="31" width="381" height="77"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <subviews>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Sign the Lease!" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8XP-np-zzd">
+                                                            <rect key="frame" x="60" y="13" width="305" height="21"/>
+                                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                            <nil key="textColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Date:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YZ0-xw-XaJ">
+                                                            <rect key="frame" x="60" y="42" width="43" height="21"/>
+                                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                            <nil key="textColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PCM-ws-Nix">
+                                                            <rect key="frame" x="16" y="24" width="29" height="29"/>
+                                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                            <state key="normal" backgroundImage="unchecked"/>
+                                                        </button>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="July 24th, 2020" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KZ2-6n-hMu">
+                                                            <rect key="frame" x="111" y="42" width="254" height="21"/>
+                                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                            <nil key="textColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                    </subviews>
+                                                    <color key="backgroundColor" name="selectedTextBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                                </view>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </cells>
+                            </tableViewSection>
+                        </sections>
+                        <connections>
+                            <outlet property="dataSource" destination="D5f-P4-a9j" id="cft-WU-n0I"/>
+                            <outlet property="delegate" destination="D5f-P4-a9j" id="lWX-eX-XA8"/>
+                        </connections>
+                    </tableView>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Jyw-dR-R5L" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="5002.898550724638" y="258.81696428571428"/>
+        </scene>
         <!--Navigation Controller-->
         <scene sceneID="bKe-Uo-UaT">
             <objects>
@@ -653,7 +745,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SA8-dK-0rw" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="7079.7101449275369" y="1033.9285714285713"/>
+            <point key="canvasLocation" x="4228" y="-575"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="pGL-sm-e22">
@@ -708,10 +800,14 @@
             <point key="canvasLocation" x="7080" y="2661"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="YZ3-oO-gyT"/>
+    </inferredMetricsTieBreakers>
     <resources>
         <image name="calendar" width="256" height="256"/>
         <image name="checked" width="300" height="300"/>
         <image name="profile_image_default" width="225" height="225"/>
+        <image name="unchecked" width="600" height="600"/>
         <image name="uncheckedbox" width="300" height="300"/>
     </resources>
 </document>
