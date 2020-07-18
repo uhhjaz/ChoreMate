@@ -33,9 +33,11 @@
 
 
 + (void) postTask: (NSString * _Nullable)description
+           OfType: (NSString * _Nullable)type
          WithDate: (NSString * _Nullable )dueDate
         Assignees:(NSArray *)assignees
    withCompletion: (PFBooleanResultBlock  _Nullable)completion {
+    
 
 
     Task *newTask = [Task new];
@@ -52,11 +54,9 @@
     [dateFormatter setDateFormat:@"dd/MM/yyyy --- HH:mm"];
     NSString *theDate = [dateFormatter stringFromDate:[NSDate date]];
     NSLog(@"this is the date: %@", theDate);
-    newTask.type = @"one_time_task";
-    
+    newTask.type = type;
     newTask.createdDate = theDate;
     newTask.startDate = theDate;
-    
     newTask.dueDate = dueDate ;
     newTask.endDate = dueDate;
     newTask.completed = FALSE;

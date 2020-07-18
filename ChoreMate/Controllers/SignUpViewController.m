@@ -132,7 +132,6 @@
     
     // Get the image captured by the UIImagePickerController
     UIImage *originalImage = info[UIImagePickerControllerOriginalImage];
-    // UIImage *editedImage = info[UIImagePickerControllerEditedImage];
     self.imageView.image = [self resizeImage:originalImage withSize:CGSizeMake(300, 300)];
     
     // Dismiss UIImagePickerController to go back to your original view controller

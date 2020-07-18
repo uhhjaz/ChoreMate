@@ -23,8 +23,7 @@
 }
 
 
-+ (BOOL)isLoggedIn
-{
++ (BOOL)isLoggedIn {
     return [User currentUser] ? YES: NO;
 }
 

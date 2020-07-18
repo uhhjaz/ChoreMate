@@ -28,11 +28,6 @@ int const MENU_THIRD_PROFILE = 3;
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.currentIndex = 0;
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
-    
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
 }
 
 
@@ -60,6 +55,7 @@ int const MENU_THIRD_PROFILE = 3;
             break;
     }
 
+    
     if (centerViewController) {
         self.currentIndex = indexPath.row;
         [self.mm_drawerController setCenterViewController:centerViewController withCloseAnimation:YES completion:nil];

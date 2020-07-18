@@ -28,42 +28,41 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+
     self.collectionView.delegate = self;
     self.collectionView.dataSource = self;
     
     [self getHousehold];
     
+    // user selection layout
     UICollectionViewFlowLayout *collectionViewFlowLayout = [[UICollectionViewFlowLayout alloc] init];
     [collectionViewFlowLayout setScrollDirection:UICollectionViewScrollDirectionHorizontal];
     self.collectionView.collectionViewLayout = collectionViewFlowLayout;
     
+    // dismisses keyboard for task description input
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(dismissKeyboard)];
-
     [self.view addGestureRecognizer:tap];
     
+    // sets and refreshes the date picker
     self.curDate = [NSDate date];
     self.formatter = [[NSDateFormatter alloc] init];
     [_formatter setDateFormat:@"dd/MM/yyyy --- HH:mm"];
     [self refreshTitle];
 }
 
+
 - (void) getHousehold{
-    NSLog(@"Inside getting a household");
+
     User *curr = [User currentUser];
-    
-    NSLog(@"the curr user is: %@", curr);
-    
     PFQuery *query = [PFUser query];
-    [query whereKey:@"household_id" equalTo:curr.household_id]; // find all the women
+    
+    // query for household members of the current user
+    [query whereKey:@"household_id" equalTo:curr.household_id];
     [query findObjectsInBackgroundWithBlock:^(NSArray *users, NSError *error) {
         if (users != nil) {
-            
             NSLog(@"Successfully got household members");
+            
             self.household = users;
-            
-            NSLog(@"the household is: %@",users);
-            
             [self.collectionView reloadData];
             
         } else {
@@ -72,38 +71,20 @@
     }];
 }
 
+
+
 - (IBAction)didTapAddTask:(id)sender {
     
-    self.taskAssignees = [[NSMutableArray alloc] init];
+    [self getAssignedMembers];
     
-    int i;
-    for (i = 0; i < self.household.count; i++){
-        
-        UIButton *check = (UIButton *)[self.view viewWithTag:i+1];
-        NSLog(@"the button is: %@", check);
-        
-        if ([check isSelected]){
-            
-            NSLog(@"inside selceted check as yes the object at index %d is: %@",i, self.household[i]);
-            
-            [self.taskAssignees addObject:self.household[i]];
-            
-            NSLog(@"the taskAssignee array contents are: %@", self.taskAssignees);
-            
-            [self performSegueWithIdentifier:@"added_OT_Task" sender:sender];
-            
-        }
-    }
+    //NSLog(@"the users assigned to the task are: %@", self.taskAssignees);
     
-    
-    NSLog(@"the users assigned to the task are: %@", self.taskAssignees);
-    //[[Task ] setObject:weapons forKey:@weaponsList"];
-    
-    
-    [Task postTask:self.descriptionField.text WithDate:self.theSelectedDate Assignees:self.taskAssignees withCompletion:^(BOOL succeeded, NSError * _Nullable error) {
+    // call Task class methods to post the task and segue to task screen
+    [Task postTask:self.descriptionField.text OfType:@"one_time" WithDate:self.theSelectedDate Assignees:self.taskAssignees withCompletion:^(BOOL succeeded, NSError * _Nullable error) {
         if(succeeded){
             NSLog(@"posting task success");
             self.descriptionField.text = @"";
+            [self performSegueWithIdentifier:@"added_OT_Task" sender:sender];
         }
         else{
             NSLog(@"Error posting image: %@", error.localizedDescription);
@@ -111,6 +92,24 @@
     }];
         
 }
+
+
+- (void) getAssignedMembers {
+    
+    // populate array with household members selected for the task
+    self.taskAssignees = [[NSMutableArray alloc] init];
+    for (int i = 0; i < self.household.count; i++){
+        
+        UIButton *check = (UIButton *)[self.view viewWithTag:i+1];
+        
+        if ([check isSelected]){
+            [self.taskAssignees addObject:self.household[i]];
+            
+        }
+    }
+}
+
+
 
 - (UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(nonnull UICollectionViewLayout *)collectionViewLayout insetForSectionAtIndex:(NSInteger)section {
     CGFloat totalCellWidth = 80 * self.household.count;
@@ -126,33 +125,32 @@
     return CGSizeMake(100, 80);
 }
 
-// set cells to choose who the task is assigned to
+
+
 - (nonnull __kindof UICollectionViewCell *)collectionView:(nonnull UICollectionView *)collectionView cellForItemAtIndexPath:(nonnull NSIndexPath *)indexPath {
     AssignmentCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"AssignmentCell" forIndexPath:indexPath];
     cell.user = self.household[indexPath.row];
     [cell setCellValues];
     cell.checkButton.tag = indexPath.row + 1;
-    NSLog(@"the button in question is: %@", cell.checkButton);
-    NSLog(@"the indexPath.row is : %ld",(long)indexPath.row);
     return cell;
 }
 
 
-
-
-- (NSInteger)collectionView:(nonnull UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
+- (NSInteger)collectionView:(nonnull UICollectionView *)collectionView
+     numberOfItemsInSection:(NSInteger)section {
     return self.household.count;
 }
 
 
--(void)dismissKeyboard
-{
+-(void)dismissKeyboard {
     [self.descriptionField resignFirstResponder];
 }
+
 
 -(void)refreshTitle {
     [self.dueDateButton setTitle:(self.curDate ? [_formatter stringFromDate:_curDate] : @"No date selected") forState:UIControlStateNormal];
 }
+
 
 - (IBAction)dateButtonTouched:(id)sender {
     if(!self.datePicker)
@@ -165,20 +163,13 @@
         [self.datePicker setAutoCloseOnSelectDate:YES];
         [self.datePicker setAllowSelectionOfSelectedDate:YES];
         [self.datePicker setDisableYearSwitch:YES];
-        //[self.datePicker setDisableFutureSelection:NO];
         [self.datePicker setDaysInHistorySelection:200];
         [self.datePicker setDaysInFutureSelection:200];
-        //[self.datePicker setAllowMultiDaySelection:YES];
-    //    [self.datePicker setDateTimeZoneWithName:@"UTC"];
-        //[self.datePicker setAutoCloseCancelDelay:5.0];
+        [self.datePicker setAutoCloseCancelDelay:1.0];
         [self.datePicker setSelectedBackgroundColor:[UIColor colorWithRed:125/255.0 green:208/255.0 blue:0/255.0 alpha:1.0]];
         [self.datePicker setCurrentDateColor:[UIColor colorWithRed:242/255.0 green:121/255.0 blue:53/255.0 alpha:1.0]];
         [self.datePicker setCurrentDateColorSelected:[UIColor yellowColor]];
         
-        [self.datePicker setDateHasItemsCallback:^BOOL(NSDate *date) {
-            int tmp = (arc4random() % 30)+1;
-            return (tmp % 5 == 0);
-        }];
         //[self.datePicker slideUpInView:self.view withModalColor:[UIColor lightGrayColor]];
         [self presentSemiViewController:self.datePicker withOptions:@{
                                                                       KNSemiModalOptionKeys.pushParentBack    : @(NO),

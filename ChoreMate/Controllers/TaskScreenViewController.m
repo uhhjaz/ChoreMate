@@ -18,7 +18,6 @@
 #import "UIViewController+MMDrawerController.h"
 #import "MMDrawerBarButtonItem.h"
 
-
 // MARK: Models
 #import "Task.h"
 #import "User.h"
@@ -63,7 +62,6 @@ int const TASK_TYPE_ROTATIONAL = 2;
 }
 
 
-
 - (IBAction)didTapAddTask:(id)sender {
     NSLog(@"Trying to click popup");
     TaskChoicePopUpViewController *popViewController = [TaskChoicePopUpViewController new];
@@ -82,21 +80,6 @@ int const TASK_TYPE_ROTATIONAL = 2;
 - (void)didChoose:(int)type{
     
     NSLog(@"inside did choose, the type is: %d", type);
-//    if ([type isEqual: @"one time"]) {
-//
-//        OnceTimeTaskViewController* controller = [self.storyboard instantiateViewControllerWithIdentifier:@"ONE_TIME_TASK"];
-//        [self.navigationController pushViewController:controller animated:YES];
-//    }
-//
-//    else if ([type isEqual: @"recurring"]) {
-//        RecurringTaskViewController* controller = [self.storyboard instantiateViewControllerWithIdentifier:@"RECURRING_TASK"];
-//        [self.navigationController pushViewController:controller animated:YES];
-//    }
-//
-//    else if ([type isEqual: @"rotational"]) {
-//        RotationalTaskViewController* controller = [self.storyboard instantiateViewControllerWithIdentifier:@"ROTATIONAL_TASK"];
-//        [self.navigationController pushViewController:controller animated:YES];
-//    }
     OnceTimeTaskViewController* controller;
     switch (type) {
         case TASK_TYPE_ONETIME:

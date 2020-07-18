@@ -33,8 +33,9 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) NSString *repeats;
 
 + (void) postTask: (NSString * _Nullable)description
-         WithDate: (NSString * _Nullable )dueDate
-        Assignees:(NSArray *)assignees
+           OfType: (NSString * _Nullable)type
+         WithDate: (NSString * _Nullable)dueDate
+        Assignees: (NSArray *)assignees
    withCompletion: (PFBooleanResultBlock  _Nullable)completion;
 
 @end
