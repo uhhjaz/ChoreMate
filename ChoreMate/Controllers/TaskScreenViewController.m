@@ -31,11 +31,15 @@
 #import "OnceTimeTaskViewController.h"
 #import "RecurringTaskViewController.h"
 #import "RotationalTaskViewController.h"
+#import "TaskTableViewController.h"
 
 
 
-@interface TaskScreenViewController () <TaskChoiceControllerDelegate>
+@interface TaskScreenViewController () <TaskChoiceControllerDelegate, TaskTableViewControllerDelegate>
 @property (weak, nonatomic) IBOutlet UIButton *addTaskButton;
+@property (weak, nonatomic) IBOutlet UIView *theContainer;
+@property (weak, nonatomic) IBOutlet UILabel *userWelcome;
+@property (weak, nonatomic) User *currUser;
 
 @end
 
@@ -47,7 +51,20 @@ int const TASK_TYPE_ROTATIONAL = 2;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
     [self setupLeftMenuButton];
+    
+    
+    NSLog(@"self.childViewControllers[0] is actually this: %@",self.childViewControllers[0]);
+    
+    self.currUser = [User currentUser];
+    NSArray* firstLastStrings = [self.currUser.name componentsSeparatedByString:@" "];
+    self.userWelcome.text = [NSString stringWithFormat:@"Hey %@!",[firstLastStrings objectAtIndex:0]];
+    TaskTableViewController * tableViewController = self.childViewControllers[0];
+    tableViewController.delegate = self;
+    
+    NSLog(@"the current user is: %@", tableViewController.currUser);
+    
 }
 
 

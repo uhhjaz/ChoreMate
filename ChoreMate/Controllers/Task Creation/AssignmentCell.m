@@ -13,7 +13,9 @@
 
 - (void)setCellValues{
     
-    self.userLabel.text = self.user.name;
+    
+    NSArray* firstLastStrings = [self.user.name componentsSeparatedByString:@" "];
+    self.userLabel.text = [NSString stringWithFormat:@"%@",[firstLastStrings objectAtIndex:0]];
     
     [self.checkButton addTarget:self
                     action:@selector(aMethod1:)

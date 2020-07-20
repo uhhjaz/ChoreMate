@@ -10,6 +10,7 @@
 
 
 #import "User.h"
+#import <Parse/Parse.h>
 
 @implementation User
 
@@ -52,5 +53,6 @@
     
     return [PFFileObject fileObjectWithName:@"image.png" data:imageData];
 }
+
 
 @end

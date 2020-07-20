@@ -46,7 +46,7 @@
     // sets and refreshes the date picker
     self.curDate = [NSDate date];
     self.formatter = [[NSDateFormatter alloc] init];
-    [_formatter setDateFormat:@"dd/MM/yyyy --- HH:mm"];
+    [_formatter setDateFormat:@"yyyy/MM/dd --- HH:mm"];
     [self refreshTitle];
 }
 

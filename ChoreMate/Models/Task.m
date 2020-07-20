@@ -51,7 +51,7 @@
 
     
     NSDateFormatter *dateFormatter=[[NSDateFormatter alloc] init];
-    [dateFormatter setDateFormat:@"dd/MM/yyyy --- HH:mm"];
+    [dateFormatter setDateFormat:@"yyyy/MM/dd --- HH:mm"];
     NSString *theDate = [dateFormatter stringFromDate:[NSDate date]];
     NSLog(@"this is the date: %@", theDate);
     newTask.type = type;
