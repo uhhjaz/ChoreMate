@@ -38,6 +38,8 @@ NS_ASSUME_NONNULL_BEGIN
         Assignees: (NSArray *)assignees
    withCompletion: (PFBooleanResultBlock  _Nullable)completion;
 
+- (BOOL)checkIfHouseHoldMemberCompletedTask:(Task *)task :(User *)housemate;
+
 @end
 
 NS_ASSUME_NONNULL_END

@@ -15,6 +15,7 @@
 - (void) setAssignee{
     NSArray* firstLastStrings = [self.user.name componentsSeparatedByString:@" "];
     self.nameLabel.text = [NSString stringWithFormat:@"%@",[firstLastStrings objectAtIndex:0]];
+    self.nameLabel.textColor = [UIColor redColor];
 
     NSArray *completionMembers = [self.task objectForKey:@"currentCompletionStatus"];
     

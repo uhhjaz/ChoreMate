@@ -65,4 +65,25 @@
 }
 
 
+- (BOOL)checkIfHouseHoldMemberCompletedTask:(Task *)task :(User *)housemate {
+    
+    NSArray *completionMembers = [task objectForKey:@"currentCompletionStatus"];
+
+    if (completionMembers != nil ) {
+
+        if ([completionMembers containsObject:housemate.objectId]) {
+            NSLog(@"THE USER HAS COMPLETED THE TASK!! %@", housemate.name);
+            return YES;
+
+        }
+        else {
+            NSLog(@"THE USER HAS NOT COMPLETED THE TASK!! %@", housemate.name);
+            return NO;
+
+        }
+    }
+    return NO;
+}
+
+
 @end

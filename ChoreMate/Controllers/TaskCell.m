@@ -73,17 +73,19 @@
     NSString* dateStr = [dateFormat stringFromDate:date];
     self.taskDueDateLabel.text = dateStr;
     
-    
-    if([self.task.type  isEqual: @"one_time"]){
-        self.taskContainerView.backgroundColor = [UIColor colorWithRed: 0.60 green: 0.73 blue: 0.93 alpha: 1.00];
+    if (!self.task.completed) {
+        if([self.task.type  isEqual: @"one_time"]){
+            self.taskContainerView.backgroundColor = [UIColor colorWithRed: 0.60 green: 0.73 blue: 0.93 alpha: 1.00];
+        }
+        else if([self.task.type  isEqual: @"recurring"]){
+            self.taskContainerView.backgroundColor = [UIColor colorWithRed: 0.65 green: 0.85 blue: 0.78 alpha: 1.00];
+        }
+        else if([self.task.type  isEqual: @"rotational"]){
+            self.taskContainerView.backgroundColor = [UIColor colorWithRed: 0.92 green: 0.69 blue: 0.69 alpha: 1.00];
+        }
+    } else{
+        self.taskContainerView.backgroundColor = [UIColor colorWithRed: 0.00 green: 0.33 blue: 0.05 alpha: 1.00];
     }
-    else if([self.task.type  isEqual: @"recurring"]){
-        self.taskContainerView.backgroundColor = [UIColor colorWithRed: 0.65 green: 0.85 blue: 0.78 alpha: 1.00];
-    }
-    else if([self.task.type  isEqual: @"rotational"]){
-        self.taskContainerView.backgroundColor = [UIColor colorWithRed: 0.92 green: 0.69 blue: 0.69 alpha: 1.00];
-    }
-    
     
     
     // check if the button should be selected or not????
@@ -98,7 +100,12 @@
     [self.taskCompletedButton setImage:unselected forState:UIControlStateNormal];
     [self.taskCompletedButton setImage:selected forState:UIControlStateSelected];
 
-    //self.checkButton.selected = NO;
+    if([self.task checkIfHouseHoldMemberCompletedTask:self.task :[User currentUser]]){
+        self.taskCompletedButton.selected = YES;
+    }
+    else{
+        self.taskCompletedButton.selected = NO;
+    }
 }
 
 
@@ -148,7 +155,15 @@
     NSLog(@"the completion array is: %@", completedBy);
     
     if(completedBy.count == self.taskAssignees.count){
+        self.task.completed = @YES;
+        [self.task saveInBackground];
         //TASK IS FULLY COMPLETED BY ALL USERS
+            //what happens to the tasks?
+            //change container color?
+            //remove the task from the feed? --to a different location?
+            //for now, change container color
+            //
+        self.taskContainerView.backgroundColor = [UIColor colorWithRed: 0.00 green: 0.33 blue: 0.05 alpha: 1.00];
     }
     [self.collectionView reloadData];
 }
@@ -158,7 +173,15 @@
      
     NSArray *completedBy = [self.task objectForKey:@"currentCompletionStatus"];
     if(completedBy.count == self.taskAssignees.count){
-        //TASK WAS COMPLETED BY ALL USERS BEFORE THIS AND NOW IT ISNT
+        self.task.completed = false;
+        [self.task saveInBackground];
+        //TASK IS FULLY COMPLETED BY ALL USERS
+            //what happens to the tasks?
+            //change container color?
+            //remove the task from the feed? --to a different location?
+            //for now, change container color
+            //
+        self.taskContainerView.backgroundColor = [UIColor colorWithRed: 0.60 green: 0.73 blue: 0.93 alpha: 1.00];
     }
     
     User *currUser = [User currentUser];
