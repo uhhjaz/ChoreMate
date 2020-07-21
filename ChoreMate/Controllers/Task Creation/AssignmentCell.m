@@ -18,7 +18,7 @@
     self.userLabel.text = [NSString stringWithFormat:@"%@",[firstLastStrings objectAtIndex:0]];
     
     [self.checkButton addTarget:self
-                    action:@selector(aMethod1:)
+                         action:@selector(updateCheck:)
           forControlEvents:UIControlEventTouchUpInside];
     self.checkButton.frame = CGRectMake(10.0, 100.0, 30.0, 30.0);
 
@@ -28,13 +28,14 @@
     [self.checkButton setImage:unselected forState:UIControlStateNormal];
     [self.checkButton setImage:selected forState:UIControlStateSelected];
 
-    self.checkButton.selected = NO;
+    //self.checkButton.selected = NO;
 
 }
 
-- (void)aMethod1:(UIButton *)btn{
+- (void)updateCheck:(UIButton *)btn{
     btn.selected = !btn.selected;
 }
+
 
 
 @end

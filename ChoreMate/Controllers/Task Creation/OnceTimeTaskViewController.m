@@ -47,6 +47,8 @@
     self.curDate = [NSDate date];
     self.formatter = [[NSDateFormatter alloc] init];
     [_formatter setDateFormat:@"yyyy/MM/dd --- HH:mm"];
+    //[self.dueDateButton.titleLabel setTextAlignment:NSTextAlignmentCenter];
+    self.dueDateButton.titleLabel.textAlignment = NSTextAlignmentCenter;
     [self refreshTitle];
 }
 
@@ -148,7 +150,14 @@
 
 
 -(void)refreshTitle {
-    [self.dueDateButton setTitle:(self.curDate ? [_formatter stringFromDate:_curDate] : @"No date selected") forState:UIControlStateNormal];
+    
+    NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
+    [dateFormat setDateFormat:@"yyyy/MM/dd --- HH:mm"];
+    NSDate *date = [dateFormat dateFromString:self.theSelectedDate];
+    [dateFormat setDateFormat:@"MM/dd/yyyy"];
+    //NSString* dateStr = [dateFormat stringFromDate:date];
+    [self.dueDateButton setTitle:(self.theSelectedDate ? [dateFormat stringFromDate:date] : @"No date selected") forState:UIControlStateNormal];
+    
 }
 
 
@@ -176,16 +185,19 @@
                                                                       KNSemiModalOptionKeys.animationDuration : @(.7),
                                                                       KNSemiModalOptionKeys.shadowOpacity     : @(0.3),
                                                                       }];
+    [self refreshTitle];
 }
 
 
 #pragma mark - THDatePickerDelegate
 
 - (void)datePickerCancelPressed:(THDatePickerViewController *)datePicker {
+    [self refreshTitle];
     
 }
 
 - (void)datePickerDonePressed:(THDatePickerViewController *)datePicker {
+    [self refreshTitle];
     
 }
 
