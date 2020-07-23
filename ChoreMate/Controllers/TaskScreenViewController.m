@@ -118,6 +118,7 @@ int const TASK_TYPE_ROTATIONAL = 2;
     
     PFQuery *query = [PFQuery queryWithClassName:@"Task"];
     [query whereKey:@"assignedTo" equalTo:self.currUser];
+    [query whereKey:@"completed" equalTo:@NO];
     
     [query orderByAscending:@"dueDate"];
     
@@ -149,6 +150,7 @@ int const TASK_TYPE_ROTATIONAL = 2;
     [cell setTaskValues];
     [cell getTasksAssignees];
 
+
     return cell;
 }
 
@@ -170,7 +172,35 @@ int const TASK_TYPE_ROTATIONAL = 2;
         [self.myTasks removeObjectAtIndex:indexPath.row];
         [tableView reloadData];
     }
+    
 }
+
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(nonnull NSIndexPath *)indexPath{
+    
+    NSMutableArray *allCells = (NSMutableArray *)[self.tableView visibleCells];
+    NSPredicate *testForTrue = [NSPredicate predicateWithFormat:@"self.task.completed == 1"];
+    NSArray *filteredArray = [allCells filteredArrayUsingPredicate:testForTrue];
+    
+    if (filteredArray != nil) {
+    
+        [filteredArray enumerateObjectsUsingBlock:^(UITableViewCell *cell, NSUInteger idx, BOOL *stop) {
+            [cell setFrame:CGRectMake(0, cell.frame.origin.y, cell.frame.size.width, cell.frame.size.height)];
+            [UIView animateWithDuration:1.5 animations:^{
+                [cell setFrame:CGRectMake(self.view.bounds.size.width, cell.frame.origin.y, cell.frame.size.width, cell.frame.size.height)];
+            }];
+        
+            [UIView animateWithDuration:1 animations:^{
+                [self.myTasks removeObjectAtIndex:indexPath.row];
+            }];
+        }];
+    
+        [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationFade];
+    }
+}
+
+
+
 
 #pragma mark - Navigation Drawer
 

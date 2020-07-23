@@ -48,7 +48,7 @@ int const TASK_CHOSEN_ROTATIONAL = 2;
     [self.view addSubview:oneTimeButton];
     
     [oneTimeButton mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.bottom.equalTo(@-10);
+        make.bottom.equalTo(@-110);
         make.left.equalTo(@15);
         make.right.equalTo(@-15);
         make.height.mas_equalTo(40);
@@ -82,7 +82,8 @@ int const TASK_CHOSEN_ROTATIONAL = 2;
     [self.view addSubview:rotationalButton];
     
     [rotationalButton mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.bottom.equalTo(@-110);
+        
+        make.bottom.equalTo(@-10);
         make.left.equalTo(@15);
         make.right.equalTo(@-15);
         make.height.mas_equalTo(40);
