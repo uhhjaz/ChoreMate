@@ -16,6 +16,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (weak, nonatomic) IBOutlet UILabel *nameLabel;
 @property (strong, nonatomic) User *user;
 @property (strong, nonatomic) Task *task;
+@property (weak, nonatomic) IBOutlet UIView *cellContentView;
 
 
 - (void) setAssignee;

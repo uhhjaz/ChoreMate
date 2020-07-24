@@ -39,6 +39,11 @@
 		3AA6620024BCFF1800EBA89E /* TaskScreenViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AA661FF24BCFF1800EBA89E /* TaskScreenViewController.m */; };
 		3AE09FD624C5EFE9000C3C59 /* TaskCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AE09FD524C5EFE9000C3C59 /* TaskCell.m */; };
 		3AE09FDF24C673C5000C3C59 /* AssigneeNameCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AE09FDE24C673C5000C3C59 /* AssigneeNameCell.m */; };
+		3AEB43FA24CA0A470038AED5 /* MonthlyTimePickViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AEB43F924CA0A470038AED5 /* MonthlyTimePickViewController.m */; };
+		3AEB43FD24CA0A5F0038AED5 /* WeeklyDayPickViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AEB43FC24CA0A5F0038AED5 /* WeeklyDayPickViewController.m */; };
+		3AEB440024CA0A6B0038AED5 /* DailyTimePickViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AEB43FF24CA0A6B0038AED5 /* DailyTimePickViewController.m */; };
+		3AEB440324CA0DFD0038AED5 /* EndPickerWithDateViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AEB440224CA0DFD0038AED5 /* EndPickerWithDateViewController.m */; };
+		3AEB440624CA0E0D0038AED5 /* EndPickerWithOccurrenceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AEB440524CA0E0D0038AED5 /* EndPickerWithOccurrenceViewController.m */; };
 		A4D753D915AAFC9326281DD3 /* Pods_ChoreMateTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F8ABD6FFC7352F94315E47B2 /* Pods_ChoreMateTests.framework */; };
 		D826715B4B5ADC833890D1C9 /* Pods_ChoreMate_ChoreMateUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE6062E7CCD60E1E0F25E822 /* Pods_ChoreMate_ChoreMateUITests.framework */; };
 /* End PBXBuildFile section */
@@ -121,6 +126,16 @@
 		3AE09FD524C5EFE9000C3C59 /* TaskCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = TaskCell.m; path = ChoreMate/Controllers/TaskCell.m; sourceTree = SOURCE_ROOT; };
 		3AE09FDD24C673C5000C3C59 /* AssigneeNameCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = AssigneeNameCell.h; path = ChoreMate/Controllers/AssigneeNameCell.h; sourceTree = SOURCE_ROOT; };
 		3AE09FDE24C673C5000C3C59 /* AssigneeNameCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = AssigneeNameCell.m; path = ChoreMate/Controllers/AssigneeNameCell.m; sourceTree = SOURCE_ROOT; };
+		3AEB43F824CA0A470038AED5 /* MonthlyTimePickViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MonthlyTimePickViewController.h; sourceTree = "<group>"; };
+		3AEB43F924CA0A470038AED5 /* MonthlyTimePickViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MonthlyTimePickViewController.m; sourceTree = "<group>"; };
+		3AEB43FB24CA0A5F0038AED5 /* WeeklyDayPickViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WeeklyDayPickViewController.h; sourceTree = "<group>"; };
+		3AEB43FC24CA0A5F0038AED5 /* WeeklyDayPickViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WeeklyDayPickViewController.m; sourceTree = "<group>"; };
+		3AEB43FE24CA0A6B0038AED5 /* DailyTimePickViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DailyTimePickViewController.h; sourceTree = "<group>"; };
+		3AEB43FF24CA0A6B0038AED5 /* DailyTimePickViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DailyTimePickViewController.m; sourceTree = "<group>"; };
+		3AEB440124CA0DFD0038AED5 /* EndPickerWithDateViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EndPickerWithDateViewController.h; sourceTree = "<group>"; };
+		3AEB440224CA0DFD0038AED5 /* EndPickerWithDateViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EndPickerWithDateViewController.m; sourceTree = "<group>"; };
+		3AEB440424CA0E0D0038AED5 /* EndPickerWithOccurrenceViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EndPickerWithOccurrenceViewController.h; sourceTree = "<group>"; };
+		3AEB440524CA0E0D0038AED5 /* EndPickerWithOccurrenceViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EndPickerWithOccurrenceViewController.m; sourceTree = "<group>"; };
 		4254BD712506FF58415CD045 /* Pods-ChoreMateTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ChoreMateTests.release.xcconfig"; path = "Target Support Files/Pods-ChoreMateTests/Pods-ChoreMateTests.release.xcconfig"; sourceTree = "<group>"; };
 		4F4BDF2F0005FD07275C1F61 /* Pods_ChoreMate.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ChoreMate.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		971AA37EA7C439CB3CC8BF98 /* Pods-ChoreMate-ChoreMateUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ChoreMate-ChoreMateUITests.debug.xcconfig"; path = "Target Support Files/Pods-ChoreMate-ChoreMateUITests/Pods-ChoreMate-ChoreMateUITests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -293,6 +308,7 @@
 		3AA661F124BCC3F100EBA89E /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				3AEB43F124CA09D80038AED5 /* Container Controllers */,
 				3A2D79E824C0BBBF00D2C31B /* Task Creation */,
 				3A2D79E624C0BA6300D2C31B /* Side Drawers */,
 				3A2D79E424C0BA4A00D2C31B /* PopUp */,
@@ -308,6 +324,23 @@
 				3A95C6B924BD29D800C906D7 /* ProfileViewController.m */,
 			);
 			path = Controllers;
+			sourceTree = "<group>";
+		};
+		3AEB43F124CA09D80038AED5 /* Container Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				3AEB43F824CA0A470038AED5 /* MonthlyTimePickViewController.h */,
+				3AEB43F924CA0A470038AED5 /* MonthlyTimePickViewController.m */,
+				3AEB43FB24CA0A5F0038AED5 /* WeeklyDayPickViewController.h */,
+				3AEB43FC24CA0A5F0038AED5 /* WeeklyDayPickViewController.m */,
+				3AEB43FE24CA0A6B0038AED5 /* DailyTimePickViewController.h */,
+				3AEB43FF24CA0A6B0038AED5 /* DailyTimePickViewController.m */,
+				3AEB440124CA0DFD0038AED5 /* EndPickerWithDateViewController.h */,
+				3AEB440224CA0DFD0038AED5 /* EndPickerWithDateViewController.m */,
+				3AEB440424CA0E0D0038AED5 /* EndPickerWithOccurrenceViewController.h */,
+				3AEB440524CA0E0D0038AED5 /* EndPickerWithOccurrenceViewController.m */,
+			);
+			path = "Container Controllers";
 			sourceTree = "<group>";
 		};
 		AF6971EC3DF7B6305776A7D7 /* Frameworks */ = {
@@ -588,10 +621,14 @@
 				3AA661BB24BCC3CC00EBA89E /* AppDelegate.m in Sources */,
 				3AA661FA24BCCE9000EBA89E /* SignUpViewController.m in Sources */,
 				3A95C6BA24BD29D800C906D7 /* ProfileViewController.m in Sources */,
+				3AEB43FA24CA0A470038AED5 /* MonthlyTimePickViewController.m in Sources */,
 				3AE09FDF24C673C5000C3C59 /* AssigneeNameCell.m in Sources */,
 				3AE09FD624C5EFE9000C3C59 /* TaskCell.m in Sources */,
+				3AEB440624CA0E0D0038AED5 /* EndPickerWithOccurrenceViewController.m in Sources */,
+				3AEB43FD24CA0A5F0038AED5 /* WeeklyDayPickViewController.m in Sources */,
 				3A2D79F424C103B400D2C31B /* AssignmentCell.m in Sources */,
 				3A2D79F124C0D09F00D2C31B /* RotationalTaskViewController.m in Sources */,
+				3AEB440024CA0A6B0038AED5 /* DailyTimePickViewController.m in Sources */,
 				3AA661CC24BCC3CE00EBA89E /* main.m in Sources */,
 				3A95C6B724BD29CD00C906D7 /* HouseholdViewController.m in Sources */,
 				3A2D79E324C0A9C400D2C31B /* TaskChoicePopUpViewController.m in Sources */,
@@ -599,6 +636,7 @@
 				3AA661F724BCCE8400EBA89E /* LoginViewController.m in Sources */,
 				3A95C6C024BD337400C906D7 /* SideDrawerViewController.m in Sources */,
 				3AA6620024BCFF1800EBA89E /* TaskScreenViewController.m in Sources */,
+				3AEB440324CA0DFD0038AED5 /* EndPickerWithDateViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

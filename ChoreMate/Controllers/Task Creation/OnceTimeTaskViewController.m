@@ -16,11 +16,11 @@
 @property (weak, nonatomic) IBOutlet UITextField *descriptionField;
 @property (weak, nonatomic) IBOutlet UIButton *dueDateButton;
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
-@property (strong, nonatomic) NSArray *household;
-@property (nonatomic, retain) NSDate * curDate;
 @property (nonatomic, retain) NSDateFormatter * formatter;
+@property (nonatomic, retain) NSDate * curDate;
 @property (nonatomic, retain) NSString * theSelectedDate;
 @property (strong, nonatomic) NSMutableArray *taskAssignees;
+@property (strong, nonatomic) NSArray *household;
 
 @end
 

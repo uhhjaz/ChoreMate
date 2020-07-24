@@ -50,6 +50,12 @@
     cell.user = self.taskAssignees[indexPath.item];
     cell.task = self.task;
     [cell setAssignee];
+    if (self.task.completed == YES){
+        cell.cellContentView.backgroundColor = [UIColor colorWithRed: 0.0 green: 0.2 blue: 0.05 alpha: 1];
+    }
+    else {
+        cell.cellContentView.backgroundColor = [UIColor colorWithRed: 0.60 green: 0.73 blue: 0.93 alpha: 1.00];
+    }
     return cell;
 }
 
@@ -75,7 +81,7 @@
     
     if (!self.task.completed) {
         if([self.task.type  isEqual: @"one_time"]){
-            self.taskContainerView.backgroundColor = [UIColor colorWithRed: 0.60 green: 0.73 blue: 0.93 alpha: 1.00];
+            self.taskContainerView.backgroundColor = [UIColor colorWithRed: 0.45 green: 0.58 blue: 0.80 alpha: 1.00];
         }
         else if([self.task.type  isEqual: @"recurring"]){
             self.taskContainerView.backgroundColor = [UIColor colorWithRed: 0.65 green: 0.85 blue: 0.78 alpha: 1.00];
@@ -163,10 +169,12 @@
             //remove the task from the feed? --to a different location?
             //for now, change container color
             //
+        
         self.taskContainerView.backgroundColor = [UIColor colorWithRed: 0.00 green: 0.33 blue: 0.05 alpha: 1.00];
     }
     [self.collectionView reloadData];
 }
+
 
 
 - (void)uncompleteAssignment {
@@ -181,7 +189,7 @@
             //remove the task from the feed? --to a different location?
             //for now, change container color
             //
-        self.taskContainerView.backgroundColor = [UIColor colorWithRed: 0.60 green: 0.73 blue: 0.93 alpha: 1.00];
+        self.taskContainerView.backgroundColor = [UIColor colorWithRed: 0.45 green: 0.58 blue: 0.80 alpha: 1.00];
     }
     
     User *currUser = [User currentUser];
