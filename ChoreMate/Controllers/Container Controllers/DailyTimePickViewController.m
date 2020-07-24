@@ -21,7 +21,20 @@
 }
 
 - (IBAction)pickedTime:(UISegmentedControl *)sender {
-    self.pickedTime = [NSString stringWithFormat:@"%ld", sender.selectedSegmentIndex+1 ];
+//    self.pickedTime = [NSString stringWithFormat:@"%ld", sender.selectedSegmentIndex+1 ];
+    switch (sender.selectedSegmentIndex) {
+        case 0:
+            self.pickedTime = @"6";
+            break;
+        case 1:
+            self.pickedTime = @"12";
+            break;
+        case 2:
+            self.pickedTime = @"18";
+            break;
+        default:
+            break;
+    }
 }
 
 /*

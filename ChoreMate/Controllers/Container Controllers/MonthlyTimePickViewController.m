@@ -28,7 +28,7 @@
     self.dayOfMonthPicker.dataSource = self;
     self.dayOfMonthPicker.delegate = self;
     
-    NSIndexSet *indexSet = [NSIndexSet indexSetWithIndexesInRange:NSMakeRange(1, 28)];
+    NSIndexSet *indexSet = [NSIndexSet indexSetWithIndexesInRange:NSMakeRange(1, 31)];
 
     NSMutableArray *elements = [NSMutableArray array];
         [indexSet enumerateIndexesUsingBlock:^(NSUInteger idx, BOOL *stop) {
@@ -69,7 +69,7 @@
 
 - (IBAction)endSelected:(id)sender {
     [self.dateTextField setText:@"End"];
-    self.pickedDay = @"-1";
+    self.pickedDay = @"31";
 }
 
 

@@ -41,7 +41,7 @@
 @property (strong, nonatomic) NSArray *household;
 
 @property (strong, nonatomic) NSString *chosenRepeat;
-@property (strong, nonatomic) NSString *chosenWhenToRepeat;
+@property (strong, nonatomic) NSNumber *chosenWhenToRepeat;
 @property (strong, nonatomic) NSString *chosenEndMethod;
 @property (strong, nonatomic) NSNumber *chosenOccurrences;
 
@@ -85,7 +85,6 @@ int const DO_NOT_SHOW_VIEW = 0;
     
     [self setChildViewControllers];
 }
-
 
 - (void) setChildViewControllers{
     self.dailyTimePickController = [self.childViewControllers objectAtIndex:0];
@@ -234,16 +233,110 @@ int const DO_NOT_SHOW_VIEW = 0;
 }
 
 
+#pragma mark - Set User Configured Values
+
+- (NSNumber *) setOccurrences {
+    if([self.chosenEndMethod isEqual:BY_DATE]){
+        
+        NSDate *endDate = self.endPickerWithDateController.pickedDate;
+        
+        if([self.chosenRepeat isEqual:DAILY]){
+            return @([self daysBetweenDates:(NSInteger)[self.chosenWhenToRepeat intValue] currentDate:endDate]);
+        } else if ([self.chosenRepeat isEqual:WEEKLY]) {
+            return @([self weeksBetweenDates:(NSInteger)[self.chosenWhenToRepeat intValue] currentDate:endDate]);
+        } else if ([self.chosenRepeat isEqual:MONTHLY]) {
+            return @([self monthsBetweenDates:(NSInteger)[self.chosenWhenToRepeat intValue] currentDate:endDate]);
+        }
+        
+    } else if ([self.chosenEndMethod isEqual:BY_OCCURRENCE]){
+        return self.endPickerWithOccurrenceController.numOfOccurences;
+    }
+    return 0;
+}
+
+
+- (int) daysBetweenDates: (NSInteger)chosenTime currentDate: (NSDate *)endDate {
+    
+    NSCalendar *calendar = [NSCalendar currentCalendar];
+    NSDateComponents *findMatchingDayComponents = [[NSDateComponents alloc] init];
+    findMatchingDayComponents.hour = chosenTime;
+    
+    __block int dateCount = 0;
+    [calendar enumerateDatesStartingAfterDate:[NSDate date]
+                          matchingComponents:findMatchingDayComponents
+                                     options:NSCalendarMatchPreviousTimePreservingSmallerUnits
+                                  usingBlock:^(NSDate *date, BOOL exactMatch, BOOL *stop) {
+        if (date.timeIntervalSince1970 >= endDate.timeIntervalSince1970) {
+            *stop = YES;
+        }
+        else {
+            NSLog(@"%@", date);
+            dateCount++;
+        }
+    }];
+    
+    return dateCount;
+}
+
+
+- (int) weeksBetweenDates: (NSInteger)weekDayChosen currentDate: (NSDate *)endDate {
+    
+    NSCalendar *calendar = [NSCalendar currentCalendar];
+    NSDateComponents *findMatchingDayComponents = [[NSDateComponents alloc] init];
+    findMatchingDayComponents.weekday = weekDayChosen;
+    
+    __block int dateCount = 0;
+    [calendar enumerateDatesStartingAfterDate:[NSDate date]
+                          matchingComponents:findMatchingDayComponents
+                                     options:NSCalendarMatchPreviousTimePreservingSmallerUnits
+                                  usingBlock:^(NSDate *date, BOOL exactMatch, BOOL *stop) {
+        if (date.timeIntervalSince1970 >= endDate.timeIntervalSince1970) {
+            *stop = YES;
+        }
+        else {
+            NSLog(@"%@", date);
+            dateCount++;
+        }
+    }];
+    
+    return dateCount;
+}
+
+
+- (int) monthsBetweenDates: (NSInteger )dayChosen currentDate: (NSDate *)endDate {
+    
+    NSCalendar *calendar = [NSCalendar currentCalendar];
+    NSDateComponents *findMatchingDayComponents = [[NSDateComponents alloc] init];
+    findMatchingDayComponents.day = dayChosen;
+        
+    __block int dateCount = 0;
+    [calendar enumerateDatesStartingAfterDate:[NSDate date]
+                          matchingComponents:findMatchingDayComponents
+                                     options:NSCalendarMatchPreviousTimePreservingSmallerUnits
+                                  usingBlock:^(NSDate *date, BOOL exactMatch, BOOL *stop) {
+        if (date.timeIntervalSince1970 >= endDate.timeIntervalSince1970) {
+            *stop = YES;
+        }
+        else {
+            NSLog(@"%@", date);
+            dateCount++;
+        }
+    }];
+    
+    return dateCount;
+}
+
+
 #pragma mark - Navigation
 
-- (IBAction)saveButtonClicked:(id)sender {
+- (IBAction)addTaskTapped:(id)sender {
     
     if ([self.chosenRepeat isEqual:DAILY]){
-        self.chosenWhenToRepeat = self.dailyTimePickController.pickedTime;
+        self.chosenWhenToRepeat = @([self.dailyTimePickController.pickedTime intValue]);
     } else if ([self.chosenRepeat isEqual:WEEKLY]) {
-        self.chosenWhenToRepeat = self.weeklyDayPickController.pickedDay;
+        self.chosenWhenToRepeat = @([self.weeklyDayPickController.pickedDay intValue]);
     } else if ([self.chosenRepeat isEqual:MONTHLY]) {
-        self.chosenWhenToRepeat = self.monthlyTimePickController.pickedDay;
+        self.chosenWhenToRepeat = @([self.monthlyTimePickController.pickedDay intValue]);
     }
     
     self.chosenOccurrences = [self setOccurrences];
@@ -257,72 +350,18 @@ int const DO_NOT_SHOW_VIEW = 0;
     NSLog(@"the task is assigned to: %@",self.taskAssignees);
     
     
-//    [Task postTask:self.descriptionField.text OfType:@"recurring" WithRepeat:self.chosenRepeat Method:self.chosenWhenToRepeat NumOfTimes:self.chosenOccurrences Assignees:self.taskAssignees withCompletion:^(BOOL succeeded, NSError * _Nullable error) {
-//        if(succeeded){
-//            NSLog(@"posting task success");
-//            self.descriptionField.text = @"";
-//            [self performSegueWithIdentifier:@"added_OT_Task" sender:sender];
-//        }
-//        else{
-//            NSLog(@"Error posting image: %@", error.localizedDescription);
-//        }
-//    }];
-    
-    
-}
-
-- (NSNumber *) setOccurrences {
-    if([self.chosenEndMethod isEqual:BY_DATE]){
+    [Task postTask:self.descriptionField.text OfType:@"recurring" WithRepeatType:self.chosenRepeat Point:self.chosenWhenToRepeat NumOfTimes:self.chosenOccurrences Assignees:self.taskAssignees withCompletion:^(BOOL succeeded, NSError * _Nullable error) {
         
-        NSDate *startDate = [NSDate date];
-        NSDate *endDate = self.endPickerWithDateController.pickedDate;
-        
-        if([self.chosenRepeat isEqual:DAILY]){
-            return @([self daysBetweenDates:startDate currentDate:endDate]);
-        } else if ([self.chosenRepeat isEqual:WEEKLY]) {
-            return @([self weeksBetweenDates:startDate currentDate:endDate]);
-        } else if ([self.chosenRepeat isEqual:MONTHLY]) {
-            return @([self monthsBetweenDates:startDate currentDate:endDate]);
+        if(succeeded){
+            NSLog(@"posting reoccuring task success");
+            self.descriptionField.text = @"";
+            [self performSegueWithIdentifier:@"added_RE_Task" sender:sender];
         }
-        
-    } else if ([self.chosenEndMethod isEqual:BY_OCCURRENCE]){
-        return self.endPickerWithOccurrenceController.numOfOccurences;
-    }
-    return 0;
+        else{
+            NSLog(@"Error posting image: %@", error.localizedDescription);
+        }
+    }];
 }
 
-
-- (int) daysBetweenDates: (NSDate *)startDate currentDate: (NSDate *)endDate {
-    NSCalendar *calendar = [NSCalendar currentCalendar];
-    NSDateComponents *dateComponent = [calendar components:NSCalendarUnitDay fromDate:startDate toDate:endDate options:0];
-    int totalDays = (int)dateComponent.day;
-    return totalDays;
-}
-
-
-- (int) weeksBetweenDates: (NSDate *)startDate currentDate: (NSDate *)endDate {
-    NSCalendar *calendar = [NSCalendar currentCalendar];
-    NSDateComponents *dateComponent = [calendar components:NSCalendarUnitDay fromDate:startDate toDate:endDate options:0];
-    int totalWeeks = (int)dateComponent.weekOfYear;
-    return totalWeeks/7;
-}
-
-
-- (int) monthsBetweenDates: (NSDate *)startDate currentDate: (NSDate *)endDate {
-    NSCalendar *calendar = [NSCalendar currentCalendar];
-    NSInteger month = [[calendar components: NSCalendarUnitMonth
-    fromDate: startDate
-      toDate: endDate
-     options: 0] month];
-    return (int)month;
-}
-
-/*
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

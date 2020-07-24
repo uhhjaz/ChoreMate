@@ -84,7 +84,7 @@
             self.taskContainerView.backgroundColor = [UIColor colorWithRed: 0.45 green: 0.58 blue: 0.80 alpha: 1.00];
         }
         else if([self.task.type  isEqual: @"recurring"]){
-            self.taskContainerView.backgroundColor = [UIColor colorWithRed: 0.65 green: 0.85 blue: 0.78 alpha: 1.00];
+            self.taskContainerView.backgroundColor = [UIColor colorWithRed: 0.00 green: 0.61 blue: 0.41 alpha: 1.00];;
         }
         else if([self.task.type  isEqual: @"rotational"]){
             self.taskContainerView.backgroundColor = [UIColor colorWithRed: 0.92 green: 0.69 blue: 0.69 alpha: 1.00];
