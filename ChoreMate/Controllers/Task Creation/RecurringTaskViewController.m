@@ -308,7 +308,7 @@ int const DO_NOT_SHOW_VIEW = 0;
     NSCalendar *calendar = [NSCalendar currentCalendar];
     NSDateComponents *findMatchingDayComponents = [[NSDateComponents alloc] init];
     findMatchingDayComponents.day = dayChosen;
-        
+    
     __block int dateCount = 0;
     [calendar enumerateDatesStartingAfterDate:[NSDate date]
                           matchingComponents:findMatchingDayComponents
@@ -342,6 +342,7 @@ int const DO_NOT_SHOW_VIEW = 0;
     self.chosenOccurrences = [self setOccurrences];
 
     [self getAssignedMembers];
+    NSDate *endDate = self.endPickerWithDateController.pickedDate;
     
     NSLog(@"the task description is: %@",self.descriptionField.text);
     NSLog(@"the repeat is: %@",self.chosenRepeat);
@@ -350,7 +351,7 @@ int const DO_NOT_SHOW_VIEW = 0;
     NSLog(@"the task is assigned to: %@",self.taskAssignees);
     
     
-    [Task postTask:self.descriptionField.text OfType:@"recurring" WithRepeatType:self.chosenRepeat Point:self.chosenWhenToRepeat NumOfTimes:self.chosenOccurrences Assignees:self.taskAssignees withCompletion:^(BOOL succeeded, NSError * _Nullable error) {
+    [Task postTask:self.descriptionField.text OfType:@"recurring" WithRepeatType:self.chosenRepeat Point:self.chosenWhenToRepeat NumOfTimes:self.chosenOccurrences Ending:endDate Assignees:self.taskAssignees withCompletion:^(BOOL succeeded, NSError * _Nullable error) {
         
         if(succeeded){
             NSLog(@"posting reoccuring task success");

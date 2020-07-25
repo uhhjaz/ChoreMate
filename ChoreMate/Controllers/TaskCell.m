@@ -117,25 +117,34 @@
 
 -(void)getTasksAssignees {
 
-    PFRelation *relation = [self.task relationForKey:@"assignedTo"];
-
-    // generate a query based on that relation
-    PFQuery *query = [relation query];
+    // populate TaskAssignees with User Objects
+    NSArray *userIds = [self.task objectForKey:@"assignedTo"];
+    //NSLog(@"the userIds are  is %@", userIds);
     
-    [query findObjectsInBackgroundWithBlock:^(NSArray *assignees, NSError *error) {
-        if (assignees != nil) {
-            NSLog(@"Successfully got assigned task members");
-        
-            self.taskAssignees = assignees;
-            [self.collectionView reloadData];
-        
-        } else {
-            NSLog(@"there was an error i guess");
-            NSLog(@"%@", error.localizedDescription);
-        }
+    self.taskAssignees = [[NSMutableArray alloc] init];
+    [self getArrayOfTaskAssignees:userIds completionHandler:^(NSArray * _Nonnull allAssignees) {
+        self.taskAssignees = allAssignees;
+//        NSLog(@"the user is: %@", self.taskAssignees);
+        [self.collectionView reloadData];
     }];
-    
+
 }
+
+- (void) getArrayOfTaskAssignees:(NSArray *)usersIds completionHandler:(void (^)(NSArray *allAssignees))completionHandler {
+
+    NSMutableArray *gettingAssignees = [[NSMutableArray alloc] init];
+    
+    for(NSString *userId in usersIds){
+        [User getUserFromObjectId:userId completionHandler:^(User * _Nonnull user) {
+            //NSLog(@"the assignees in block array is %@", gettingAssignees);
+            [gettingAssignees addObject:user];
+//            NSLog(@"the user is: %@", user.name);
+//            NSLog(@"the length of assignees is %lu", (unsigned long)gettingAssignees.count);
+            completionHandler((NSArray*)gettingAssignees);
+        }];
+    }
+}
+
 
 
 - (void)updateCheck:(UIButton *)btn{

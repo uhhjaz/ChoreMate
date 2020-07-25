@@ -26,7 +26,7 @@ NS_ASSUME_NONNULL_BEGIN
 + (BOOL)isLoggedIn;
 + (void) updateUserProfileImage: ( UIImage * _Nullable )image withCompletion: (PFBooleanResultBlock  _Nullable)completion;
 + (PFFileObject *)getPFFileFromImage: (UIImage * _Nullable)image;
-
++ (void) getUserFromObjectId:(NSString *)userObjectId completionHandler:(void (^)(User *user))completionHandler;
 @end
 
 NS_ASSUME_NONNULL_END

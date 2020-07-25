@@ -44,6 +44,8 @@
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (strong, nonatomic) NSArray *household;
 @property (strong, nonatomic) NSMutableArray *myTasks;
+@property (strong, nonatomic) NSMutableArray *myRecurringTasks;
+@property (strong, nonatomic) NSArray *assignees;
 
 @end
 
@@ -53,12 +55,6 @@ int const TASK_TYPE_ONETIME = 0;
 int const TASK_TYPE_RECURRING = 1;
 int const TASK_TYPE_ROTATIONAL = 2;
 
-//- (void)viewWillAppear:(BOOL)animated{
-//    //[self.tableView reloadData];
-//    if (self.currUser.household_id != nil) {
-//        [self getMyTasks];
-//    }
-//}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -86,13 +82,14 @@ int const TASK_TYPE_ROTATIONAL = 2;
         // do something incase user doesnt have household and tasks
     }
     
+    
 }
 
 
 - (void) getHousehold{
 
     User *curr = [User currentUser];
-
+    
     PFQuery *query = [PFUser query];
     
     if(curr.household_id != nil){
@@ -113,12 +110,12 @@ int const TASK_TYPE_ROTATIONAL = 2;
     
 }
 
-
 -(void)getMyTasks{
-    
     PFQuery *query = [PFQuery queryWithClassName:@"Task"];
-    [query whereKey:@"assignedTo" equalTo:self.currUser];
+    [query whereKey:@"assignedTo" containsString:self.currUser.objectId];
+    
     [query whereKey:@"completed" equalTo:@NO];
+    [query whereKey:@"type" equalTo:@"one_time"];
     
     [query orderByAscending:@"dueDate"];
     
@@ -127,12 +124,211 @@ int const TASK_TYPE_ROTATIONAL = 2;
             NSLog(@"Successfully got household members");
             
             self.myTasks = (NSMutableArray*)userTasks;
+            NSLog(@"Block1 End");
             [self.tableView reloadData];
+            
+            [self getMyReccuringTasks];
             
         } else {
             NSLog(@"%@", error.localizedDescription);
         }
     }];
+}
+
+
+-(void) getMyReccuringTasks{
+    PFQuery *query = [PFQuery queryWithClassName:@"Task"];
+    [query whereKey:@"assignedTo" containsString:self.currUser.objectId];
+    [query whereKey:@"completed" equalTo:@NO];
+    [query whereKey:@"type" equalTo:@"recurring"];
+    
+    [query orderByAscending:@"dueDate"];
+    
+    [query findObjectsInBackgroundWithBlock:^(NSArray *userTasks, NSError *error) {
+        if (userTasks != nil) {
+            NSLog(@"Successfully got my recurring tasks");
+            
+            self.myRecurringTasks = (NSMutableArray*)userTasks;
+            NSLog(@"my recurring tasks are %@", self.myRecurringTasks);
+            
+            dispatch_group_t group = dispatch_group_create();
+            
+            dispatch_group_enter(group);
+            [self setUpRepeatingTasksWithCompletionHandler:^(BOOL success) {
+                dispatch_group_leave(group);
+            }];
+            dispatch_group_notify(group,dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^ {
+                [self performSelectorOnMainThread:@selector(refreshTable) withObject:self.tableView waitUntilDone:YES];
+            });
+        } else {
+            NSLog(@"%@", error.localizedDescription);
+        }
+    }];
+}
+
+-(void)refreshTable {
+    [self.tableView reloadData];
+}
+
+
+
+- (void) getArrayOfTaskAssignees:(NSArray *)usersIds completionHandler:(void (^)(NSArray *allAssignees))completionHandler {
+
+    NSMutableArray *gettingAssignees = [[NSMutableArray alloc] init];
+    
+    for(NSString *userId in usersIds){
+        [User getUserFromObjectId:userId completionHandler:^(User * _Nonnull user) {
+            [gettingAssignees addObject:user];
+            completionHandler((NSArray*)gettingAssignees);
+        }];
+    }
+}
+
+
+
+-(void) setUpRepeatingTasksWithCompletionHandler:(void (^)(BOOL success))completionHandler {
+    
+    [(NSArray*)self.myRecurringTasks enumerateObjectsUsingBlock:^(Task *task, NSUInteger idx, BOOL *stop) {
+            
+        dispatch_group_t group = dispatch_group_create();
+
+        dispatch_group_enter(group);
+        NSArray *userIds = [task objectForKey:@"assignedTo"];
+
+        self.assignees = [[NSMutableArray alloc] init];
+        [self getArrayOfTaskAssignees:userIds completionHandler:^(NSArray * _Nonnull allAssignees) {
+            self.assignees = allAssignees;
+
+            dispatch_group_leave(group);
+            NSLog(@"block A end");
+        }];
+            
+        dispatch_group_notify(group,dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^ {
+            NSLog(@"block B begin");
+            NSArray *taskDueDates = [self getArrayOfDueDates:task];
+
+            for (NSDate *date in taskDueDates) {
+
+                NSLog(@"in the assigned user query: thisTaskAssignees is %@", self.assignees);
+                Task * newTask = [Task createTaskCopy:task.objectId For:task.taskDescription OfType:task.type WithRepeatType:task.repeats Point:task.repetitionPoint NumOfTimes:task.occurrences Ending:date Assignees:self.assignees];
+                
+                [self.myTasks addObject:newTask];
+                NSLog(@"newTASK IS: %@", newTask);
+            }
+            completionHandler(YES);
+        });
+    }];
+    [self.tableView reloadData];
+
+}
+
+
+-(NSArray *) getArrayOfDueDates: (Task*)task{
+    NSLog(@"getting dates array");
+    NSLog(@"getArrayOfDueDates the endDate is: %@", task.endDate);
+    
+
+    NSDateFormatter *dateFormatter=[[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:@"yyyy/MM/dd --- HH:mm"];
+    NSDate *endingDate = [dateFormatter dateFromString:task.endDate];
+    [dateFormatter setDateFormat:@"yyyy-MM-dd"];
+    NSString * endingDateStr = [dateFormatter stringFromDate:endingDate];
+    endingDate = [dateFormatter dateFromString:endingDateStr];
+    
+    NSMutableArray *dates = [[NSMutableArray alloc] init];
+    if ([task.repeats isEqual:@"daily"]){
+        dates = [self datesDaysAppear:task.repetitionPoint.intValue Til:endingDate];
+    }
+    else if ([task.repeats isEqual:@"weekly"]){
+        dates = [self datesWeeksAppear:task.repetitionPoint.intValue Til:endingDate];
+    }
+    else if ([task.repeats isEqual:@"monthly"]){
+        dates = [self datesMonthsAppear:task.repetitionPoint.intValue Til:endingDate];
+    }
+    
+    NSLog(@"getArrayOfDueDates the dates are: %@",dates);
+    return (NSArray*)dates;
+}
+
+
+- (NSMutableArray*) datesDaysAppear: (NSInteger)chosenTime Til: (NSDate *)endDate {
+    
+    NSCalendar *calendar = [NSCalendar currentCalendar];
+    NSDateComponents *findMatchingDayComponents = [[NSDateComponents alloc] init];
+    findMatchingDayComponents.hour = chosenTime;
+    NSMutableArray *dailyDates = [[NSMutableArray alloc] init];
+    
+    __block int dateCount = 0;
+    [calendar enumerateDatesStartingAfterDate:[NSDate date]
+                          matchingComponents:findMatchingDayComponents
+                                     options:NSCalendarMatchPreviousTimePreservingSmallerUnits
+                                  usingBlock:^(NSDate *date, BOOL exactMatch, BOOL *stop) {
+        if (date.timeIntervalSince1970 >= endDate.timeIntervalSince1970) {
+            *stop = YES;
+        }
+        else {
+            NSLog(@"%@", date);
+            dateCount++;
+            [dailyDates addObject:date];
+        }
+    }];
+    
+    return dailyDates;
+}
+
+
+- (NSMutableArray*) datesWeeksAppear: (NSInteger)weekDayChosen Til: (NSDate *)endDate {
+    
+    NSCalendar *calendar = [NSCalendar currentCalendar];
+    NSDateComponents *findMatchingDayComponents = [[NSDateComponents alloc] init];
+    findMatchingDayComponents.weekday = weekDayChosen;
+    NSMutableArray *weeklyDates = [[NSMutableArray alloc] init];
+    
+    __block int dateCount = 0;
+    [calendar enumerateDatesStartingAfterDate:[NSDate date]
+                          matchingComponents:findMatchingDayComponents
+                                     options:NSCalendarMatchPreviousTimePreservingSmallerUnits
+                                  usingBlock:^(NSDate *date, BOOL exactMatch, BOOL *stop) {
+        if (date.timeIntervalSince1970 >= endDate.timeIntervalSince1970) {
+            *stop = YES;
+        }
+        else {
+            NSLog(@"%@", date);
+            dateCount++;
+            [weeklyDates addObject:date];
+        }
+    }];
+    
+    return weeklyDates;
+}
+
+
+- (NSMutableArray*) datesMonthsAppear:(NSInteger )dayChosen Til:(NSDate *)endDate {
+    
+    NSLog(@"the chosen day is: %ld", (long)dayChosen);
+    NSLog(@"the chosen end date is: %@", endDate);
+    
+    NSCalendar *calendar = [NSCalendar currentCalendar];
+    NSDateComponents *findMatchingDayComponents = [[NSDateComponents alloc] init];
+    findMatchingDayComponents.day = dayChosen;
+    NSMutableArray *monthlyDates = [[NSMutableArray alloc] init];
+    
+    __block int dateCount = 0;
+    [calendar enumerateDatesStartingAfterDate:[NSDate date]
+                          matchingComponents:findMatchingDayComponents
+                                     options:NSCalendarMatchPreviousTimePreservingSmallerUnits
+                                  usingBlock:^(NSDate *date, BOOL exactMatch, BOOL *stop) {
+        if (date.timeIntervalSince1970 >= endDate.timeIntervalSince1970) {
+            *stop = YES;
+        }
+        else {
+            NSLog(@"%@", date);
+            dateCount++;
+            [monthlyDates addObject:date];
+        }
+    }];
+    NSLog(@"the monthly dates : %@",monthlyDates);
+    return monthlyDates;
 }
 
 
@@ -149,8 +345,8 @@ int const TASK_TYPE_ROTATIONAL = 2;
     cell.task = self.myTasks[indexPath.row];
     [cell setTaskValues];
     [cell getTasksAssignees];
-
-
+    //NSLog(@"the task assignees are: %@", cell.taskAssignees);
+    
     return cell;
 }
 

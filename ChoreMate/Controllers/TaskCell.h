@@ -25,6 +25,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void) setTaskValues;
 - (void) getTasksAssignees;
+- (void) getArrayOfTaskAssignees:(NSArray *)usersIds completionHandler:(void (^)(NSArray *allAssignees))completionHandler;
 
 @end
 

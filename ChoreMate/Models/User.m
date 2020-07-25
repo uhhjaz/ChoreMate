@@ -55,4 +55,21 @@
 }
 
 
+    
++ (void) getUserFromObjectId:(NSString *)userObjectId completionHandler:(void (^)(User *user))completionHandler {
+        
+    PFQuery *query = [PFUser query];
+    [query whereKey:@"objectId" equalTo:userObjectId]; 
+
+    [query findObjectsInBackgroundWithBlock:^(NSArray * _Nullable objects, NSError * _Nullable error) {
+        if(objects){
+            //NSLog(@"the user gotten with userId %@ is user: %@",userObjectId, objects[0]);
+            completionHandler(objects[0]);
+        }
+    }];
+}
+    
+
+
+
 @end

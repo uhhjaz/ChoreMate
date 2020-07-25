@@ -23,11 +23,11 @@
 
         if ([completionMembers containsObject:self.user.objectId]) {
             [self setNameForCompletion];
-            NSLog(@"THE USER HAS COMPLETED THE TASK!! %@", self.user.name);
+            //NSLog(@"THE USER HAS COMPLETED THE TASK!! %@", self.user.name);
         }
         else {
             [self setNameForNotYetCompleted];
-            NSLog(@"THE USER HAS NOT COMPLETED THE TASK!! %@", self.user.name);
+            //NSLog(@"THE USER HAS NOT COMPLETED THE TASK!! %@", self.user.name);
         }
     }
 }

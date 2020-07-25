@@ -22,7 +22,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) NSString *type;
 @property (nonatomic, strong) NSString *taskDescription;
 @property (nonatomic, assign) BOOL completed;
-@property (nonatomic, strong) PFRelation *assignedTo;
+@property (nonatomic, strong) NSArray *assignedTo;
 @property (nonatomic, strong) NSString *createdDate;
 @property (nonatomic, strong) NSString *dueDate;
 @property (nonatomic, strong) NSString *endDate;
@@ -43,10 +43,21 @@ NS_ASSUME_NONNULL_BEGIN
    WithRepeatType: (NSString * _Nullable)repeat
             Point: (NSNumber * _Nullable)whenToRepeat
        NumOfTimes: (NSNumber * _Nullable)occurrences
+           Ending: (NSDate * _Nullable)ending
         Assignees: (NSArray *)assignees
    withCompletion: (PFBooleanResultBlock  _Nullable)completion;
 
++ (Task *) createTaskCopy: (NSString * _Nullable)taskID
+                      For: (NSString * _Nullable)description
+                   OfType: (NSString * _Nullable)type
+           WithRepeatType: (NSString * _Nullable)repeat
+                    Point: (NSNumber * _Nullable)whenToRepeat
+               NumOfTimes: (NSNumber * _Nullable)occurrences
+                   Ending: (NSDate * _Nullable)ending
+                Assignees: (NSArray *)assignees;
+
 - (BOOL)checkIfHouseHoldMemberCompletedTask:(Task *)task :(User *)housemate;
+
 
 @end
 
