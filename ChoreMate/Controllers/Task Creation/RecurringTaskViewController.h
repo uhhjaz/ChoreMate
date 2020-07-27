@@ -16,9 +16,13 @@ FOUNDATION_EXPORT int const DAY_TIME_CHOSEN;
 FOUNDATION_EXPORT int const WEEK_DAY_CHOSEN;
 FOUNDATION_EXPORT int const MONTH_DAY_CHOSEN;
 
-- (int) daysBetweenDates: (NSInteger)startDate currentDate: (NSDate *)endDate;
-- (int) weeksBetweenDates: (NSInteger)weekDayChosen currentDate: (NSDate *)endDate;
-- (int) monthsBetweenDates: (NSInteger)dayChosen currentDate: (NSDate *)endDate;
+- (NSMutableArray*) datesDaysAppear: (NSInteger)chosenTime Til: (NSDate *)endDate;
+- (NSMutableArray*) datesWeeksAppear: (NSInteger)weekDayChosen Til: (NSDate *)endDate;
+- (NSMutableArray*) datesMonthsAppear:(NSInteger )dayChosen Til:(NSDate *)endDate;
+
+//- (int) daysBetweenDates: (NSInteger)startDate currentDate: (NSDate *)endDate;
+//- (int) weeksBetweenDates: (NSInteger)weekDayChosen currentDate: (NSDate *)endDate;
+//- (int) monthsBetweenDates: (NSInteger)dayChosen currentDate: (NSDate *)endDate;
 
 @end
 

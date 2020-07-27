@@ -10,18 +10,19 @@
 
 #import <Parse/Parse.h>
 #import "User.h"
+#import "Completed.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-
+@class Completed;
 
 @import Parse;
 
 @interface Task : PFObject<PFSubclassing>
 
+
 @property (nonatomic, strong) NSString *type;
 @property (nonatomic, strong) NSString *taskDescription;
-@property (nonatomic, assign) BOOL completed;
 @property (nonatomic, strong) NSArray *assignedTo;
 @property (nonatomic, strong) NSString *createdDate;
 @property (nonatomic, strong) NSString *dueDate;
@@ -30,7 +31,13 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) NSString *repeats;
 @property (nonatomic, strong) NSNumber *repetitionPoint;
 @property (nonatomic, strong) NSNumber *occurrences;
-@property (nonatomic, strong) NSArray *currentCompletionStatus;
+@property (nonatomic, strong) PFRelation *completed;
+
+// task copy properties
+@property (nonatomic, strong) NSString *taskDatabaseId;
+@property (nonatomic, assign) BOOL reproduced;
+@property (nonatomic, assign) Completed *completedObject;
+
 
 + (void) postTask: (NSString * _Nullable)description
            OfType: (NSString * _Nullable)type
@@ -45,18 +52,23 @@ NS_ASSUME_NONNULL_BEGIN
        NumOfTimes: (NSNumber * _Nullable)occurrences
            Ending: (NSDate * _Nullable)ending
         Assignees: (NSArray *)assignees
+         DueDates: (NSArray *)dueDates
    withCompletion: (PFBooleanResultBlock  _Nullable)completion;
 
-+ (Task *) createTaskCopy: (NSString * _Nullable)taskID
-                      For: (NSString * _Nullable)description
-                   OfType: (NSString * _Nullable)type
-           WithRepeatType: (NSString * _Nullable)repeat
-                    Point: (NSNumber * _Nullable)whenToRepeat
-               NumOfTimes: (NSNumber * _Nullable)occurrences
-                   Ending: (NSDate * _Nullable)ending
-                Assignees: (NSArray *)assignees;
 
-- (BOOL)checkIfHouseHoldMemberCompletedTask:(Task *)task :(User *)housemate;
++ (void) createTaskCopy: (NSString * _Nullable)taskID
+                   From: (Task *)realTask
+                    For: (NSString * _Nullable)description
+                 OfType: (NSString * _Nullable)type
+         WithRepeatType: (NSString * _Nullable)repeat
+                  Point: (NSNumber * _Nullable)whenToRepeat
+             NumOfTimes: (NSNumber * _Nullable)occurrences
+                 Ending: (NSDate * _Nullable)ending
+              Assignees: (NSArray *)assignees
+      completionHandler: (void (^)(Task * _Nonnull newTask))completionHandler;
+
+
+- (void)checkIfHouseHoldMemberCompletedTask:(Task *)task :(User *)housemate completionHandler:(void (^)(BOOL housemateCompletedTask))completionHandler;
 
 
 @end

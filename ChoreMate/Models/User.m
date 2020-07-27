@@ -62,7 +62,7 @@
     [query whereKey:@"objectId" equalTo:userObjectId]; 
 
     [query findObjectsInBackgroundWithBlock:^(NSArray * _Nullable objects, NSError * _Nullable error) {
-        if(objects){
+        if(objects[0]){
             //NSLog(@"the user gotten with userId %@ is user: %@",userObjectId, objects[0]);
             completionHandler(objects[0]);
         }

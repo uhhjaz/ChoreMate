@@ -8,6 +8,7 @@
 
 #import "TaskCell.h"
 #import "AssigneeNameCell.h"
+#import "Completed.h"
 
 @implementation TaskCell 
 
@@ -20,13 +21,13 @@
     UICollectionViewFlowLayout *collectionViewFlowLayout = [[UICollectionViewFlowLayout alloc] init];
     [collectionViewFlowLayout setScrollDirection:UICollectionViewScrollDirectionHorizontal];
     self.collectionView.collectionViewLayout = collectionViewFlowLayout;
+    
+    [self refreshCollection];
 }
 
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];
-
-    // Configure the view for the selected state
 }
 
 
@@ -50,13 +51,21 @@
     cell.user = self.taskAssignees[indexPath.item];
     cell.task = self.task;
     [cell setAssignee];
-    if (self.task.completed == YES){
-        cell.cellContentView.backgroundColor = [UIColor colorWithRed: 0.0 green: 0.2 blue: 0.05 alpha: 1];
-    }
-    else {
-        cell.cellContentView.backgroundColor = [UIColor colorWithRed: 0.60 green: 0.73 blue: 0.93 alpha: 1.00];
-    }
+    
+    dispatch_group_t group7 = dispatch_group_create();
+    dispatch_group_enter(group7);
+    [Completed getCompletedFromTask:self.task AndDate:self.task.dueDate completionHandler:^(Completed * _Nonnull completedObject) {
+        if (completedObject.isCompleted == YES){
+            cell.cellContentView.backgroundColor = [UIColor colorWithRed: 0.0 green: 0.2 blue: 0.05 alpha: 1];
+        }
+        else {
+            cell.cellContentView.backgroundColor = [UIColor colorWithRed: 0.60 green: 0.73 blue: 0.93 alpha: 1.00];
+        }
+        dispatch_group_leave(group7);
+    }];
+    
     return cell;
+
 }
 
 
@@ -75,26 +84,31 @@
     NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
     [dateFormat setDateFormat:@"yyyy/MM/dd --- HH:mm"];
     NSDate *date = [dateFormat dateFromString:self.task.dueDate];
+    NSLog(@"the due date is: %@", self.task.dueDate);
     [dateFormat setDateFormat:@"MM/dd/yyyy"];
     NSString* dateStr = [dateFormat stringFromDate:date];
     self.taskDueDateLabel.text = dateStr;
     
-    if (!self.task.completed) {
-        if([self.task.type  isEqual: @"one_time"]){
-            self.taskContainerView.backgroundColor = [UIColor colorWithRed: 0.45 green: 0.58 blue: 0.80 alpha: 1.00];
+    
+    // TODO: create file for colors, create getters for commonly used colors
+    [Completed getCompletedFromTask:self.task AndDate:self.task.dueDate completionHandler:^(Completed * _Nonnull completedObject) {
+        if (!completedObject.isCompleted){
+            if([self.task.type  isEqual: @"one_time"]){
+                self.taskContainerView.backgroundColor = [UIColor colorWithRed: 0.45 green: 0.58 blue: 0.80 alpha: 1.00];
+            }
+            else if([self.task.type  isEqual: @"recurring"]){
+                self.taskContainerView.backgroundColor = [UIColor colorWithRed: 0.00 green: 0.61 blue: 0.41 alpha: 1.00];;
+            }
+            else if([self.task.type  isEqual: @"rotational"]){
+                self.taskContainerView.backgroundColor = [UIColor colorWithRed: 0.92 green: 0.69 blue: 0.69 alpha: 1.00];
+            }
         }
-        else if([self.task.type  isEqual: @"recurring"]){
-            self.taskContainerView.backgroundColor = [UIColor colorWithRed: 0.00 green: 0.61 blue: 0.41 alpha: 1.00];;
+        else {
+            self.taskContainerView.backgroundColor = [UIColor colorWithRed: 0.00 green: 0.33 blue: 0.05 alpha: 1.00];
         }
-        else if([self.task.type  isEqual: @"rotational"]){
-            self.taskContainerView.backgroundColor = [UIColor colorWithRed: 0.92 green: 0.69 blue: 0.69 alpha: 1.00];
-        }
-    } else{
-        self.taskContainerView.backgroundColor = [UIColor colorWithRed: 0.00 green: 0.33 blue: 0.05 alpha: 1.00];
-    }
+    }];
     
     
-    // check if the button should be selected or not????
     [self.taskCompletedButton addTarget:self
                          action:@selector(updateCheck:)
           forControlEvents:UIControlEventTouchUpInside];
@@ -106,12 +120,15 @@
     [self.taskCompletedButton setImage:unselected forState:UIControlStateNormal];
     [self.taskCompletedButton setImage:selected forState:UIControlStateSelected];
 
-    if([self.task checkIfHouseHoldMemberCompletedTask:self.task :[User currentUser]]){
-        self.taskCompletedButton.selected = YES;
-    }
-    else{
-        self.taskCompletedButton.selected = NO;
-    }
+    [self.task checkIfHouseHoldMemberCompletedTask:self.task :[User currentUser] completionHandler:^(BOOL housemateCompletedTask) {
+        if(housemateCompletedTask){
+            self.taskCompletedButton.selected = YES;
+        }
+        else{
+            self.taskCompletedButton.selected = NO;
+        }
+    }];
+
 }
 
 
@@ -119,32 +136,37 @@
 
     // populate TaskAssignees with User Objects
     NSArray *userIds = [self.task objectForKey:@"assignedTo"];
-    //NSLog(@"the userIds are  is %@", userIds);
     
     self.taskAssignees = [[NSMutableArray alloc] init];
     [self getArrayOfTaskAssignees:userIds completionHandler:^(NSArray * _Nonnull allAssignees) {
         self.taskAssignees = allAssignees;
-//        NSLog(@"the user is: %@", self.taskAssignees);
         [self.collectionView reloadData];
     }];
 
 }
 
+
 - (void) getArrayOfTaskAssignees:(NSArray *)usersIds completionHandler:(void (^)(NSArray *allAssignees))completionHandler {
 
     NSMutableArray *gettingAssignees = [[NSMutableArray alloc] init];
     
+    dispatch_group_t group4 = dispatch_group_create();
+    
     for(NSString *userId in usersIds){
+        
+        dispatch_group_enter(group4);
+        
         [User getUserFromObjectId:userId completionHandler:^(User * _Nonnull user) {
-            //NSLog(@"the assignees in block array is %@", gettingAssignees);
             [gettingAssignees addObject:user];
-//            NSLog(@"the user is: %@", user.name);
-//            NSLog(@"the length of assignees is %lu", (unsigned long)gettingAssignees.count);
-            completionHandler((NSArray*)gettingAssignees);
+            dispatch_group_leave(group4);
         }];
+        
     }
+    
+    dispatch_group_notify(group4,dispatch_get_main_queue(), ^ {
+        completionHandler((NSArray*)gettingAssignees);
+    });
 }
-
 
 
 - (void)updateCheck:(UIButton *)btn{
@@ -160,52 +182,65 @@
 }
 
 - (void)completeAssignment {
-
-    User *currUser = [User currentUser];
-    [self.task addObject:currUser.objectId forKey:@"currentCompletionStatus"];
-    [self.task saveInBackground];
     
-    NSArray *completedBy = [self.task objectForKey:@"currentCompletionStatus"];
+    dispatch_group_t group5 = dispatch_group_create();
     
-    NSLog(@"the completion array is: %@", completedBy);
-    
-    if(completedBy.count == self.taskAssignees.count){
-        self.task.completed = @YES;
-        [self.task saveInBackground];
-        //TASK IS FULLY COMPLETED BY ALL USERS
-            //what happens to the tasks?
-            //change container color?
-            //remove the task from the feed? --to a different location?
-            //for now, change container color
-            //
+    dispatch_group_enter(group5);
+    [Completed getCompletedFromTask:self.task AndDate:self.task.dueDate completionHandler:^(Completed * _Nonnull completedObject) {
         
-        self.taskContainerView.backgroundColor = [UIColor colorWithRed: 0.00 green: 0.33 blue: 0.05 alpha: 1.00];
-    }
+        User *currUser = [User currentUser];
+        [completedObject addObject:currUser.objectId forKey:@"currentCompletionStatus"];
+        [completedObject saveInBackground];
+        
+        NSArray *completedBy = [completedObject objectForKey:@"currentCompletionStatus"];
+        
+        if(completedBy.count == self.taskAssignees.count){
+            completedObject.isCompleted = @YES;
+            [completedObject saveInBackground];
+            //TASK IS FULLY COMPLETED BY ALL USERS
+
+            self.taskContainerView.backgroundColor = [UIColor colorWithRed: 0.00 green: 0.33 blue: 0.05 alpha: 1.00];
+        }
+        dispatch_group_leave(group5);
+    }];
+
+    dispatch_group_notify(group5,dispatch_get_main_queue(), ^ {
+        [self performSelectorOnMainThread:@selector(refreshCollection) withObject:self.collectionView waitUntilDone:YES];
+    });
+}
+
+
+-(void)refreshCollection {
     [self.collectionView reloadData];
 }
 
 
-
 - (void)uncompleteAssignment {
-     
-    NSArray *completedBy = [self.task objectForKey:@"currentCompletionStatus"];
-    if(completedBy.count == self.taskAssignees.count){
-        self.task.completed = false;
-        [self.task saveInBackground];
-        //TASK IS FULLY COMPLETED BY ALL USERS
-            //what happens to the tasks?
-            //change container color?
-            //remove the task from the feed? --to a different location?
-            //for now, change container color
-            //
-        self.taskContainerView.backgroundColor = [UIColor colorWithRed: 0.45 green: 0.58 blue: 0.80 alpha: 1.00];
-    }
     
-    User *currUser = [User currentUser];
-    [self.task removeObject:currUser.objectId forKey:@"currentCompletionStatus"];
-    [self.task saveInBackground];
+    dispatch_group_t group6 = dispatch_group_create();
+    
+    dispatch_group_enter(group6);
+    [Completed getCompletedFromTask:self.task AndDate:self.task.dueDate completionHandler:^(Completed * _Nonnull completedObject) {
+         
+        NSArray *completedBy = [completedObject objectForKey:@"currentCompletionStatus"];
+         
+        if(completedBy.count == self.taskAssignees.count){
+            completedObject.isCompleted = false;
+            [completedObject saveInBackground];
+            //TASK IS FULLY COMPLETED BY ALL USERS
 
-    [self.collectionView reloadData];
+            self.taskContainerView.backgroundColor = [UIColor colorWithRed: 0.45 green: 0.58 blue: 0.80 alpha: 1.00];
+        }
+        
+        User *currUser = [User currentUser];
+        [completedObject removeObject:currUser.objectId forKey:@"currentCompletionStatus"];
+        [completedObject saveInBackground];
+        dispatch_group_leave(group6);
+    }];
+
+    dispatch_group_notify(group6,dispatch_get_main_queue(), ^ {
+        [self performSelectorOnMainThread:@selector(refreshCollection) withObject:self.collectionView waitUntilDone:YES];
+    });
 }
 
 

@@ -44,6 +44,7 @@
 		3AEB440024CA0A6B0038AED5 /* DailyTimePickViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AEB43FF24CA0A6B0038AED5 /* DailyTimePickViewController.m */; };
 		3AEB440324CA0DFD0038AED5 /* EndPickerWithDateViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AEB440224CA0DFD0038AED5 /* EndPickerWithDateViewController.m */; };
 		3AEB440624CA0E0D0038AED5 /* EndPickerWithOccurrenceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AEB440524CA0E0D0038AED5 /* EndPickerWithOccurrenceViewController.m */; };
+		3AEB440924CE7E880038AED5 /* Completed.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AEB440824CE7E880038AED5 /* Completed.m */; };
 		A4D753D915AAFC9326281DD3 /* Pods_ChoreMateTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F8ABD6FFC7352F94315E47B2 /* Pods_ChoreMateTests.framework */; };
 		D826715B4B5ADC833890D1C9 /* Pods_ChoreMate_ChoreMateUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE6062E7CCD60E1E0F25E822 /* Pods_ChoreMate_ChoreMateUITests.framework */; };
 /* End PBXBuildFile section */
@@ -136,6 +137,8 @@
 		3AEB440224CA0DFD0038AED5 /* EndPickerWithDateViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EndPickerWithDateViewController.m; sourceTree = "<group>"; };
 		3AEB440424CA0E0D0038AED5 /* EndPickerWithOccurrenceViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EndPickerWithOccurrenceViewController.h; sourceTree = "<group>"; };
 		3AEB440524CA0E0D0038AED5 /* EndPickerWithOccurrenceViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EndPickerWithOccurrenceViewController.m; sourceTree = "<group>"; };
+		3AEB440724CE7E880038AED5 /* Completed.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Completed.h; sourceTree = "<group>"; };
+		3AEB440824CE7E880038AED5 /* Completed.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Completed.m; sourceTree = "<group>"; };
 		4254BD712506FF58415CD045 /* Pods-ChoreMateTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ChoreMateTests.release.xcconfig"; path = "Target Support Files/Pods-ChoreMateTests/Pods-ChoreMateTests.release.xcconfig"; sourceTree = "<group>"; };
 		4F4BDF2F0005FD07275C1F61 /* Pods_ChoreMate.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ChoreMate.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		971AA37EA7C439CB3CC8BF98 /* Pods-ChoreMate-ChoreMateUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ChoreMate-ChoreMateUITests.debug.xcconfig"; path = "Target Support Files/Pods-ChoreMate-ChoreMateUITests/Pods-ChoreMate-ChoreMateUITests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -301,6 +304,8 @@
 				3AA661F324BCCC7500EBA89E /* User.m */,
 				3AA661FB24BCF0EC00EBA89E /* Task.h */,
 				3AA661FC24BCF0EC00EBA89E /* Task.m */,
+				3AEB440724CE7E880038AED5 /* Completed.h */,
+				3AEB440824CE7E880038AED5 /* Completed.m */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -625,6 +630,7 @@
 				3AE09FDF24C673C5000C3C59 /* AssigneeNameCell.m in Sources */,
 				3AE09FD624C5EFE9000C3C59 /* TaskCell.m in Sources */,
 				3AEB440624CA0E0D0038AED5 /* EndPickerWithOccurrenceViewController.m in Sources */,
+				3AEB440924CE7E880038AED5 /* Completed.m in Sources */,
 				3AEB43FD24CA0A5F0038AED5 /* WeeklyDayPickViewController.m in Sources */,
 				3A2D79F424C103B400D2C31B /* AssignmentCell.m in Sources */,
 				3A2D79F124C0D09F00D2C31B /* RotationalTaskViewController.m in Sources */,

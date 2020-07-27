@@ -79,7 +79,6 @@
     
     [self getAssignedMembers];
     
-    //NSLog(@"the users assigned to the task are: %@", self.taskAssignees);
     
     // call Task class methods to post the task and segue to task screen
     [Task postTask:self.descriptionField.text OfType:@"one_time" WithDate:self.theSelectedDate Assignees:self.taskAssignees withCompletion:^(BOOL succeeded, NSError * _Nullable error) {
