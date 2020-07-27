@@ -52,10 +52,13 @@ between residents, ensures chores and payments are completed on time through a t
 
 
 **Optional Nice-to-have Stories**
+* user can skip tasks ( user can mark off unavailability dates )
+* user can see reccommendations for who a task should be assigned to 
+* user can see task feed formatted week by week
+* user can see task history
 * user can update their profile picture
 * user can invite another user to household
 * user can update tasks
-* user can skip tasks ( user can mark off unavailability dates )
 * user can name/rename households
 * user can edit their name
 * user can view a housemates profile
@@ -152,49 +155,49 @@ between residents, ensures chores and payments are completed on time through a t
 #### User Model
 | Property  |  Type | Description |
 |---|---|---|
-|  objectId | String  | the unique Id of the object  |
-|  name | String  | the name of the user  |
-| username | String  | the users chosen username  |
-|  email |  String | the users inputted email  |
-| password  | String | the users chosen password  |
-| profile_image | File | profile image chosen by user |
-| household_Id |  String | the uniqueID representing the household the user is in |
+| objectId | String | the unique Id of the object |
+| name | String | the name of the user |
+| username | String | the users chosen username |
+| email | String | the users inputted email |
+| password | String | the users chosen password |
+| profileImage | File | profile image chosen by user |
+| householdId | String | the uniqueID representing the household the user is in |
 
 
 #### Household Model
 | Property  |  Type | Description |
 |---|---|---|
-| household_id | String | unique ID to represent this Household |
-|  name | String  | the the chosen name of the household  |
-| created_at | DateTime | the date when the household was created |
+| objectId | String | unique ID to represent this Household |
+|  name | String | the the chosen name of the household  |
+| createdAt | DateTime | the date when the household was created |
 
 
 #### Task Model
 | Property  |  Type | Description |
 |---|---|---|
 | objectId | String | unique ID to represent this Task |
-|  type | String  | the type of task: rotational,reccuring,one_time  |
+| type | String  | the type of task: rotational,reccuring,one_time  |
 | dueDate | DateTime| user selected date to complete the task by |
-| taskDescription |  String | the description of the task to complete |
-| assignedTo  | Array<UserId> | iDs of the users assigned to the task  |
-| completed  | PFRelation | information about the completion progress of the task |
-| createdAt | DateTime  |  date when the task is created (default field) |
+| taskDescription | String | the description of the task to complete |
+| assignedTo | Array<UserId> | iDs of the users assigned to the task  |
+| completed | PFRelation | information about the completion progress of the task |
+| createdAt | DateTime |  date when the task is created (default field) |
 | repeats | String | How this task repeats:  daily,weekly,monthly | 
 | occurrences | Number | how many times the task repeats |
 | repeats | String | How this task repeats:  daily,weekly,monthly | 
 | repetitionPoint | Number | the moment in the day, week, month that the task repeats |
-| rotational_order|Array<User> | the order the task rotates and gets assigned to a new user on a daily, weekly, monthly basis |
+| rotationalOrder|Array<User> | the order the task rotates and gets assigned to a new user on a daily, weekly, monthly basis |
 
 
 #### Completed Model
 | Property  |  Type | Description |
 |---|---|---|
 | objectId | String | unique ID to represent the properties of this Completed task|
-|  task | Task  | the Task this completion belongs to |
+| task | Task | the Task this completion belongs to |
 | endDate | DateTime | the date to complete this task by |
 | currentCompletionStatus | Array<UserId> | userIds of the household members who have already completed the task |
-| assignedTo  | Array<UserId> | iDs of the users assigned to the task  |
-| isCompleted  | Boolean | whether this task is fully completed or not |
+| assignedTo | Array<UserId> | iDs of the users assigned to the task  |
+| isCompleted | Boolean | whether this task is fully completed or not |
 
 
 ### Networking
