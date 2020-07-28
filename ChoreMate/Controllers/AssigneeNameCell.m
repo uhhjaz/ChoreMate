@@ -20,16 +20,13 @@
     
     [Completed getCompletedFromTask:self.task AndDate:self.task.dueDate completionHandler:^(Completed * _Nonnull completedObject) {
         NSArray *completionMembers = [completedObject objectForKey:@"currentCompletionStatus"];
-        if (completionMembers != nil ) {
-
-            if ([completionMembers containsObject:self.user.objectId]) {
-                [self setNameForCompletion];
-                //NSLog(@"THE USER HAS COMPLETED THE TASK!! %@", self.user.name);
-            }
-            else {
-                [self setNameForNotYetCompleted];
-                //NSLog(@"THE USER HAS NOT COMPLETED THE TASK!! %@", self.user.name);
-            }
+        if ([completionMembers containsObject:self.user.objectId]) {
+            [self setNameForCompletion];
+            //NSLog(@"THE USER HAS COMPLETED THE TASK!! %@", self.user.name);
+        }
+        else {
+            [self setNameForNotYetCompleted];
+            //NSLog(@"THE USER HAS NOT COMPLETED THE TASK!! %@", self.user.name);
         }
     }];
 }

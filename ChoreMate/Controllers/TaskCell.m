@@ -9,6 +9,7 @@
 #import "TaskCell.h"
 #import "AssigneeNameCell.h"
 #import "Completed.h"
+#import "CMColor.h"
 
 @implementation TaskCell 
 
@@ -52,17 +53,7 @@
     cell.task = self.task;
     [cell setAssignee];
     
-    dispatch_group_t group7 = dispatch_group_create();
-    dispatch_group_enter(group7);
-    [Completed getCompletedFromTask:self.task AndDate:self.task.dueDate completionHandler:^(Completed * _Nonnull completedObject) {
-        if (completedObject.isCompleted == YES){
-            cell.cellContentView.backgroundColor = [UIColor colorWithRed: 0.0 green: 0.2 blue: 0.05 alpha: 1];
-        }
-        else {
-            cell.cellContentView.backgroundColor = [UIColor colorWithRed: 0.60 green: 0.73 blue: 0.93 alpha: 1.00];
-        }
-        dispatch_group_leave(group7);
-    }];
+    cell.cellContentView.backgroundColor = [UIColor whiteColor];
     
     return cell;
 
@@ -94,17 +85,17 @@
     [Completed getCompletedFromTask:self.task AndDate:self.task.dueDate completionHandler:^(Completed * _Nonnull completedObject) {
         if (!completedObject.isCompleted){
             if([self.task.type  isEqual: @"one_time"]){
-                self.taskContainerView.backgroundColor = [UIColor colorWithRed: 0.45 green: 0.58 blue: 0.80 alpha: 1.00];
+                self.taskContainerView.backgroundColor = [CMColor oneTimeTaskColor];
             }
             else if([self.task.type  isEqual: @"recurring"]){
-                self.taskContainerView.backgroundColor = [UIColor colorWithRed: 0.00 green: 0.61 blue: 0.41 alpha: 1.00];;
+                self.taskContainerView.backgroundColor = [CMColor recurringTaskColor];
             }
             else if([self.task.type  isEqual: @"rotational"]){
-                self.taskContainerView.backgroundColor = [UIColor colorWithRed: 0.92 green: 0.69 blue: 0.69 alpha: 1.00];
+                self.taskContainerView.backgroundColor = [CMColor rotationalTaskColor];
             }
         }
         else {
-            self.taskContainerView.backgroundColor = [UIColor colorWithRed: 0.00 green: 0.33 blue: 0.05 alpha: 1.00];
+            self.taskContainerView.backgroundColor = [CMColor completedTaskColor];
         }
     }];
     
@@ -199,7 +190,7 @@
             [completedObject saveInBackground];
             //TASK IS FULLY COMPLETED BY ALL USERS
 
-            self.taskContainerView.backgroundColor = [UIColor colorWithRed: 0.00 green: 0.33 blue: 0.05 alpha: 1.00];
+            self.taskContainerView.backgroundColor = [CMColor completedTaskColor];
         }
         dispatch_group_leave(group5);
     }];
@@ -229,7 +220,15 @@
             [completedObject saveInBackground];
             //TASK IS FULLY COMPLETED BY ALL USERS
 
-            self.taskContainerView.backgroundColor = [UIColor colorWithRed: 0.45 green: 0.58 blue: 0.80 alpha: 1.00];
+            if([self.task.type  isEqual: @"one_time"]){
+                self.taskContainerView.backgroundColor = [CMColor oneTimeTaskColor];
+            }
+            else if([self.task.type  isEqual: @"recurring"]){
+                self.taskContainerView.backgroundColor = [CMColor recurringTaskColor];
+            }
+            else if([self.task.type  isEqual: @"rotational"]){
+                self.taskContainerView.backgroundColor = [CMColor rotationalTaskColor];
+            }
         }
         
         User *currUser = [User currentUser];

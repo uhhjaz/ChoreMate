@@ -197,12 +197,21 @@ int const TASK_TYPE_ROTATIONAL = 2;
 }
 
 
+
 -(void) setUpRepeatingTasksWithCompletionHandler:(void (^)(BOOL success))completionHandler {
+    __block int x= 0;
     
-
+    NSLog(@"the size of myRecurring tasks is: %lu", (unsigned long)self.myRecurringTasks.count);
+    
     [(NSArray*)self.myRecurringTasks enumerateObjectsUsingBlock:^(Task *task, NSUInteger idx, BOOL *stop) {
+        
+        NSLog(@"######################################");
+        NSLog(@"########################### this is iteration number: %d",x );
+        NSLog(@"######################################");
+        NSLog(@"########################### the task is: %@", task.taskDescription);
+        NSLog(@"######################################\n");
+        
         dispatch_group_t group2 = dispatch_group_create();
-
         NSArray *userIds = [task objectForKey:@"assignedTo"];
         dispatch_group_enter(group2);
         self.assignees = [[NSMutableArray alloc] init];
@@ -215,9 +224,13 @@ int const TASK_TYPE_ROTATIONAL = 2;
         dispatch_group_notify(group2,dispatch_get_main_queue(), ^ {
             NSLog(@"block B begin");
             [self createTasksForEachDate:task :self.assignees WithCompletionHandler:^(BOOL success) {
-                [self performSelectorOnMainThread:@selector(refreshTable) withObject:self.tableView waitUntilDone:YES];
+                if(success){
+                    [self performSelectorOnMainThread:@selector(refreshTable) withObject:self.tableView waitUntilDone:YES];
+                }
             }];
         });
+        x++;
+
     }];
 }
 
@@ -226,6 +239,7 @@ int const TASK_TYPE_ROTATIONAL = 2;
     
     dispatch_group_t group2 = dispatch_group_create();
     NSArray *taskDueDates = [self getArrayOfDueDates:task];
+    NSLog(@"the size of taskDueDates is: %lu", (unsigned long)taskDueDates.count);
 
     for (NSDate *date in taskDueDates) {
         
@@ -272,6 +286,7 @@ int const TASK_TYPE_ROTATIONAL = 2;
     NSLog(@"getArrayOfDueDates the dates are: %@",dates);
     return (NSArray*)dates;
 }
+
 
 // TODO: move these calendar methods to another file
 - (NSMutableArray*) datesDaysAppear: (NSInteger)chosenTime Til: (NSDate *)endDate {
