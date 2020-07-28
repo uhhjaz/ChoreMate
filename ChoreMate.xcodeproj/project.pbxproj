@@ -14,6 +14,9 @@
 		3A2D79EE24C0D09200D2C31B /* RecurringTaskViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A2D79ED24C0D09200D2C31B /* RecurringTaskViewController.m */; };
 		3A2D79F124C0D09F00D2C31B /* RotationalTaskViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A2D79F024C0D09F00D2C31B /* RotationalTaskViewController.m */; };
 		3A2D79F424C103B400D2C31B /* AssignmentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A2D79F324C103B400D2C31B /* AssignmentCell.m */; };
+		3A5818E824D0B25700D6EE60 /* JoinHouseholdViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A5818E724D0B25700D6EE60 /* JoinHouseholdViewController.m */; };
+		3A5818EB24D0B52F00D6EE60 /* JoinHouseholdCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A5818EA24D0B52E00D6EE60 /* JoinHouseholdCell.m */; };
+		3A5818EE24D0C67500D6EE60 /* popUpJoinHouseholdViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A5818ED24D0C67500D6EE60 /* popUpJoinHouseholdViewController.m */; };
 		3A95C6B724BD29CD00C906D7 /* HouseholdViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A95C6B624BD29CD00C906D7 /* HouseholdViewController.m */; };
 		3A95C6BA24BD29D800C906D7 /* ProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A95C6B924BD29D800C906D7 /* ProfileViewController.m */; };
 		3A95C6BD24BD30F000C906D7 /* TheRootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A95C6BC24BD30F000C906D7 /* TheRootViewController.m */; };
@@ -85,6 +88,12 @@
 		3A2D79F024C0D09F00D2C31B /* RotationalTaskViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RotationalTaskViewController.m; sourceTree = "<group>"; };
 		3A2D79F224C103B400D2C31B /* AssignmentCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = AssignmentCell.h; path = "ChoreMate/Controllers/Task Creation/AssignmentCell.h"; sourceTree = SOURCE_ROOT; };
 		3A2D79F324C103B400D2C31B /* AssignmentCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = AssignmentCell.m; path = "ChoreMate/Controllers/Task Creation/AssignmentCell.m"; sourceTree = SOURCE_ROOT; };
+		3A5818E624D0B25700D6EE60 /* JoinHouseholdViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JoinHouseholdViewController.h; sourceTree = "<group>"; };
+		3A5818E724D0B25700D6EE60 /* JoinHouseholdViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JoinHouseholdViewController.m; sourceTree = "<group>"; };
+		3A5818E924D0B52E00D6EE60 /* JoinHouseholdCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = JoinHouseholdCell.h; path = ChoreMate/Controllers/PopUp/JoinHouseholdCell.h; sourceTree = SOURCE_ROOT; };
+		3A5818EA24D0B52E00D6EE60 /* JoinHouseholdCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = JoinHouseholdCell.m; path = ChoreMate/Controllers/PopUp/JoinHouseholdCell.m; sourceTree = SOURCE_ROOT; };
+		3A5818EC24D0C67500D6EE60 /* popUpJoinHouseholdViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = popUpJoinHouseholdViewController.h; sourceTree = "<group>"; };
+		3A5818ED24D0C67500D6EE60 /* popUpJoinHouseholdViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = popUpJoinHouseholdViewController.m; sourceTree = "<group>"; };
 		3A95C6B524BD29CD00C906D7 /* HouseholdViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HouseholdViewController.h; sourceTree = "<group>"; };
 		3A95C6B624BD29CD00C906D7 /* HouseholdViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HouseholdViewController.m; sourceTree = "<group>"; };
 		3A95C6B824BD29D800C906D7 /* ProfileViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ProfileViewController.h; sourceTree = "<group>"; };
@@ -205,6 +214,10 @@
 				3A2D79E224C0A9C400D2C31B /* TaskChoicePopUpViewController.m */,
 				3AEB440A24CF49220038AED5 /* CreateHouseholdViewController.h */,
 				3AEB440B24CF49220038AED5 /* CreateHouseholdViewController.m */,
+				3A5818E624D0B25700D6EE60 /* JoinHouseholdViewController.h */,
+				3A5818E724D0B25700D6EE60 /* JoinHouseholdViewController.m */,
+				3A5818EC24D0C67500D6EE60 /* popUpJoinHouseholdViewController.h */,
+				3A5818ED24D0C67500D6EE60 /* popUpJoinHouseholdViewController.m */,
 			);
 			path = PopUp;
 			sourceTree = "<group>";
@@ -314,6 +327,8 @@
 				3AE09FDE24C673C5000C3C59 /* AssigneeNameCell.m */,
 				3AEB441624CFF4070038AED5 /* HouseholdMemberCell.h */,
 				3AEB441724CFF4070038AED5 /* HouseholdMemberCell.m */,
+				3A5818E924D0B52E00D6EE60 /* JoinHouseholdCell.h */,
+				3A5818EA24D0B52E00D6EE60 /* JoinHouseholdCell.m */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -652,6 +667,9 @@
 				3AA661FA24BCCE9000EBA89E /* SignUpViewController.m in Sources */,
 				3A95C6BA24BD29D800C906D7 /* ProfileViewController.m in Sources */,
 				3AEB43FA24CA0A470038AED5 /* MonthlyTimePickViewController.m in Sources */,
+				3A5818EB24D0B52F00D6EE60 /* JoinHouseholdCell.m in Sources */,
+				3A5818EE24D0C67500D6EE60 /* popUpJoinHouseholdViewController.m in Sources */,
+				3A5818E824D0B25700D6EE60 /* JoinHouseholdViewController.m in Sources */,
 				3AE09FDF24C673C5000C3C59 /* AssigneeNameCell.m in Sources */,
 				3AE09FD624C5EFE9000C3C59 /* TaskCell.m in Sources */,
 				3AEB441224CFA4A90038AED5 /* CMColor.m in Sources */,

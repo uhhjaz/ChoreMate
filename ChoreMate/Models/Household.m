@@ -20,9 +20,12 @@
     Household *newHousehold = [Household objectWithClassName:@"Household"];
     
     newHousehold.name = name;
-    [newHousehold saveInBackground];
-    
-    completionHandler(newHousehold.objectId);
+    [newHousehold saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
+        if(succeeded){
+            NSLog(@"the household_id in postNewHousehold is: %@",newHousehold.objectId);
+            completionHandler(newHousehold.objectId);
+        }
+    }];
 }
 
 

@@ -10,7 +10,15 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+@protocol CreateHouseholdControllerDelegate
+
+- (void)didCreateHousehold;
+
+@end
+
 @interface CreateHouseholdViewController : UIViewController
+
+@property (nonatomic, weak) id<CreateHouseholdControllerDelegate> delegate;
 
 @end
 
