@@ -28,32 +28,37 @@ between residents, ensures chores and payments are completed on time through a t
 ### 1. User Stories (Required and Optional)
 
 **Required Must-have Stories**
-* user can register for an account
-* user can login to account
-* user can login with fb authentication
-* user can persistently stay logged unless user manually logs out
-* user can upload profile picture
-* user can view feed of their tasks
-* user can view housemates tasks
-* user can mark task as complete 
-* user can remind housemate of a task
-* user can create new one time task
-* user can create a new rotational task
-* user can create a new reoccuring task
-* user can delete tasks
-* user can view household 
-* user can create household 
-* user can join household
-* user can securely logout 
+* user can register for an account (DONE)
+* user can login to account (DONE)
+* user can login with FB authentication (DONE)
+* user can persistently stay logged unless user manually logs out (DONE)
+* user can logout (DONE) 
+* user can upload profile picture (DONE)
+* user can view feed of their onetime tasks (DONE)
+* user can view feed of their recurring tasks (DONE)
+* user can mark task as complete (DONE)
+* user can delete tasks (DONE)
+* user can create new one time task (DONE)
+* user can create a new rotational task (DONE)
+* user can create a new rotational task (DONE)
+* user can create a new reoccuring task (IP)
+* user can view household (IP)
+* user can create household (IP)
+* user can join household (IP)
+* user can view housemates tasks (IP)
+* user can remind housemate of a task (IP)
 
 
 
 
 **Optional Nice-to-have Stories**
+* user can skip tasks ( user can mark off unavailability dates )
+* user can see reccommendations for who a task should be assigned to 
+* user can see task feed formatted week by week
+* user can see task history
 * user can update their profile picture
 * user can invite another user to household
 * user can update tasks
-* user can skip tasks ( user can mark off unavailability dates )
 * user can name/rename households
 * user can edit their name
 * user can view a housemates profile
@@ -114,7 +119,13 @@ between residents, ensures chores and payments are completed on time through a t
     * household screen
     * profile screen
 
-* task creation screen 
+* one time task creation screen 
+    * task view screen [home]
+
+* recurring task creation screen 
+    * task view screen [home]
+
+* rotational task creation screen 
     * task view screen [home]
 
 * household screen
@@ -144,42 +155,49 @@ between residents, ensures chores and payments are completed on time through a t
 #### User Model
 | Property  |  Type | Description |
 |---|---|---|
-|  name | String  | the name of the user  |
-| username  | String  | the users chosen username  |
-|  email |  String | the users inputted email  |
-| password  | String | the users chosen password  |
-| profile_image |File | profile image chosen by user |
-|  in_household |  String | the uniqueID representing the household the user is in |
-|busy_dates| Array<NSDates> |Dates the user has marked being unavailable|
-
+| objectId | String | the unique Id of the object |
+| name | String | the name of the user |
+| username | String | the users chosen username |
+| email | String | the users inputted email |
+| password | String | the users chosen password |
+| profileImage | File | profile image chosen by user |
+| householdId | String | the uniqueID representing the household the user is in |
 
 
 #### Household Model
 | Property  |  Type | Description |
 |---|---|---|
-| household_id | String | unique ID to represent this Household |
-|  name | String  | the the chosen name of the household  |
-| created_at | DateTime | the date when the household was created |
-
-
+| objectId | String | unique ID to represent this Household |
+|  name | String | the the chosen name of the household  |
+| createdAt | DateTime | the date when the household was created |
 
 
 #### Task Model
 | Property  |  Type | Description |
 |---|---|---|
-|  type | String  | the type of task: rotational,reoccuring,one_time  |
-| task_id | String | unique ID to represent this Task |
-| description |  String | the description of the task to complete |
-| assigned_to  | Array<User> | the users assigned to the task  |
-|  created_at | DateTime  |  date when the task is created (default field) |
-| due_date | DateTime| user selected date to complete the task by |
-| status | Boolean | whether task has been completed or not |
+| objectId | String | unique ID to represent this Task |
+| type | String  | the type of task: rotational,reccuring,one_time  |
+| dueDate | DateTime| user selected date to complete the task by |
+| taskDescription | String | the description of the task to complete |
+| assignedTo | Array<UserId> | iDs of the users assigned to the task  |
+| completed | PFRelation | information about the completion progress of the task |
+| createdAt | DateTime |  date when the task is created (default field) |
 | repeats | String | How this task repeats:  daily,weekly,monthly | 
-| start_date | DateTime | the starting date of task repeatability |
-| end_date | DateTime | the ending date of task repeatability |
-| rotational_order|Array<User> | the order the task rotates and gets assigned to a new user on a daily, weekly, monthly basis |
+| occurrences | Number | how many times the task repeats |
+| repeats | String | How this task repeats:  daily,weekly,monthly | 
+| repetitionPoint | Number | the moment in the day, week, month that the task repeats |
+| rotationalOrder|Array<User> | the order the task rotates and gets assigned to a new user on a daily, weekly, monthly basis |
 
 
+#### Completed Model
+| Property  |  Type | Description |
+|---|---|---|
+| objectId | String | unique ID to represent the properties of this Completed task|
+| task | Task | the Task this completion belongs to |
+| endDate | DateTime | the date to complete this task by |
+| currentCompletionStatus | Array<UserId> | userIds of the household members who have already completed the task |
+| assignedTo | Array<UserId> | iDs of the users assigned to the task  |
+| isCompleted | Boolean | whether this task is fully completed or not |
 
 
 ### Networking
@@ -191,5 +209,3 @@ between residents, ensures chores and payments are completed on time through a t
 * Profile Screen
 
 
-
-- [OPTIONAL: List endpoints if using existing API such as Yelp]
