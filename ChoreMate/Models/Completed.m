@@ -27,6 +27,10 @@
         completionHandler(task.completedObject);
         return;
     }
+    else if (task.completedObject != nil) {
+        completionHandler(task.completedObject);
+        return;
+    }
     else {
         PFQuery *query = [PFQuery queryWithClassName:@"Completed"];
         [query whereKey:@"task" equalTo:task];

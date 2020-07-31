@@ -52,9 +52,6 @@
     cell.user = self.taskAssignees[indexPath.item];
     cell.task = self.task;
     [cell setAssignee];
-    
-
-    
     return cell;
 
 }
@@ -124,7 +121,7 @@
 }
 
 
--(void)getTasksAssignees {
+- (void) getTasksAssignees {
 
     // populate TaskAssignees with User Objects
     NSArray *userIds = [self.task objectForKey:@"assignedTo"];
@@ -134,7 +131,6 @@
         self.taskAssignees = allAssignees;
         [self.collectionView reloadData];
     }];
-
 }
 
 

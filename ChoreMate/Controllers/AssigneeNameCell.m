@@ -34,19 +34,10 @@
 
 - (void) setNameForCompletion{
     self.nameLabel.textColor = [UIColor greenColor];
-
-//    NSDictionary* attributes = @{
-//      NSStrikethroughStyleAttributeName: [NSNumber numberWithInt:NSUnderlineStyleSingle]
-//    };
-//
-//    NSAttributedString* attrText = [[NSAttributedString alloc] initWithString:self.nameLabel.text attributes:attributes];
-//    self.nameLabel.attributedText = attrText;
 }
 
 - (void) setNameForNotYetCompleted{
-    
     self.nameLabel.textColor = [UIColor redColor];
-//    self.nameLabel.attributedText = [[NSAttributedString alloc] initWithString:self.nameLabel.text attributes:nil];
 }
 
 @end

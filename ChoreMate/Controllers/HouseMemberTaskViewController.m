@@ -11,6 +11,7 @@
 #import <Parse/Parse.h>
 #import "NSDate+CMDate.h"
 #import "Task.h"
+#import "Completed.h"
 
 @interface HouseMemberTaskViewController () <UITableViewDelegate, UITableViewDataSource>
 @property (weak, nonatomic) IBOutlet UIView *headerBackground;
@@ -68,19 +69,24 @@
     for(Task *taskFromDB in self.allTasks){
         
         if([taskFromDB.type isEqual:@"one_time"]){
-            [self.housematesTasks addObject:taskFromDB];
-            // TODO: attach completion object to onetime tasks!
-            [self.tableView reloadData];
+            [Completed createCompletedFromTask:taskFromDB AndDate:taskFromDB.endDate completionHandler:^(Completed * _Nonnull completedObject) {
+                taskFromDB.completedObject = completedObject;
+                [self.housematesTasks addObject:taskFromDB];
+                NSLog(@"self.housematesTasks are %@:",self.housematesTasks);
+                [self.tableView reloadData];
+            }];
         
         } else if([taskFromDB.type isEqual:@"recurring"]){
             [self makeRecurringRotationalTasks:taskFromDB completionHandler:^(NSArray *createdRecurringRotationalTasks) {
                 [self.housematesTasks addObjectsFromArray:createdRecurringRotationalTasks];
+                NSLog(@"self.housematesTasks are %@:",self.housematesTasks);
                 [self.tableView reloadData];
             }];
         
         } else if([taskFromDB.type isEqual:@"rotational"]){
             [self makeRecurringRotationalTasks:taskFromDB completionHandler:^(NSArray *createdRecurringRotationalTasks) {
                 [self.housematesTasks addObjectsFromArray:createdRecurringRotationalTasks];
+                NSLog(@"self.housematesTasks are %@:",self.housematesTasks);
                 [self.tableView reloadData];
             }];
         
@@ -89,6 +95,18 @@
         }
     }
 }
+
+
+- (void) addCompletedToOneTimeTask:(Task *)taskFromDB WithCompletionHandler:(void (^)(BOOL success))completionHandler{
+    dispatch_group_t group2 = dispatch_group_create();
+    dispatch_group_enter(group2);
+    [Completed createCompletedFromTask:taskFromDB AndDate:taskFromDB.endDate completionHandler:^(Completed * _Nonnull completedObject) {
+        taskFromDB.completedObject = completedObject;
+        dispatch_group_leave(group2);
+        completionHandler(YES);
+    }];
+}
+
 
 
 - (NSArray *) sortBasedOnCompletionDate {
@@ -106,15 +124,13 @@
     __block NSArray *assignees;
     [self getArrayOfTaskAssignees:userIds completionHandler:^(NSArray * _Nonnull allAssignees) {
         assignees = allAssignees;
-    }];
-
-    
-    [self createTasksForEachDate:taskFromDB :assignees WithCompletionHandler:^(NSArray *createdTasks) {
-        if(createdTasks != nil) {
-            NSLog(@"createdTasks in makeRecurringTasks contains: %@", createdTasks);
-            allNewTasksForThisTask = createdTasks;
-            completionHandler(allNewTasksForThisTask);
-        }
+        [self createTasksForEachDate:taskFromDB :assignees WithCompletionHandler:^(NSArray *createdTasks) {
+            if(createdTasks != nil) {
+                NSLog(@"createdTasks in makeRecurringTasks contains: %@", createdTasks);
+                allNewTasksForThisTask = createdTasks;
+                completionHandler(allNewTasksForThisTask);
+            }
+        }];
     }];
     
 }
@@ -134,12 +150,14 @@
         }];
     }
     dispatch_group_notify(group,dispatch_get_main_queue(), ^ {
+        NSLog(@"this task belongs to: %@", (NSArray*)gettingAssignees);
         completionHandler((NSArray*)gettingAssignees);
     });
 }
 
 
 - (void) createTasksForEachDate:(Task *)taskFromDB :(NSArray *)assignees WithCompletionHandler:(void (^)(NSArray *createdTasks))completionHandler{
+    
     NSMutableArray *gettingTasks = [[NSMutableArray alloc] init];
     NSArray *taskDueDates = [self getArrayOfDueDates:taskFromDB];
     dispatch_group_t group = dispatch_group_create();
@@ -223,7 +241,6 @@
 }
 
 
-
 - (NSArray *) getArrayOfDueDates: (Task*)taskFromDB{
      
      NSDateFormatter *dateFormatter=[[NSDateFormatter alloc] init];
@@ -258,8 +275,7 @@
     HouseMateTaskCell *cell = [tableView dequeueReusableCellWithIdentifier:@"HouseMateTaskCell"];
     cell.task = self.housematesTasks[indexPath.row];
     [cell setTaskValues];
-    
-//    [cell getTasksAssignees];
+    [cell getTasksAssignees];
     
     return cell;
 }
