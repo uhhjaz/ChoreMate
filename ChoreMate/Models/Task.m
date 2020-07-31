@@ -70,9 +70,9 @@
     }
 
     NSDateFormatter *dateFormatter=[[NSDateFormatter alloc] init];
-    [dateFormatter setDateFormat:@"yyyy/MM/dd --- HH:mm"];
+    [dateFormatter setDateFormat:@"yyyy/MM/dd"];
     NSString *theDate = [dateFormatter stringFromDate:[NSDate date]];
-    NSLog(@"this is the date: %@", theDate);
+
     newTask.type = type;
     newTask.createdDate = theDate;
     newTask.dueDate = dueDate;
@@ -90,6 +90,7 @@
            Ending: (NSDate * _Nullable)ending
         Assignees: (NSArray *)assignees
          DueDates: (NSArray *)dueDates
+  RotationalOrder: (NSDictionary * _Nullable)rotation
    withCompletion: (PFBooleanResultBlock  _Nullable)completion {
     
     
@@ -120,9 +121,9 @@
     }
 
     NSDateFormatter *dateFormatter=[[NSDateFormatter alloc] init];
-    [dateFormatter setDateFormat:@"yyyy/MM/dd --- HH:mm"];
+    [dateFormatter setDateFormat:@"yyyy/MM/dd"];
     NSString *theDate = [dateFormatter stringFromDate:[NSDate date]];
-    NSLog(@"this is the date: %@", theDate);
+
     newTask.type = type;
     newTask.createdDate = theDate;
     newTask.dueDate = [dateFormatter stringFromDate:ending];
@@ -132,8 +133,10 @@
     newTask.repetitionPoint = whenToRepeat;
     newTask.taskDescription = description;
     newTask.occurrences = occurrences;
+    if([type isEqual:@"rotational"]){
+        newTask.rotationalOrder = rotation;
+    }
     [newTask saveInBackgroundWithBlock: completion];
-    
  
 }
 
@@ -156,9 +159,8 @@
         [assigneesArr addObject:eachAssignee.objectId];
     }
     
-
     NSDateFormatter *dateFormatter=[[NSDateFormatter alloc] init];
-    [dateFormatter setDateFormat:@"yyyy/MM/dd --- HH:mm"];
+    [dateFormatter setDateFormat:@"yyyy/MM/dd"];
     NSString *theDate = [dateFormatter stringFromDate:[NSDate date]];
     
 
@@ -171,22 +173,44 @@
     taskCopy.assignedTo = (NSArray*)assigneesArr;
     taskCopy.dueDate = [dateFormatter stringFromDate:ending];
     taskCopy.endDate = [dateFormatter stringFromDate:ending];
-    
-    taskCopy.taskDatabaseId = taskID;
     taskCopy.reproduced = YES;
-
-    
-    [Completed getCompletedFromTask:realTask AndDate:[dateFormatter stringFromDate:ending] completionHandler:^(Completed * _Nonnull completedObject) {
+    taskCopy.taskDatabaseId = taskID;
+    dispatch_group_t group2 = dispatch_group_create();
+    dispatch_group_enter(group2);
+    [Completed createCompletedFromTask:realTask AndDate:[dateFormatter stringFromDate:ending] completionHandler:^(Completed * _Nonnull completedObject) {
         taskCopy.completedObject = completedObject;
+        dispatch_group_leave(group2);
+        
+    }];
+    dispatch_group_notify(group2,dispatch_get_main_queue(), ^ {
         completionHandler(taskCopy);
+    });
+}
+
+- (void)isTaskFullyCompleted:(Task *)task completionHandler:(void (^)(BOOL allTasksCompleted))completionHandler {
+    
+    [Completed getCompletedFromTask:task AndDate:task.dueDate completionHandler:^(Completed * _Nonnull completedObject) {
+        completionHandler(completedObject.isCompleted);
     }];
 }
 
-
+- (void)isTaskWithDateFullyCompleted:(Task *)task :(NSDate *)dueDate completionHandler:(void (^)(BOOL allTasksCompleted))completionHandler {
+    
+    NSDateFormatter *dateFormatter=[[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:@"yyyy/MM/dd"];
+    
+    [Completed getCompletedFromTask:task AndDate:[dateFormatter stringFromDate:dueDate] completionHandler:^(Completed * _Nonnull completedObject) {
+        NSLog(@"the completed Object is: %@", completedObject);
+        completionHandler(completedObject.isCompleted);
+    }];
+    
+}
 
 - (void)checkIfHouseHoldMemberCompletedTask:(Task *)task :(User *)housemate completionHandler:(void (^)(BOOL housemateCompletedTask))completionHandler {
+
     
     [Completed getCompletedFromTask:task AndDate:task.dueDate completionHandler:^(Completed * _Nonnull completedObject) {
+
         NSArray *completionMembers = [completedObject objectForKey:@"currentCompletionStatus"];
         if (completionMembers != nil ) {
 

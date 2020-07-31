@@ -11,12 +11,14 @@
 #import <Parse/Parse.h>
 #import "User.h"
 #import "Task.h"
+#import "NSDate+CMDate.h"
 
 #import "DailyTimePickViewController.h"
 #import "WeeklyDayPickViewController.h"
 #import "MonthlyTimePickViewController.h"
 #import "EndPickerWithDateViewController.h"
 #import "EndPickerWithOccurrenceViewController.h"
+#import "RotationalTaskViewController.h"
 
 @interface RecurringTaskViewController ()<UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout>
 @property (weak, nonatomic) IBOutlet UIView *monthlyTimeContainer;
@@ -66,7 +68,7 @@ int const DO_NOT_SHOW_VIEW = 0;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+    orderNum = 0;
     self.collectionView.delegate = self;
     self.collectionView.dataSource = self;
     self.chosenRepeat = DAILY;
@@ -92,6 +94,11 @@ int const DO_NOT_SHOW_VIEW = 0;
     self.monthlyTimePickController = [self.childViewControllers objectAtIndex:2];
     self.endPickerWithDateController = [self.childViewControllers objectAtIndex:3];
     self.endPickerWithOccurrenceController = [self.childViewControllers objectAtIndex:4];
+    self.dailyTimePickController.type =
+    self.weeklyDayPickController.type =
+    self.monthlyTimePickController.type =
+    self.endPickerWithDateController.type =
+    self.endPickerWithOccurrenceController.type = @"recurring";
 }
 
 
@@ -121,6 +128,7 @@ int const DO_NOT_SHOW_VIEW = 0;
     // populate array with household members selected for the task
     self.taskAssignees = [[NSMutableArray alloc] init];
     for (int i = 0; i < self.household.count; i++){
+        
         
         UIButton *check = (UIButton *)[self.view viewWithTag:i+1];
         
@@ -157,6 +165,7 @@ int const DO_NOT_SHOW_VIEW = 0;
 - (nonnull __kindof UICollectionViewCell *)collectionView:(nonnull UICollectionView *)collectionView cellForItemAtIndexPath:(nonnull NSIndexPath *)indexPath {
     AssignmentCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"AssignmentCell" forIndexPath:indexPath];
     cell.user = self.household[indexPath.row];
+    cell.type = @"recurring";
     [cell setCellValues];
     cell.checkButton.tag = indexPath.row + 1;
     return cell;
@@ -241,11 +250,11 @@ int const DO_NOT_SHOW_VIEW = 0;
         NSDate *endDate = self.endPickerWithDateController.pickedDate;
         
         if([self.chosenRepeat isEqual:DAILY]){
-            return [self datesDaysAppear:(NSInteger)[self.chosenWhenToRepeat intValue] Til:endDate];
+            return [NSDate datesDaysAppear:(NSInteger)[self.chosenWhenToRepeat intValue] Til:endDate];
         } else if ([self.chosenRepeat isEqual:WEEKLY]) {
-            return [self datesWeeksAppear:(NSInteger)[self.chosenWhenToRepeat intValue] Til:endDate];
+            return [NSDate datesWeeksAppear:(NSInteger)[self.chosenWhenToRepeat intValue] Til:endDate];
         } else if ([self.chosenRepeat isEqual:MONTHLY]) {
-            return [self datesMonthsAppear:(NSInteger)[self.chosenWhenToRepeat intValue] Til:endDate];
+            return [NSDate datesMonthsAppear:(NSInteger)[self.chosenWhenToRepeat intValue] Til:endDate];
         }
     }
 //    } else if ([self.chosenEndMethod isEqual:BY_OCCURRENCE]){
@@ -254,93 +263,6 @@ int const DO_NOT_SHOW_VIEW = 0;
     return nil;
 }
 
-
-- (NSMutableArray*) datesDaysAppear: (NSInteger)chosenTime Til: (NSDate *)endDate {
-    
-    NSCalendar *calendar = [NSCalendar currentCalendar];
-    NSDateComponents *findMatchingDayComponents = [[NSDateComponents alloc] init];
-    findMatchingDayComponents.hour = chosenTime;
-    NSMutableArray *dailyDates = [[NSMutableArray alloc] init];
-    NSDateFormatter *dateFormatter=[[NSDateFormatter alloc] init];
-    [dateFormatter setDateFormat:@"yyyy/MM/dd --- HH:mm"];
-    
-    __block int dateCount = 0;
-    [calendar enumerateDatesStartingAfterDate:[NSDate date]
-                          matchingComponents:findMatchingDayComponents
-                                     options:NSCalendarMatchPreviousTimePreservingSmallerUnits
-                                  usingBlock:^(NSDate *date, BOOL exactMatch, BOOL *stop) {
-        if (date.timeIntervalSince1970 >= endDate.timeIntervalSince1970) {
-            *stop = YES;
-        }
-        else {
-            NSLog(@"%@", date);
-            dateCount++;
-            [dailyDates addObject:[dateFormatter stringFromDate:date]];
-        }
-    }];
-    
-    return dailyDates;
-}
-
-
-// TODO: move these calendar methods to another class
-- (NSMutableArray*) datesWeeksAppear: (NSInteger)weekDayChosen Til: (NSDate *)endDate {
-    
-    NSCalendar *calendar = [NSCalendar currentCalendar];
-    NSDateComponents *findMatchingDayComponents = [[NSDateComponents alloc] init];
-    findMatchingDayComponents.weekday = weekDayChosen;
-    NSMutableArray *weeklyDates = [[NSMutableArray alloc] init];
-    NSDateFormatter *dateFormatter=[[NSDateFormatter alloc] init];
-    [dateFormatter setDateFormat:@"yyyy/MM/dd --- HH:mm"];
-    
-    __block int dateCount = 0;
-    [calendar enumerateDatesStartingAfterDate:[NSDate date]
-                          matchingComponents:findMatchingDayComponents
-                                     options:NSCalendarMatchPreviousTimePreservingSmallerUnits
-                                  usingBlock:^(NSDate *date, BOOL exactMatch, BOOL *stop) {
-        if (date.timeIntervalSince1970 >= endDate.timeIntervalSince1970) {
-            *stop = YES;
-        }
-        else {
-            NSLog(@"%@", date);
-            dateCount++;
-            [weeklyDates addObject:[dateFormatter stringFromDate:date]];
-        }
-    }];
-    
-    return weeklyDates;
-}
-
-
-- (NSMutableArray*) datesMonthsAppear:(NSInteger )dayChosen Til:(NSDate *)endDate {
-    
-    NSLog(@"the chosen day is: %ld", (long)dayChosen);
-    NSLog(@"the chosen end date is: %@", endDate);
-    
-    NSCalendar *calendar = [NSCalendar currentCalendar];
-    NSDateComponents *findMatchingDayComponents = [[NSDateComponents alloc] init];
-    findMatchingDayComponents.day = dayChosen;
-    NSMutableArray *monthlyDates = [[NSMutableArray alloc] init];
-    NSDateFormatter *dateFormatter=[[NSDateFormatter alloc] init];
-    [dateFormatter setDateFormat:@"yyyy/MM/dd --- HH:mm"];
-    
-    __block int dateCount = 0;
-    [calendar enumerateDatesStartingAfterDate:[NSDate date]
-                          matchingComponents:findMatchingDayComponents
-                                     options:NSCalendarMatchPreviousTimePreservingSmallerUnits
-                                  usingBlock:^(NSDate *date, BOOL exactMatch, BOOL *stop) {
-        if (date.timeIntervalSince1970 >= endDate.timeIntervalSince1970) {
-            *stop = YES;
-        }
-        else {
-            NSLog(@"%@", date);
-            dateCount++;
-            [monthlyDates addObject:[dateFormatter stringFromDate:date]];
-        }
-    }];
-    NSLog(@"the monthly dates : %@",monthlyDates);
-    return monthlyDates;
-}
 
 
 #pragma mark - Navigation
@@ -368,7 +290,7 @@ int const DO_NOT_SHOW_VIEW = 0;
     NSLog(@"the task is assigned to: %@",self.taskAssignees);
     
     
-    [Task postTask:self.descriptionField.text OfType:@"recurring" WithRepeatType:self.chosenRepeat Point:self.chosenWhenToRepeat NumOfTimes:self.chosenOccurrences Ending:endDate Assignees:self.taskAssignees DueDates:endDates withCompletion:^(BOOL succeeded, NSError * _Nullable error) {
+    [Task postTask:self.descriptionField.text OfType:@"recurring" WithRepeatType:self.chosenRepeat Point:self.chosenWhenToRepeat NumOfTimes:self.chosenOccurrences Ending:endDate Assignees:self.taskAssignees DueDates:endDates RotationalOrder:nil withCompletion:^(BOOL succeeded, NSError * _Nullable error) {
         
         if(succeeded){
             NSLog(@"posting reoccuring task success");

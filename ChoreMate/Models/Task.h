@@ -27,7 +27,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) NSString *createdDate;
 @property (nonatomic, strong) NSString *dueDate;
 @property (nonatomic, strong) NSString *endDate;
-@property (nonatomic, strong) NSArray *rotationalOrder;
+@property (nonatomic, strong) NSDictionary *rotationalOrder;
 @property (nonatomic, strong) NSString *repeats;
 @property (nonatomic, strong) NSNumber *repetitionPoint;
 @property (nonatomic, strong) NSNumber *occurrences;
@@ -53,6 +53,7 @@ NS_ASSUME_NONNULL_BEGIN
            Ending: (NSDate * _Nullable)ending
         Assignees: (NSArray *)assignees
          DueDates: (NSArray *)dueDates
+  RotationalOrder: (NSDictionary * _Nullable)rotation
    withCompletion: (PFBooleanResultBlock  _Nullable)completion;
 
 
@@ -70,7 +71,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void)checkIfHouseHoldMemberCompletedTask:(Task *)task :(User *)housemate completionHandler:(void (^)(BOOL housemateCompletedTask))completionHandler;
 
-
+- (void)isTaskFullyCompleted:(Task *)task completionHandler:(void (^)(BOOL allTasksCompleted))completionHandler;
+- (void)isTaskWithDateFullyCompleted:(Task *)task :(NSDate *)dueDate completionHandler:(void (^)(BOOL allTasksCompleted))completionHandler;
 @end
 
 NS_ASSUME_NONNULL_END

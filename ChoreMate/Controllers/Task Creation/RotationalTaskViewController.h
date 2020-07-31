@@ -12,6 +12,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface RotationalTaskViewController : UIViewController
 
+extern int orderNum;
+extern NSMutableDictionary *selectedHouseMembers;
+
 @end
 
 NS_ASSUME_NONNULL_END

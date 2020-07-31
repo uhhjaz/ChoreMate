@@ -15,14 +15,12 @@ NS_ASSUME_NONNULL_BEGIN
 FOUNDATION_EXPORT int const DAY_TIME_CHOSEN;
 FOUNDATION_EXPORT int const WEEK_DAY_CHOSEN;
 FOUNDATION_EXPORT int const MONTH_DAY_CHOSEN;
+FOUNDATION_EXPORT int const DATE_CHOSEN;
+FOUNDATION_EXPORT int const OCCURRENCES_CHOSEN;
+FOUNDATION_EXPORT int const SHOW_VIEW;
+FOUNDATION_EXPORT int const DO_NOT_SHOW_VIEW;
 
-- (NSMutableArray*) datesDaysAppear: (NSInteger)chosenTime Til: (NSDate *)endDate;
-- (NSMutableArray*) datesWeeksAppear: (NSInteger)weekDayChosen Til: (NSDate *)endDate;
-- (NSMutableArray*) datesMonthsAppear:(NSInteger )dayChosen Til:(NSDate *)endDate;
 
-//- (int) daysBetweenDates: (NSInteger)startDate currentDate: (NSDate *)endDate;
-//- (int) weeksBetweenDates: (NSInteger)weekDayChosen currentDate: (NSDate *)endDate;
-//- (int) monthsBetweenDates: (NSInteger)dayChosen currentDate: (NSDate *)endDate;
 
 @end
 
