@@ -17,6 +17,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (weak, nonatomic) IBOutlet UILabel *taskDescriptionLabel;
 @property (weak, nonatomic) IBOutlet UILabel *taskDueDateLabel;
 @property (weak, nonatomic) IBOutlet UIView *taskContainerView;
+@property (weak, nonatomic) IBOutlet UIView *taskContainerBorderView;
 
 @property (strong, nonatomic) IBOutlet UICollectionView *collectionView;
 

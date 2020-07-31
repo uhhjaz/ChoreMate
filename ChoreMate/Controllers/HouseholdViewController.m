@@ -17,6 +17,8 @@
 #import "Household.h"
 #import "CreateHouseholdViewController.h"
 #import "JoinHouseholdViewController.h"
+#import "HouseMemberTaskViewController.h"
+#import "HouseMateTaskCell.h"
 #import <Parse/Parse.h>
 
 @interface HouseholdViewController () <UITableViewDelegate,UITableViewDataSource,CreateHouseholdControllerDelegate, JoinHouseholdControllerDelegate, NoHouseholdControllerDelegate>
@@ -158,7 +160,17 @@
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    if([segue.identifier isEqual:@"toHouseMateTasks"]){
 
+        // get correct house mate from cell
+        UITableViewCell *tappedCell = sender;
+        NSIndexPath *indexPath = [self.tableView indexPathForCell:tappedCell];
+        User *houseMate = self.houseMembers[indexPath.row];
+    
+        // sends housemember to next view
+        HouseMemberTaskViewController *houseMemberViewController = [segue destinationViewController];
+        houseMemberViewController.houseMate = houseMate;
+    }
 }
 
 

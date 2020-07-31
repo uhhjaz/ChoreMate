@@ -53,7 +53,7 @@
     cell.task = self.task;
     [cell setAssignee];
     
-    cell.cellContentView.backgroundColor = [UIColor whiteColor];
+
     
     return cell;
 
@@ -91,6 +91,7 @@
             }
             else if([self.task.type  isEqual: @"rotational"]){
                 self.taskContainerView.backgroundColor = [CMColor rotationalTaskColor];
+
             }
         }
         else {

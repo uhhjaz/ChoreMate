@@ -19,7 +19,7 @@
 }
 
 + (UIColor *)rotationalTaskColor {
-    return [UIColor colorWithRed: 1.00 green: 0.79 blue: 0.00 alpha: 1.00];
+    return [UIColor colorWithRed: 0.93 green: 0.73 blue: 0.00 alpha: 1.00];
 }
 
 + (UIColor *)completedTaskColor {

@@ -27,6 +27,81 @@
 }
 
 
+// TODO: move these calendar methods to another file
++ (NSMutableArray*) datesDaysAppearInStringFormat:(NSInteger)chosenTime Til: (NSDate *)endDate {
+    
+    NSCalendar *calendar = [NSCalendar currentCalendar];
+    NSDateComponents *findMatchingDayComponents = [[NSDateComponents alloc] init];
+    findMatchingDayComponents.hour = chosenTime;
+    NSMutableArray *dailyDates = [[NSMutableArray alloc] init];
+    
+    __block int dateCount = 0;
+    [calendar enumerateDatesStartingAfterDate:[NSDate date]
+                           matchingComponents:findMatchingDayComponents
+                                      options:NSCalendarMatchPreviousTimePreservingSmallerUnits
+                                   usingBlock:^(NSDate *date, BOOL exactMatch, BOOL *stop) {
+        if (date.timeIntervalSince1970 >= endDate.timeIntervalSince1970) {
+            *stop = YES;
+        }
+        else {
+            dateCount++;
+            [dailyDates addObject:date];
+        }
+    }];
+    
+    return dailyDates;
+}
+
+
++ (NSMutableArray*) datesWeeksAppearInStringFormat:(NSInteger)weekDayChosen Til: (NSDate *)endDate {
+    
+    NSCalendar *calendar = [NSCalendar currentCalendar];
+    NSDateComponents *findMatchingDayComponents = [[NSDateComponents alloc] init];
+    findMatchingDayComponents.weekday = weekDayChosen;
+    NSMutableArray *weeklyDates = [[NSMutableArray alloc] init];
+    
+    __block int dateCount = 0;
+    [calendar enumerateDatesStartingAfterDate:[NSDate date]
+                           matchingComponents:findMatchingDayComponents
+                                      options:NSCalendarMatchPreviousTimePreservingSmallerUnits
+                                   usingBlock:^(NSDate *date, BOOL exactMatch, BOOL *stop) {
+        if (date.timeIntervalSince1970 >= endDate.timeIntervalSince1970) {
+            *stop = YES;
+        }
+        else {
+            dateCount++;
+            [weeklyDates addObject:date];
+        }
+    }];
+    
+    return weeklyDates;
+}
+
+
++ (NSMutableArray*) datesMonthsAppearInStringFormat:(NSInteger )dayChosen Til:(NSDate *)endDate {
+    
+    NSCalendar *calendar = [NSCalendar currentCalendar];
+    NSDateComponents *findMatchingDayComponents = [[NSDateComponents alloc] init];
+    findMatchingDayComponents.day = dayChosen;
+    NSMutableArray *monthlyDates = [[NSMutableArray alloc] init];
+    
+    __block int dateCount = 0;
+    [calendar enumerateDatesStartingAfterDate:[NSDate date]
+                           matchingComponents:findMatchingDayComponents
+                                      options:NSCalendarMatchPreviousTimePreservingSmallerUnits
+                                   usingBlock:^(NSDate *date, BOOL exactMatch, BOOL *stop) {
+        if (date.timeIntervalSince1970 >= endDate.timeIntervalSince1970) {
+            *stop = YES;
+        }
+        else {
+            dateCount++;
+            [monthlyDates addObject:date];
+        }
+    }];
+    return monthlyDates;
+}
+
+
 + (NSMutableArray*) datesDaysAppear: (NSInteger)chosenTime Til: (NSDate *)endDate {
     
     NSCalendar *calendar = [NSCalendar currentCalendar];
