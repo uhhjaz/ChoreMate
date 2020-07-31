@@ -4,7 +4,9 @@ Original App Design Project - README
 # ChoreMate
 
 ## Table of Contents
+
 1. [Overview](#Overview)
+1. [Video Walkthrough](#Video-Walkthrough)
 1. [Product Spec](#Product-Spec)
 1. [Wireframes](#Wireframes)
 2. [Schema](#Schema)
@@ -22,6 +24,15 @@ between residents, ensures chores and payments are completed on time through a t
 - **Market:** I have not seen many apps like this. Normally conversations like "Remember to take out the trash" are done in person or through text, but constant reminders can be seem as irritating to some people. So choremates is platform solely for these interations. Venmo doeshave things like app reminders, and charges. 
 - **Habit:** Average user might open this app every couple of days to mark off that they have completed a task.
 - **Scope:**
+
+
+## Video Walkthrough
+
+Here's a walkthrough of current implemented user stories (as of 06/30/2020):
+
+<img src='http://g.recordit.co/z0Nzmwb3TV.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
+<img src='http://g.recordit.co/vHiAPOCnMc.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
+<img src='http://g.recordit.co/b7AKqpKk1Z.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
 
 ## Product Spec
 
