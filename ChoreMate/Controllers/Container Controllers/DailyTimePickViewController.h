@@ -13,6 +13,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface DailyTimePickViewController : UIViewController
 @property (weak, nonatomic) IBOutlet UISegmentedControl *dayTimePickSegControl;
 @property (strong, nonatomic) NSString *pickedTime;
+@property (weak, nonatomic) NSString *type;
 @end
 
 NS_ASSUME_NONNULL_END

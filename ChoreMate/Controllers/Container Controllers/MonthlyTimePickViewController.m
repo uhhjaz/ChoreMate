@@ -7,6 +7,7 @@
 //
 
 #import "MonthlyTimePickViewController.h"
+#import "CMColor.h"
 
 @interface MonthlyTimePickViewController () <UIPickerViewDelegate, UIPickerViewDataSource>
 
@@ -20,10 +21,23 @@
 
 @implementation MonthlyTimePickViewController
 
+- (void)viewWillAppear:(BOOL)animated{
+    if([self.type isEqual:@"recurring"]){
+        self.endDateButton.backgroundColor = [CMColor recurringTaskColor];
+        self.pickerContainerView.backgroundColor = [CMColor recurringTaskColor];
+    }
+    
+    else if([self.type isEqual:@"rotational"]) {
+        self.endDateButton.backgroundColor = [CMColor rotationalTaskColor];
+        self.pickerContainerView.backgroundColor = [CMColor rotationalTaskColor];
+    }
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     self.pickedDay = @"1";
+    
 
     self.dayOfMonthPicker.dataSource = self;
     self.dayOfMonthPicker.delegate = self;

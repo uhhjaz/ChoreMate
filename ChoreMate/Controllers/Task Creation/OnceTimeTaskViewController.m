@@ -11,6 +11,7 @@
 #import <Parse/Parse.h>
 #import "User.h"
 #import "Task.h"
+#import "RotationalTaskViewController.h"
 
 @interface OnceTimeTaskViewController () <UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout>
 @property (weak, nonatomic) IBOutlet UITextField *descriptionField;
@@ -28,7 +29,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-
+    orderNum = 0;
     self.collectionView.delegate = self;
     self.collectionView.dataSource = self;
     
@@ -46,7 +47,7 @@
     // sets and refreshes the date picker
     self.curDate = [NSDate date];
     self.formatter = [[NSDateFormatter alloc] init];
-    [_formatter setDateFormat:@"yyyy/MM/dd --- HH:mm"];
+    [_formatter setDateFormat:@"yyyy/MM/dd"];
     //[self.dueDateButton.titleLabel setTextAlignment:NSTextAlignmentCenter];
     self.dueDateButton.titleLabel.textAlignment = NSTextAlignmentCenter;
     [self refreshTitle];
@@ -78,7 +79,6 @@
 - (IBAction)didTapAddTask:(id)sender {
     
     [self getAssignedMembers];
-    
     
     // call Task class methods to post the task and segue to task screen
     [Task postTask:self.descriptionField.text OfType:@"one_time" WithDate:self.theSelectedDate Assignees:self.taskAssignees withCompletion:^(BOOL succeeded, NSError * _Nullable error) {
@@ -151,7 +151,7 @@
 -(void)refreshTitle {
     
     NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
-    [dateFormat setDateFormat:@"yyyy/MM/dd --- HH:mm"];
+    [dateFormat setDateFormat:@"yyyy/MM/dd"];
     NSDate *date = [dateFormat dateFromString:self.theSelectedDate];
     [dateFormat setDateFormat:@"MM/dd/yyyy"];
     //NSString* dateStr = [dateFormat stringFromDate:date];
@@ -195,28 +195,17 @@
     
 }
 
+
 - (void)datePickerDonePressed:(THDatePickerViewController *)datePicker {
     [self refreshTitle];
     
 }
 
+
 - (void)datePicker:(THDatePickerViewController *)datePicker selectedDate:(NSDate *)selectedDate {
     NSLog(@"Date selected: %@",[_formatter stringFromDate:selectedDate]);
     self.theSelectedDate = [_formatter stringFromDate:selectedDate];
 }
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
-
-
-
 
 
 @end

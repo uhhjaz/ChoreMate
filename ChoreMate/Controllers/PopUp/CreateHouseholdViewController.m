@@ -34,7 +34,6 @@
 - (IBAction)didTapCreate:(id)sender {
     [Household postNewHousehold:self.householdNameField.text completionHandler:^(NSString * _Nonnull householdId) {
         User* currentHouseMember = [User currentUser];
-        NSLog(@"the household_id for after createing household is: %@",householdId);
         currentHouseMember.household_id = householdId;
         [currentHouseMember saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
             if(succeeded){

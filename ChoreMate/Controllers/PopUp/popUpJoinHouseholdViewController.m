@@ -31,7 +31,6 @@
     
     self.contentSizeInPop = CGSizeMake(330, 400);
     self.view.backgroundColor = [UIColor whiteColor];
-    NSLog(@"the houshold members for this house are: %@", self.householdMembers);
     [self setupView];
 }
 
@@ -100,10 +99,8 @@
         _houseMembersLabel.font = [UIFont systemFontOfSize:20 weight:UIFontWeightThin];
         NSString *householdList = @"";
         for(User * houseMember in self.householdMembers){
-            NSLog(@"the household member is: %@",houseMember.name);
             householdList = [householdList stringByAppendingFormat:@"%@\n",houseMember.name];
         }
-        NSLog(@"the household list is: %@",householdList);
         _houseMembersLabel.text = householdList;
         _houseMembersLabel.numberOfLines = 0;
     }

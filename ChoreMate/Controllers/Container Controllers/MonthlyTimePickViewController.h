@@ -13,6 +13,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface MonthlyTimePickViewController : UIViewController
 @property (weak, nonatomic) IBOutlet UIPickerView *dayOfMonthPicker;
 @property (strong, nonatomic) NSString *pickedDay;
+@property (strong, nonatomic) NSString *type;
 
 @end
 

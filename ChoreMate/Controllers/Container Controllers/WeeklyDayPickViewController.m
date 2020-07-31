@@ -7,6 +7,7 @@
 //
 
 #import "WeeklyDayPickViewController.h"
+#import "CMColor.h"
 
 @interface WeeklyDayPickViewController ()
 
@@ -14,10 +15,20 @@
 
 @implementation WeeklyDayPickViewController
 
+- (void)viewWillAppear:(BOOL)animated {
+    if([self.type isEqual:@"recurring"]){
+        self.weeklyDayPickSegControl.selectedSegmentTintColor = [CMColor recurringTaskColor];
+    }
+    else if([self.type isEqual:@"rotational"]) {
+        self.weeklyDayPickSegControl.selectedSegmentTintColor = [CMColor rotationalTaskColor];
+    }
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     self.pickedDay = @"1";
+    
 }
 
 - (IBAction)pickedDay:(UISegmentedControl *)sender {

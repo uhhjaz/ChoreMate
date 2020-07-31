@@ -19,7 +19,8 @@
 #import "JoinHouseholdViewController.h"
 #import <Parse/Parse.h>
 
-@interface HouseholdViewController () <UITableViewDelegate,UITableViewDataSource,CreateHouseholdControllerDelegate, JoinHouseholdControllerDelegate>
+@interface HouseholdViewController () <UITableViewDelegate,UITableViewDataSource,CreateHouseholdControllerDelegate, JoinHouseholdControllerDelegate, NoHouseholdControllerDelegate>
+
 @property (weak, nonatomic) IBOutlet UIView *noHouseholdContainer;
 @property (strong, nonatomic) NoHouseholdViewController * noHouseholdViewController;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
@@ -34,14 +35,14 @@
 @implementation HouseholdViewController
 
 -(void)viewWillAppear:(BOOL)animated{
+    
     User * currUser = [User currentUser];
     if(currUser.household_id == nil){
         self.noHouseholdContainer.alpha = 1;
         self.noHouseholdViewController = [self.childViewControllers objectAtIndex:0];
+        self.noHouseholdViewController.delegate = self;
     }
     else{
-        self.tableView.delegate = self;
-        self.tableView.dataSource = self;
         self.noHouseholdContainer.alpha = 0;
         [self getHousehold];
         [self getHouseholdMembers];
@@ -49,31 +50,16 @@
     }
 }
 
--(void)viewDidAppear:(BOOL)animated{
-    User * currUser = [User currentUser];
-    if(currUser.household_id == nil){
-        self.noHouseholdContainer.alpha = 1;
-        self.noHouseholdViewController = [self.childViewControllers objectAtIndex:0];
-    }
-    else{
-        self.tableView.delegate = self;
-        self.tableView.dataSource = self;
-        self.noHouseholdContainer.alpha = 0;
-        [self getHousehold];
-        [self getHouseholdMembers];
-        
-    }
-}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self setupLeftMenuButton];
     
     User * currUser = [User currentUser];
-    NSLog(@"the current user's household id is: %@",currUser.household_id);
     if(currUser.household_id == nil){
         self.noHouseholdContainer.alpha = 1;
         self.noHouseholdViewController = [self.childViewControllers objectAtIndex:0];
+        self.noHouseholdViewController.delegate = self;
     }
     else{
         self.tableView.delegate = self;
@@ -83,6 +69,10 @@
         [self getHouseholdMembers];
         
     }
+}
+
+- (void)didFinishGettingAHousehold {
+    
 }
 
 - (void)setHeaderLabels{
@@ -152,7 +142,6 @@
 }
 
 - (void)didCreateHousehold {
-    NSLog(@"********************************here in create********************************");
     self.noHouseholdContainer.alpha = 0;
     [self getHousehold];
     [self getHouseholdMembers];
@@ -160,7 +149,6 @@
 }
 
 - (void)didJoinHousehold {
-    NSLog(@"********************************here in join********************************");
     self.noHouseholdContainer.alpha = 0;
     [self getHousehold];
     [self getHouseholdMembers];
@@ -170,16 +158,7 @@
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    if ([segue.identifier isEqualToString:@"joinHousehold"]) {
-        UINavigationController *navigationController = [segue destinationViewController];
-        JoinHouseholdViewController *joinHouseholdController = (JoinHouseholdViewController*)navigationController.topViewController;
-        joinHouseholdController.delegate = self;
-    }
-    else if ([segue.identifier isEqualToString:@"createHousehold"]) {
-        UINavigationController *navigationController = [segue destinationViewController];
-        CreateHouseholdViewController *createHouseholdController = (CreateHouseholdViewController*)navigationController.topViewController;
-        createHouseholdController.delegate = self;
-    }
+
 }
 
 

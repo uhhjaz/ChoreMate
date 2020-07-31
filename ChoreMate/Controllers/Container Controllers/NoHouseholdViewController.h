@@ -9,8 +9,15 @@
 #import <UIKit/UIKit.h>
 
 NS_ASSUME_NONNULL_BEGIN
+@protocol NoHouseholdControllerDelegate
+
+- (void)didFinishGettingAHousehold;
+
+@end
 
 @interface NoHouseholdViewController : UIViewController
+
+@property (nonatomic, weak) id<NoHouseholdControllerDelegate> delegate;
 
 @end
 

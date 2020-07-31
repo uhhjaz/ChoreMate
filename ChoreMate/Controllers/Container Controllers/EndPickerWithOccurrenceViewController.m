@@ -7,20 +7,32 @@
 //
 
 #import "EndPickerWithOccurrenceViewController.h"
+#import "CMColor.h"
 
 @interface EndPickerWithOccurrenceViewController ()
 
 @property (strong, nonatomic) NSNumber *pickedOccurences;
 @property (weak, nonatomic) IBOutlet UITextField *occurenceTextField;
 @property (weak, nonatomic) IBOutlet UIStepper *stepper;
+@property (weak, nonatomic) IBOutlet UIView *pickingBackground;
 
 @end
 
 @implementation EndPickerWithOccurrenceViewController
 
+- (void)viewWillAppear:(BOOL)animated{
+    if([self.type isEqual:@"recurring"]){
+        self.pickingBackground.backgroundColor = [CMColor recurringTaskColor];
+    }
+    else if([self.type isEqual:@"rotational"]) {
+        self.pickingBackground.backgroundColor = [CMColor rotationalTaskColor];
+    }
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    
 }
 
 

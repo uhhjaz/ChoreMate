@@ -22,7 +22,6 @@
     newHousehold.name = name;
     [newHousehold saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
         if(succeeded){
-            NSLog(@"the household_id in postNewHousehold is: %@",newHousehold.objectId);
             completionHandler(newHousehold.objectId);
         }
     }];

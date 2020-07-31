@@ -9,6 +9,7 @@
 #import "NoHouseholdViewController.h"
 #import "CreateHouseholdViewController.h"
 #import "HouseholdViewController.h"
+#import "JoinHouseholdViewController.h"
 
 @interface NoHouseholdViewController ()
 
@@ -22,13 +23,25 @@
     
 }
 
+- (IBAction)didTapCreateHousehold:(id)sender {
+    
+}
+
+- (IBAction)didTapJoinHousehold:(id)sender {
+}
+
 
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    if ([segue.identifier isEqualToString:@"createHousehold"]) {
-
+    if ([segue.identifier isEqualToString:@"joinHousehold"]) {
+        JoinHouseholdViewController *joinHouseholdController = [segue destinationViewController];
+        joinHouseholdController.delegate = (id)self.delegate;
+    }
+    else if ([segue.identifier isEqualToString:@"createHousehold"]) {
+        CreateHouseholdViewController *createHouseholdController = [segue destinationViewController];
+        createHouseholdController.delegate = (id)self.delegate;
     }
 }
 

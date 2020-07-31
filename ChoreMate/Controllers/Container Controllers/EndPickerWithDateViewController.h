@@ -12,6 +12,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface EndPickerWithDateViewController : UIViewController
 @property (strong, nonatomic) NSDate *pickedDate;
+@property (strong, nonatomic) NSString *type;
 
 @end
 

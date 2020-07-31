@@ -27,6 +27,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, assign) BOOL isCompleted;
 
 + (void) getCompletedFromTask:(Task *)task AndDate:(NSString *)dueDate completionHandler:(void (^)(Completed *completedObject))completionHandler;
++ (void) createCompletedFromTask:(Task *)task AndDate:(NSString *)dueDate completionHandler:(void (^)(Completed *completedObject))completionHandler;
 @end
 
 NS_ASSUME_NONNULL_END

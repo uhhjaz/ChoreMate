@@ -73,9 +73,8 @@
     self.taskContainerView.layer.cornerRadius =  15;
     
     NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
-    [dateFormat setDateFormat:@"yyyy/MM/dd --- HH:mm"];
+    [dateFormat setDateFormat:@"yyyy/MM/dd"];
     NSDate *date = [dateFormat dateFromString:self.task.dueDate];
-    NSLog(@"the due date is: %@", self.task.dueDate);
     [dateFormat setDateFormat:@"MM/dd/yyyy"];
     NSString* dateStr = [dateFormat stringFromDate:date];
     self.taskDueDateLabel.text = dateStr;
@@ -110,10 +109,11 @@
 
     [self.taskCompletedButton setImage:unselected forState:UIControlStateNormal];
     [self.taskCompletedButton setImage:selected forState:UIControlStateSelected];
-
+    
     [self.task checkIfHouseHoldMemberCompletedTask:self.task :[User currentUser] completionHandler:^(BOOL housemateCompletedTask) {
         if(housemateCompletedTask){
             self.taskCompletedButton.selected = YES;
+            
         }
         else{
             self.taskCompletedButton.selected = NO;

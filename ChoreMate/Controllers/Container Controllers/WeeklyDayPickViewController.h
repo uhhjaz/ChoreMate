@@ -13,6 +13,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface WeeklyDayPickViewController : UIViewController
 @property (weak, nonatomic) IBOutlet UISegmentedControl *weeklyDayPickSegControl;
 @property (strong, nonatomic) NSString *pickedDay;
+@property (strong, nonatomic) NSString *type;
 
 @end
 

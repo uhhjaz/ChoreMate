@@ -15,11 +15,11 @@
 }
 
 + (UIColor *)recurringTaskColor {
-    return [UIColor colorWithRed: 0.00 green: 0.61 blue: 0.41 alpha: 1.00];
+    return [UIColor colorWithRed: 0.00 green: 0.66 blue: 0.44 alpha: 1.00];
 }
 
 + (UIColor *)rotationalTaskColor {
-    return [UIColor colorWithRed: 0.92 green: 0.69 blue: 0.69 alpha: 1.00];
+    return [UIColor colorWithRed: 1.00 green: 0.79 blue: 0.00 alpha: 1.00];
 }
 
 + (UIColor *)completedTaskColor {

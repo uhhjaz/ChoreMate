@@ -7,6 +7,7 @@
 //
 
 #import "DailyTimePickViewController.h"
+#import "CMColor.h"
 
 @interface DailyTimePickViewController ()
 
@@ -14,9 +15,19 @@
 
 @implementation DailyTimePickViewController
 
+- (void)viewWillAppear:(BOOL)animated {
+    if([self.type isEqual:@"recurring"]){
+        self.dayTimePickSegControl.selectedSegmentTintColor = [CMColor recurringTaskColor];
+    }
+    else if([self.type isEqual:@"rotational"]) {
+        self.dayTimePickSegControl.selectedSegmentTintColor = [CMColor rotationalTaskColor];
+    }
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    
     self.pickedTime = @"1";
 }
 

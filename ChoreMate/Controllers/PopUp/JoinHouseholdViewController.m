@@ -37,7 +37,6 @@
     [query findObjectsInBackgroundWithBlock:^(NSArray * _Nullable allHouseholds, NSError * _Nullable error) {
         self.allHouseholds = allHouseholds;
         self.filteredHouseholds = self.allHouseholds;
-        //NSLog(@"The household array is %@", self.filteredHouseholds);
         [self.tableView reloadData];
         [self.tableView setHidden:YES];
     }];
@@ -91,9 +90,8 @@
 
 
 - (void)didJoinHousehold{
-    [self dismissViewControllerAnimated:true completion:^{
-        [self.delegate didJoinHousehold];
-    }];
+    [self.delegate didJoinHousehold];
+    [self dismissViewControllerAnimated:true completion:nil];
 }
 
 -(BOOL)searchBarShouldBeginEditing:(UISearchBar *)searchBar

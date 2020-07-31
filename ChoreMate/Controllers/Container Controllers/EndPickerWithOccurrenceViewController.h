@@ -13,6 +13,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface EndPickerWithOccurrenceViewController : UIViewController
 
 @property (strong, nonatomic) NSNumber *numOfOccurences;
+@property (strong, nonatomic) NSString *type;
 
 @end
 

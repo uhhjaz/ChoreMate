@@ -17,6 +17,7 @@
 #import <HWPopController/HWPop.h>
 #import "UIViewController+MMDrawerController.h"
 #import "MMDrawerBarButtonItem.h"
+#import "NSDate+CMDate.h"
 
 // MARK: Models
 #import "Task.h"
@@ -45,6 +46,7 @@
 @property (strong, nonatomic) NSArray *household;
 @property (strong, nonatomic) NSMutableArray *myTasks;
 @property (strong, nonatomic) NSMutableArray *myRecurringTasks;
+@property (strong, nonatomic) NSMutableArray *myRotationalTasks;
 @property (strong, nonatomic) NSArray *assignees;
 
 @end
@@ -55,11 +57,6 @@ int const TASK_TYPE_ONETIME = 0;
 int const TASK_TYPE_RECURRING = 1;
 int const TASK_TYPE_ROTATIONAL = 2;
 
-
-- (void)viewWillAppear:(BOOL)animated{
-    //[self refreshTable];
-    [self getMyTasks];
-}
 
 
 - (void)viewDidLoad {
@@ -128,6 +125,7 @@ int const TASK_TYPE_ROTATIONAL = 2;
             NSLog(@"Successfully got household members");
             self.myTasks = (NSMutableArray*)userTasks;
             [self getMyReccuringTasks];
+            [self getMyRotationalTasks];
             [self.tableView reloadData];
             
         } else {
@@ -142,9 +140,7 @@ int const TASK_TYPE_ROTATIONAL = 2;
     PFQuery *query = [PFQuery queryWithClassName:@"Task"];
     [query whereKey:@"assignedTo" containsString:self.currUser.objectId];
     [query whereKey:@"type" equalTo:@"recurring"];
-    PFQuery *query2 = [PFQuery queryWithClassName:@"Completed"];
-    [query2 whereKey:@"isCompleted" equalTo:@NO];
-    [query whereKey:@"completed" matchesQuery:query2];
+    
     [query orderByAscending:@"dueDate"];
     
     [query findObjectsInBackgroundWithBlock:^(NSArray *userTasks, NSError *error) {
@@ -157,6 +153,37 @@ int const TASK_TYPE_ROTATIONAL = 2;
             dispatch_group_t group = dispatch_group_create();
             dispatch_group_enter(group);
             [self setUpRepeatingTasksWithCompletionHandler:^(BOOL success) {
+                dispatch_group_leave(group);
+            }];
+            
+            dispatch_group_notify(group,dispatch_get_main_queue(), ^ {
+                [self performSelectorOnMainThread:@selector(refreshTable) withObject:self.tableView waitUntilDone:YES];
+            });
+            
+        } else {
+            NSLog(@"%@", error.localizedDescription);
+        }
+    }];
+}
+
+-(void) getMyRotationalTasks{
+    
+    PFQuery *query = [PFQuery queryWithClassName:@"Task"];
+    [query whereKey:@"assignedTo" containsString:self.currUser.objectId];
+    [query whereKey:@"type" equalTo:@"rotational"];
+    
+    [query orderByAscending:@"dueDate"];
+    
+    [query findObjectsInBackgroundWithBlock:^(NSArray *userTasks, NSError *error) {
+        if (userTasks != nil) {
+            NSLog(@"Successfully got my recurring tasks");
+            
+            self.myRotationalTasks = [[NSMutableArray alloc] init];
+            self.myRotationalTasks = (NSMutableArray*)userTasks;
+            
+            dispatch_group_t group = dispatch_group_create();
+            dispatch_group_enter(group);
+            [self setUpRotationalTasksWithCompletionHandler:^(BOOL success) {
                 dispatch_group_leave(group);
             }];
             
@@ -196,20 +223,33 @@ int const TASK_TYPE_ROTATIONAL = 2;
 
 }
 
+-(void) setUpRotationalTasksWithCompletionHandler:(void (^)(BOOL success))completionHandler {
+    for(int i = 0 ; i < (unsigned long)self.myRotationalTasks.count; i++) {
+        Task *task = [self.myRotationalTasks objectAtIndex:i];
+        dispatch_group_t group2 = dispatch_group_create();
+        NSArray *userIds = [task objectForKey:@"assignedTo"];
+        dispatch_group_enter(group2);
+        self.assignees = [[NSMutableArray alloc] init];
+        [self getArrayOfTaskAssignees:userIds completionHandler:^(NSArray * _Nonnull allAssignees) {
+            self.assignees = allAssignees;
+            dispatch_group_leave(group2);
+        }];
+        
+        dispatch_group_notify(group2,dispatch_get_main_queue(), ^ {
+            [self createTasksForEachDate:task :self.assignees WithCompletionHandler:^(BOOL success) {
+                if(success){
+                    [self performSelectorOnMainThread:@selector(refreshTable) withObject:self.tableView waitUntilDone:YES];
+                }
+            }];
+        });
+    }
+}
 
 
 -(void) setUpRepeatingTasksWithCompletionHandler:(void (^)(BOOL success))completionHandler {
-    __block int x= 0;
     
-    NSLog(@"the size of myRecurring tasks is: %lu", (unsigned long)self.myRecurringTasks.count);
-    
-    [(NSArray*)self.myRecurringTasks enumerateObjectsUsingBlock:^(Task *task, NSUInteger idx, BOOL *stop) {
-        
-        NSLog(@"######################################");
-        NSLog(@"########################### this is iteration number: %d",x );
-        NSLog(@"######################################");
-        NSLog(@"########################### the task is: %@", task.taskDescription);
-        NSLog(@"######################################\n");
+    for(int i = 0 ; i < (unsigned long)self.myRecurringTasks.count; i++){
+        Task *task = [self.myRecurringTasks objectAtIndex:i];
         
         dispatch_group_t group2 = dispatch_group_create();
         NSArray *userIds = [task objectForKey:@"assignedTo"];
@@ -217,21 +257,17 @@ int const TASK_TYPE_ROTATIONAL = 2;
         self.assignees = [[NSMutableArray alloc] init];
         [self getArrayOfTaskAssignees:userIds completionHandler:^(NSArray * _Nonnull allAssignees) {
             self.assignees = allAssignees;
-            NSLog(@"block A end");
             dispatch_group_leave(group2);
         }];
         
         dispatch_group_notify(group2,dispatch_get_main_queue(), ^ {
-            NSLog(@"block B begin");
             [self createTasksForEachDate:task :self.assignees WithCompletionHandler:^(BOOL success) {
                 if(success){
                     [self performSelectorOnMainThread:@selector(refreshTable) withObject:self.tableView waitUntilDone:YES];
                 }
             }];
         });
-        x++;
-
-    }];
+    }
 }
 
 
@@ -239,22 +275,34 @@ int const TASK_TYPE_ROTATIONAL = 2;
     
     dispatch_group_t group2 = dispatch_group_create();
     NSArray *taskDueDates = [self getArrayOfDueDates:task];
-    NSLog(@"the size of taskDueDates is: %lu", (unsigned long)taskDueDates.count);
-
+    
     for (NSDate *date in taskDueDates) {
+
+        NSArray * assignedUsers;
+        NSDate *newDate = [date dateWithHour:00 minute:00 second:00];
         
-        dispatch_group_enter(group2);
-        NSLog(@"the task is: %@",task.taskDescription);
-        NSLog(@"in the assigned user query: thisTaskAssignees is %@", self.assignees);
-        NSLog(@"the due date in dispatch is: %@", date);
+        __block User * recievedRotatingUser;
+        if([task.type isEqual:@"rotational"]){
+            NSLog(@"in the rotational equal");
+            assignedUsers = [self getRotationalAssigneeForTheDate:task :newDate];
+            recievedRotatingUser = [assignedUsers objectAtIndex:0];
+        }
+        else{
+            assignedUsers = self.assignees;
+        }
+        
+        User *currentUser = [User currentUser];
+        if((![task.type isEqual:@"rotational"]) || ([recievedRotatingUser.objectId isEqual:currentUser.objectId])) {
+            dispatch_group_enter(group2);
+            [Task createTaskCopy:task.objectId From:task For:task.taskDescription OfType:task.type WithRepeatType:task.repeats Point:task.repetitionPoint NumOfTimes:task.occurrences Ending:newDate Assignees:assignedUsers completionHandler:^(Task * _Nonnull newTask) {
             
-        [Task createTaskCopy:task.objectId From:task For:task.taskDescription OfType:task.type WithRepeatType:task.repeats Point:task.repetitionPoint NumOfTimes:task.occurrences Ending:date Assignees:self.assignees completionHandler:^(Task * _Nonnull newTask) {
+                [self.myTasks addObject:newTask];
             
-            [self.myTasks addObject:newTask];
-            
-            NSLog(@"NEWTASK IS: %@", newTask);
-            dispatch_group_leave(group2);
-        }];
+                NSLog(@"NEWTASK IS: %@", newTask);
+                dispatch_group_leave(group2);
+            }];
+        }
+
     }
     
     dispatch_group_notify(group2,dispatch_get_main_queue(), ^ {
@@ -262,11 +310,45 @@ int const TASK_TYPE_ROTATIONAL = 2;
     });
 }
 
+- (NSArray *) getRotationalAssigneeForTheDate: (Task*)task :(NSDate *)date {
+    NSMutableArray *assignedTo = [[NSMutableArray alloc] init];
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:@"yyyy/MM/dd"];
+    NSDate *startDate = [dateFormatter dateFromString:task.createdDate];
+    NSDate *dueDate = date;
+    NSDictionary *rotationalOrder = task.rotationalOrder;
+
+    NSString * repeatType = task.repeats;
+    
+    int taskNumber = 0;
+
+    
+    if ([repeatType isEqual:@"daily"]){
+        taskNumber = [NSDate whichNumberDayOccurrence:task.repetitionPoint.intValue From:startDate Til:dueDate];
+    }
+    else if ([repeatType isEqual:@"weekly"]){
+        taskNumber = [NSDate whichNumberWeekOccurrence:task.repetitionPoint.intValue From:startDate Til:dueDate];
+    }
+    else if ([repeatType isEqual:@"monthly"]){
+        taskNumber = [NSDate whichNumberMonthOccurrence:task.repetitionPoint.intValue From:startDate Til:dueDate];
+    }
+    
+    NSLog(@"the task number is %d", taskNumber);
+    
+    NSString *taskNumToString = [@((((taskNumber)%rotationalOrder.count)+1)) stringValue];
+    User *houseMember = rotationalOrder[taskNumToString];
+    PFQuery *query = [PFUser query];
+    houseMember = (User *)[query getObjectWithId:houseMember.objectId];
+    
+    [assignedTo addObject:houseMember];
+    return (NSArray *)assignedTo;
+}
+
 
 -(NSArray *) getArrayOfDueDates: (Task*)task{
     
     NSDateFormatter *dateFormatter=[[NSDateFormatter alloc] init];
-    [dateFormatter setDateFormat:@"yyyy/MM/dd --- HH:mm"];
+    [dateFormatter setDateFormat:@"yyyy/MM/dd"];
     NSDate *endingDate = [dateFormatter dateFromString:task.endDate];
     [dateFormatter setDateFormat:@"yyyy-MM-dd"];
     NSString * endingDateStr = [dateFormatter stringFromDate:endingDate];
@@ -282,8 +364,7 @@ int const TASK_TYPE_ROTATIONAL = 2;
     else if ([task.repeats isEqual:@"monthly"]){
         dates = [self datesMonthsAppear:task.repetitionPoint.intValue Til:endingDate];
     }
-    
-    NSLog(@"getArrayOfDueDates the dates are: %@",dates);
+
     return (NSArray*)dates;
 }
 
@@ -407,8 +488,17 @@ int const TASK_TYPE_ROTATIONAL = 2;
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(nonnull NSIndexPath *)indexPath{
     
     NSMutableArray *allCells = (NSMutableArray *)[self.tableView visibleCells];
-    NSPredicate *testForTrue = [NSPredicate predicateWithFormat:@"self.task.completed == 1"];
-    NSArray *filteredArray = [allCells filteredArrayUsingPredicate:testForTrue];
+    NSPredicate *testForCompletion = [NSPredicate predicateWithBlock:^BOOL(id  _Nullable evaluatedObject, NSDictionary<NSString *,id> * _Nullable bindings) {
+        TaskCell * cell = (TaskCell *)evaluatedObject;
+        Task * task = cell.task;
+        __block BOOL isCompleted = NO;
+        [task isTaskFullyCompleted:task completionHandler:^(BOOL allTasksCompleted) {
+            isCompleted = allTasksCompleted;
+        }];
+        return isCompleted;
+    }];
+    
+    NSArray *filteredArray = [allCells filteredArrayUsingPredicate:testForCompletion];
     
     if (filteredArray != nil) {
     

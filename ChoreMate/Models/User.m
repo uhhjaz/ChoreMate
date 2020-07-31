@@ -57,14 +57,14 @@
 
     
 + (void) getUserFromObjectId:(NSString *)userObjectId completionHandler:(void (^)(User *user))completionHandler {
-        
+
     PFQuery *query = [PFUser query];
     [query whereKey:@"objectId" equalTo:userObjectId]; 
 
-    [query findObjectsInBackgroundWithBlock:^(NSArray * _Nullable objects, NSError * _Nullable error) {
-        if(objects[0]){
-            //NSLog(@"the user gotten with userId %@ is user: %@",userObjectId, objects[0]);
-            completionHandler(objects[0]);
+    [query getFirstObjectInBackgroundWithBlock:^(PFObject * _Nullable object, NSError * _Nullable error) {
+        if(object != nil){
+            User *theUser = (User *)object;
+            completionHandler(theUser);
         }
     }];
 }

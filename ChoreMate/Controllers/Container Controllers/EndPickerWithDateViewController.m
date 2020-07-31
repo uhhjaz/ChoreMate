@@ -7,19 +7,29 @@
 //
 
 #import "EndPickerWithDateViewController.h"
+#import "CMColor.h"
 
 @interface EndPickerWithDateViewController ()
 @property (weak, nonatomic) IBOutlet UIDatePicker *datePicker;
+@property (weak, nonatomic) IBOutlet UIView *datePickerBackground;
 
 @end
 
 @implementation EndPickerWithDateViewController
 
+- (void)viewWillAppear:(BOOL)animated {
+    if([self.type isEqual:@"recurring"]){
+        self.datePickerBackground.backgroundColor = [CMColor recurringTaskColor];
+    }
+    else if([self.type isEqual:@"rotational"]) {
+        self.datePickerBackground.backgroundColor = [CMColor rotationalTaskColor];
+    }
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self.datePicker setDatePickerMode:UIDatePickerModeDate];
     [self.datePicker setMinimumDate:[NSDate date]];
-
     
 }
 
@@ -29,7 +39,7 @@
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     [dateFormatter setDateFormat:@"yyyy-MM-dd"];
     NSString * strTimestamp = [dateFormatter stringFromDate:chosen];
-    NSLog(@"your stirng: %@",strTimestamp);
+    NSLog(@"your string time stamp: %@",strTimestamp);
     
     self.pickedDate = chosen;
 }

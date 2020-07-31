@@ -23,6 +23,7 @@
 + (void) getCompletedFromTask:(Task *)task AndDate:(NSString *)dueDate completionHandler:(void (^)(Completed *completedObject))completionHandler {
     
     if(task.reproduced){
+
         completionHandler(task.completedObject);
         return;
     }
@@ -30,15 +31,32 @@
         PFQuery *query = [PFQuery queryWithClassName:@"Completed"];
         [query whereKey:@"task" equalTo:task];
     
-        // add date query from task for when doing the recurring task to narrow the search
-    
-        [query findObjectsInBackgroundWithBlock:^(NSArray * _Nullable objects, NSError * _Nullable error) {
-            if(objects[0] != nil){
-                //NSLog(@"the completion obejct gotten with task %@ is user: %@",task.objectId, objects[0]);
-                completionHandler(objects[0]);
+        [query getFirstObjectInBackgroundWithBlock:^(PFObject * _Nullable object, NSError * _Nullable error) {
+            if(error){
+                NSLog(@"there is an error: %@", error.localizedDescription);
+            }
+            if(object != nil){
+                completionHandler((Completed *)object);
             }
         }];
     }
+}
+
+
++ (void) createCompletedFromTask:(Task *)task AndDate:(NSString *)dueDate completionHandler:(void (^)(Completed *completedObject))completionHandler {
+    PFQuery *query = [PFQuery queryWithClassName:@"Completed"];
+    [query whereKey:@"task" equalTo:task];
+    [query whereKey:@"endDate" equalTo:dueDate];
+
+    // add date query from task for when doing the recurring task to narrow the search
+    [query getFirstObjectInBackgroundWithBlock:^(PFObject * _Nullable object, NSError * _Nullable error) {
+        if(error){
+            NSLog(@"there is an error: %@", error.localizedDescription);
+        }
+        if(object != nil){
+            completionHandler((Completed *)object);
+        }
+    }];
 }
 
 @end

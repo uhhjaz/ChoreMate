@@ -17,6 +17,7 @@
 		3A5818E824D0B25700D6EE60 /* JoinHouseholdViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A5818E724D0B25700D6EE60 /* JoinHouseholdViewController.m */; };
 		3A5818EB24D0B52F00D6EE60 /* JoinHouseholdCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A5818EA24D0B52E00D6EE60 /* JoinHouseholdCell.m */; };
 		3A5818EE24D0C67500D6EE60 /* popUpJoinHouseholdViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A5818ED24D0C67500D6EE60 /* popUpJoinHouseholdViewController.m */; };
+		3A5818F724D3734700D6EE60 /* NSDate+CMDate.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A5818F624D3734700D6EE60 /* NSDate+CMDate.m */; };
 		3A95C6B724BD29CD00C906D7 /* HouseholdViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A95C6B624BD29CD00C906D7 /* HouseholdViewController.m */; };
 		3A95C6BA24BD29D800C906D7 /* ProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A95C6B924BD29D800C906D7 /* ProfileViewController.m */; };
 		3A95C6BD24BD30F000C906D7 /* TheRootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A95C6BC24BD30F000C906D7 /* TheRootViewController.m */; };
@@ -94,6 +95,8 @@
 		3A5818EA24D0B52E00D6EE60 /* JoinHouseholdCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = JoinHouseholdCell.m; path = ChoreMate/Controllers/PopUp/JoinHouseholdCell.m; sourceTree = SOURCE_ROOT; };
 		3A5818EC24D0C67500D6EE60 /* popUpJoinHouseholdViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = popUpJoinHouseholdViewController.h; sourceTree = "<group>"; };
 		3A5818ED24D0C67500D6EE60 /* popUpJoinHouseholdViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = popUpJoinHouseholdViewController.m; sourceTree = "<group>"; };
+		3A5818F524D3734700D6EE60 /* NSDate+CMDate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSDate+CMDate.h"; sourceTree = "<group>"; };
+		3A5818F624D3734700D6EE60 /* NSDate+CMDate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSDate+CMDate.m"; sourceTree = "<group>"; };
 		3A95C6B524BD29CD00C906D7 /* HouseholdViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HouseholdViewController.h; sourceTree = "<group>"; };
 		3A95C6B624BD29CD00C906D7 /* HouseholdViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HouseholdViewController.m; sourceTree = "<group>"; };
 		3A95C6B824BD29D800C906D7 /* ProfileViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ProfileViewController.h; sourceTree = "<group>"; };
@@ -285,6 +288,8 @@
 				3AA661C724BCC3CE00EBA89E /* LaunchScreen.storyboard */,
 				3AA661CA24BCC3CE00EBA89E /* Info.plist */,
 				3AA661CB24BCC3CE00EBA89E /* main.m */,
+				3A5818F524D3734700D6EE60 /* NSDate+CMDate.h */,
+				3A5818F624D3734700D6EE60 /* NSDate+CMDate.m */,
 				3AEB441024CFA4A90038AED5 /* CMColor.h */,
 				3AEB441124CFA4A90038AED5 /* CMColor.m */,
 			);
@@ -662,6 +667,7 @@
 				3AA661FD24BCF0EC00EBA89E /* Task.m in Sources */,
 				3A95C6BD24BD30F000C906D7 /* TheRootViewController.m in Sources */,
 				3AA661F424BCCC7500EBA89E /* User.m in Sources */,
+				3A5818F724D3734700D6EE60 /* NSDate+CMDate.m in Sources */,
 				3A2D79EB24C0BBE500D2C31B /* OnceTimeTaskViewController.m in Sources */,
 				3AA661BB24BCC3CC00EBA89E /* AppDelegate.m in Sources */,
 				3AA661FA24BCCE9000EBA89E /* SignUpViewController.m in Sources */,
