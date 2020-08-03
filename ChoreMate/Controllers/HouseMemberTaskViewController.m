@@ -12,8 +12,12 @@
 #import "NSDate+CMDate.h"
 #import "Task.h"
 #import "Completed.h"
+#import "popUpNudgeHouseMateViewController.h"
+#import <HWPopController/HWPop.h>
+#import <MBProgressHUD.h>
+#import "Notification.h"
 
-@interface HouseMemberTaskViewController () <UITableViewDelegate, UITableViewDataSource>
+@interface HouseMemberTaskViewController () <UITableViewDelegate, UITableViewDataSource, HouseMateTaskCellDelegate, popUpNudgeControllerDelegate>
 @property (weak, nonatomic) IBOutlet UIView *headerBackground;
 @property (weak, nonatomic) IBOutlet UILabel *headerLabel;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
@@ -29,16 +33,18 @@
     [super viewDidLoad];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
-    
+    self.tableView.separatorColor = [UIColor clearColor];
     [self setHeader];
     
     [self getAllTasks];
-    
+
 }
+
 
 - (void) setHeader {
     self.headerLabel.text = [self.houseMate.name stringByAppendingString:@"'s Chores"];
 }
+
 
 - (void) getAllTasks{
     PFQuery *query = [PFQuery queryWithClassName:@"Task"];
@@ -71,9 +77,11 @@
         if([taskFromDB.type isEqual:@"one_time"]){
             [Completed createCompletedFromTask:taskFromDB AndDate:taskFromDB.endDate completionHandler:^(Completed * _Nonnull completedObject) {
                 taskFromDB.completedObject = completedObject;
-                [self.housematesTasks addObject:taskFromDB];
-                NSLog(@"self.housematesTasks are %@:",self.housematesTasks);
-                [self.tableView reloadData];
+                if(taskFromDB.completedObject.isCompleted != YES){
+                    [self.housematesTasks addObject:taskFromDB];
+                    NSLog(@"self.housematesTasks are %@:",self.housematesTasks);
+                    [self.tableView reloadData];
+                }
             }];
         
         } else if([taskFromDB.type isEqual:@"recurring"]){
@@ -109,10 +117,9 @@
 
 
 
-- (NSArray *) sortBasedOnCompletionDate {
-    NSArray *sortedArray = [[NSArray alloc] init];
-    
-    return sortedArray;
+- (void) sortBasedOnCompletionDate {
+    NSSortDescriptor *sorter = [[NSSortDescriptor alloc] initWithKey:@"completedObject.endDate" ascending:YES];
+    [self.housematesTasks sortUsingDescriptors:[NSArray arrayWithObject:sorter]];
 }
 
 
@@ -192,10 +199,11 @@
                        Assignees:assignedUsers
                completionHandler:^(Task * _Nonnull newTask) {
                 
-                // TODO: ADD COMPLETed object check here to see whether task is completed or not
-                
-                [gettingTasks addObject:newTask];
-                NSLog(@"NEWTASK IS: %@", newTask);
+
+                if(newTask.completedObject.isCompleted != YES){
+                    [gettingTasks addObject:newTask];
+                    NSLog(@"NEWTASK IS: %@", newTask);
+                }
                 dispatch_group_leave(group);
             }];
         }
@@ -276,11 +284,9 @@
     cell.task = self.housematesTasks[indexPath.row];
     [cell setTaskValues];
     [cell getTasksAssignees];
-    
+    cell.delegate = self;
     return cell;
 }
-
-
 
 
 /*
@@ -292,5 +298,34 @@
     // Pass the selected object to the new view controller.
 }
 */
+
+
+- (void)taskCell:(nonnull HouseMateTaskCell *)taskCell didTap:(nonnull Task *)task {
+    popUpNudgeHouseMateViewController *centerViewController = [popUpNudgeHouseMateViewController new];
+    centerViewController.houseMate = self.houseMate;
+    centerViewController.task = task;
+    centerViewController.delegate = self;
+    HWPopController *popController = [[HWPopController alloc] initWithViewController:centerViewController];
+    popController.popPosition = HWPopPositionCenter;
+    popController.popType = HWPopTypeGrowIn;
+    popController.dismissType = HWDismissTypeShrinkOut;
+    popController.shouldDismissOnBackgroundTouch = YES;
+    [popController presentInViewController:self];
+}
+
+
+- (void)didNudge:(Task *)forChore{
+    // TODO: CREATE NOTIFICATION HERE
+    NSLog(@"DID NUDGE");
+    [Notification postNotification:@"reminder" From:[User currentUser] To:self.houseMate ForChore:forChore withCompletion:^(BOOL succeeded, NSError * _Nullable error) {
+        if(succeeded){
+            NSLog(@"successfully notified housemate");
+        }
+        if(error){
+            NSLog(@"there was an error %@:",error.localizedDescription);
+        }
+    }];
+}
+
 
 @end

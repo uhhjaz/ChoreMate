@@ -70,9 +70,10 @@ NS_ASSUME_NONNULL_BEGIN
 
 
 - (void)checkIfHouseHoldMemberCompletedTask:(Task *)task :(User *)housemate completionHandler:(void (^)(BOOL housemateCompletedTask))completionHandler;
-
 - (void)isTaskFullyCompleted:(Task *)task completionHandler:(void (^)(BOOL allTasksCompleted))completionHandler;
 - (void)isTaskWithDateFullyCompleted:(Task *)task :(NSDate *)dueDate completionHandler:(void (^)(BOOL allTasksCompleted))completionHandler;
+
++ (void) getTaskFromObjectId:(NSString *)taskObjectId completionHandler:(void (^)(Task *chore))completionHandler;
 @end
 
 NS_ASSUME_NONNULL_END

@@ -142,15 +142,15 @@
 
 
 + (void) createTaskCopy: (NSString * _Nullable)taskID
-                     From: (Task *)realTask
-                      For: (NSString * _Nullable)description
-                   OfType: (NSString * _Nullable)type
-           WithRepeatType: (NSString * _Nullable)repeat
-                    Point: (NSNumber * _Nullable)whenToRepeat
-               NumOfTimes: (NSNumber * _Nullable)occurrences
-                   Ending: (NSDate * _Nullable)ending
-                Assignees: (NSArray *)assignees
-        completionHandler: (void (^)(Task * _Nonnull newTask))completionHandler {
+                   From: (Task *)realTask
+                    For: (NSString * _Nullable)description
+                 OfType: (NSString * _Nullable)type
+         WithRepeatType: (NSString * _Nullable)repeat
+                  Point: (NSNumber * _Nullable)whenToRepeat
+             NumOfTimes: (NSNumber * _Nullable)occurrences
+                 Ending: (NSDate * _Nullable)ending
+              Assignees: (NSArray *)assignees
+      completionHandler: (void (^)(Task * _Nonnull newTask))completionHandler {
    
     Task *taskCopy = [Task new];
 
@@ -228,5 +228,16 @@
     }];
 }
 
++ (void) getTaskFromObjectId:(NSString *)taskObjectId completionHandler:(void (^)(Task *chore))completionHandler {
+
+    PFQuery *query = [PFQuery queryWithClassName:@"Task"];
+    [query whereKey:@"objectId" equalTo:taskObjectId];
+    [query getFirstObjectInBackgroundWithBlock:^(PFObject * _Nullable object, NSError * _Nullable error) {
+        if(object != nil){
+            Task *theChore = (Task *)object;
+            completionHandler(theChore);
+        }
+    }];
+}
 
 @end

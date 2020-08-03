@@ -20,6 +20,11 @@
 		3A5818F724D3734700D6EE60 /* NSDate+CMDate.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A5818F624D3734700D6EE60 /* NSDate+CMDate.m */; };
 		3A5818FA24D49AB100D6EE60 /* HouseMemberTaskViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A5818F924D49AB100D6EE60 /* HouseMemberTaskViewController.m */; };
 		3A5818FD24D49B1000D6EE60 /* HouseMateTaskCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A5818FC24D49B1000D6EE60 /* HouseMateTaskCell.m */; };
+		3A58190024D7E0CB00D6EE60 /* popUpHouseholdCodeController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A5818FF24D7E0CB00D6EE60 /* popUpHouseholdCodeController.m */; };
+		3A58190324D872C800D6EE60 /* popUpNudgeHouseMateViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A58190224D872C800D6EE60 /* popUpNudgeHouseMateViewController.m */; };
+		3A58190624D88C0B00D6EE60 /* Notification.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A58190524D88C0B00D6EE60 /* Notification.m */; };
+		3A58190924D8A58400D6EE60 /* NotificationsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A58190824D8A58400D6EE60 /* NotificationsViewController.m */; };
+		3A58190C24D8A64600D6EE60 /* NotificationCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A58190B24D8A64600D6EE60 /* NotificationCell.m */; };
 		3A95C6B724BD29CD00C906D7 /* HouseholdViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A95C6B624BD29CD00C906D7 /* HouseholdViewController.m */; };
 		3A95C6BA24BD29D800C906D7 /* ProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A95C6B924BD29D800C906D7 /* ProfileViewController.m */; };
 		3A95C6BD24BD30F000C906D7 /* TheRootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A95C6BC24BD30F000C906D7 /* TheRootViewController.m */; };
@@ -103,6 +108,16 @@
 		3A5818F924D49AB100D6EE60 /* HouseMemberTaskViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HouseMemberTaskViewController.m; sourceTree = "<group>"; };
 		3A5818FB24D49B1000D6EE60 /* HouseMateTaskCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = HouseMateTaskCell.h; path = ChoreMate/Controllers/HouseMateTaskCell.h; sourceTree = SOURCE_ROOT; };
 		3A5818FC24D49B1000D6EE60 /* HouseMateTaskCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = HouseMateTaskCell.m; path = ChoreMate/Controllers/HouseMateTaskCell.m; sourceTree = SOURCE_ROOT; };
+		3A5818FE24D7E0CB00D6EE60 /* popUpHouseholdCodeController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = popUpHouseholdCodeController.h; sourceTree = "<group>"; };
+		3A5818FF24D7E0CB00D6EE60 /* popUpHouseholdCodeController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = popUpHouseholdCodeController.m; sourceTree = "<group>"; };
+		3A58190124D872C800D6EE60 /* popUpNudgeHouseMateViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = popUpNudgeHouseMateViewController.h; sourceTree = "<group>"; };
+		3A58190224D872C800D6EE60 /* popUpNudgeHouseMateViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = popUpNudgeHouseMateViewController.m; sourceTree = "<group>"; };
+		3A58190424D88C0B00D6EE60 /* Notification.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Notification.h; sourceTree = "<group>"; };
+		3A58190524D88C0B00D6EE60 /* Notification.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Notification.m; sourceTree = "<group>"; };
+		3A58190724D8A58400D6EE60 /* NotificationsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NotificationsViewController.h; sourceTree = "<group>"; };
+		3A58190824D8A58400D6EE60 /* NotificationsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NotificationsViewController.m; sourceTree = "<group>"; };
+		3A58190A24D8A64600D6EE60 /* NotificationCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = NotificationCell.h; path = ChoreMate/Controllers/NotificationCell.h; sourceTree = SOURCE_ROOT; };
+		3A58190B24D8A64600D6EE60 /* NotificationCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = NotificationCell.m; path = ChoreMate/Controllers/NotificationCell.m; sourceTree = SOURCE_ROOT; };
 		3A95C6B524BD29CD00C906D7 /* HouseholdViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HouseholdViewController.h; sourceTree = "<group>"; };
 		3A95C6B624BD29CD00C906D7 /* HouseholdViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HouseholdViewController.m; sourceTree = "<group>"; };
 		3A95C6B824BD29D800C906D7 /* ProfileViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ProfileViewController.h; sourceTree = "<group>"; };
@@ -227,6 +242,10 @@
 				3A5818E724D0B25700D6EE60 /* JoinHouseholdViewController.m */,
 				3A5818EC24D0C67500D6EE60 /* popUpJoinHouseholdViewController.h */,
 				3A5818ED24D0C67500D6EE60 /* popUpJoinHouseholdViewController.m */,
+				3A5818FE24D7E0CB00D6EE60 /* popUpHouseholdCodeController.h */,
+				3A5818FF24D7E0CB00D6EE60 /* popUpHouseholdCodeController.m */,
+				3A58190124D872C800D6EE60 /* popUpNudgeHouseMateViewController.h */,
+				3A58190224D872C800D6EE60 /* popUpNudgeHouseMateViewController.m */,
 			);
 			path = PopUp;
 			sourceTree = "<group>";
@@ -342,6 +361,8 @@
 				3A5818EA24D0B52E00D6EE60 /* JoinHouseholdCell.m */,
 				3A5818FB24D49B1000D6EE60 /* HouseMateTaskCell.h */,
 				3A5818FC24D49B1000D6EE60 /* HouseMateTaskCell.m */,
+				3A58190A24D8A64600D6EE60 /* NotificationCell.h */,
+				3A58190B24D8A64600D6EE60 /* NotificationCell.m */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -357,6 +378,8 @@
 				3AEB440824CE7E880038AED5 /* Completed.m */,
 				3AEB440D24CF9FAA0038AED5 /* Household.h */,
 				3AEB440E24CF9FAA0038AED5 /* Household.m */,
+				3A58190424D88C0B00D6EE60 /* Notification.h */,
+				3A58190524D88C0B00D6EE60 /* Notification.m */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -380,6 +403,8 @@
 				3A95C6B924BD29D800C906D7 /* ProfileViewController.m */,
 				3A5818F824D49AB100D6EE60 /* HouseMemberTaskViewController.h */,
 				3A5818F924D49AB100D6EE60 /* HouseMemberTaskViewController.m */,
+				3A58190724D8A58400D6EE60 /* NotificationsViewController.h */,
+				3A58190824D8A58400D6EE60 /* NotificationsViewController.m */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -682,6 +707,8 @@
 				3AA661BB24BCC3CC00EBA89E /* AppDelegate.m in Sources */,
 				3AA661FA24BCCE9000EBA89E /* SignUpViewController.m in Sources */,
 				3A95C6BA24BD29D800C906D7 /* ProfileViewController.m in Sources */,
+				3A58190C24D8A64600D6EE60 /* NotificationCell.m in Sources */,
+				3A58190624D88C0B00D6EE60 /* Notification.m in Sources */,
 				3AEB43FA24CA0A470038AED5 /* MonthlyTimePickViewController.m in Sources */,
 				3A5818EB24D0B52F00D6EE60 /* JoinHouseholdCell.m in Sources */,
 				3A5818EE24D0C67500D6EE60 /* popUpJoinHouseholdViewController.m in Sources */,
@@ -690,12 +717,14 @@
 				3AE09FD624C5EFE9000C3C59 /* TaskCell.m in Sources */,
 				3AEB441224CFA4A90038AED5 /* CMColor.m in Sources */,
 				3A5818FA24D49AB100D6EE60 /* HouseMemberTaskViewController.m in Sources */,
+				3A58190324D872C800D6EE60 /* popUpNudgeHouseMateViewController.m in Sources */,
 				3AEB440624CA0E0D0038AED5 /* EndPickerWithOccurrenceViewController.m in Sources */,
 				3AEB440924CE7E880038AED5 /* Completed.m in Sources */,
 				3AEB43FD24CA0A5F0038AED5 /* WeeklyDayPickViewController.m in Sources */,
 				3AEB441524CFEE910038AED5 /* NoHouseholdViewController.m in Sources */,
 				3A2D79F424C103B400D2C31B /* AssignmentCell.m in Sources */,
 				3A2D79F124C0D09F00D2C31B /* RotationalTaskViewController.m in Sources */,
+				3A58190924D8A58400D6EE60 /* NotificationsViewController.m in Sources */,
 				3AEB440024CA0A6B0038AED5 /* DailyTimePickViewController.m in Sources */,
 				3AA661CC24BCC3CE00EBA89E /* main.m in Sources */,
 				3A95C6B724BD29CD00C906D7 /* HouseholdViewController.m in Sources */,
@@ -708,6 +737,7 @@
 				3A5818FD24D49B1000D6EE60 /* HouseMateTaskCell.m in Sources */,
 				3AEB441824CFF4070038AED5 /* HouseholdMemberCell.m in Sources */,
 				3AEB440F24CF9FAA0038AED5 /* Household.m in Sources */,
+				3A58190024D7E0CB00D6EE60 /* popUpHouseholdCodeController.m in Sources */,
 				3AEB440324CA0DFD0038AED5 /* EndPickerWithDateViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -66,6 +66,7 @@
     else{
         self.tableView.delegate = self;
         self.tableView.dataSource = self;
+        self.tableView.separatorColor = [UIColor clearColor];
         self.noHouseholdContainer.alpha = 0;
         [self getHousehold];
         [self getHouseholdMembers];
@@ -144,6 +145,8 @@
 }
 
 - (void)didCreateHousehold {
+    NSLog(@"did create hosuehold");
+    
     self.noHouseholdContainer.alpha = 0;
     [self getHousehold];
     [self getHouseholdMembers];
@@ -151,6 +154,7 @@
 }
 
 - (void)didJoinHousehold {
+    
     self.noHouseholdContainer.alpha = 0;
     [self getHousehold];
     [self getHouseholdMembers];

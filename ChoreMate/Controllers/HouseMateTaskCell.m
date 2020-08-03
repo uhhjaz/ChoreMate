@@ -32,6 +32,9 @@
     // Configure the view for the selected state
 }
 
+- (IBAction)didTapNudge:(id)sender {
+    [self.delegate taskCell:self didTap:self.task];
+}
 
 - (UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(nonnull UICollectionViewLayout *)collectionViewLayout insetForSectionAtIndex:(NSInteger)section {
     CGFloat totalCellWidth = 50 * self.taskAssignees.count;

@@ -10,9 +10,12 @@
 
 #import "SideDrawerViewController.h"
 #import "UIViewController+MMDrawerController.h"
+#import "NotificationsViewController.h"
 
 @interface SideDrawerViewController ()
-
+@property (weak, nonatomic) IBOutlet UIView *notificationView;
+@property (weak, nonatomic) IBOutlet UILabel *notificationNumberLabel;
+@property (strong, nonatomic) NotificationsViewController *notificationController;
 
 @property(nonatomic) long currentIndex;
 
@@ -24,6 +27,20 @@ int const MENU_FIRST_TASK_HOME = 1;
 int const MENU_SECOND_HOUSEHOLD = 2;
 int const MENU_THIRD_PROFILE = 3;
 
+-(void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    self.notificationController = [self.storyboard instantiateViewControllerWithIdentifier:@"NOTIF_VIEW_CONTROLLER"];
+    [self.notificationController getNewNotifCountWithCompletionHandler:^(int count) {
+        NSLog(@"the notif count is :%d", count);
+        if(count > 0) {
+            self.notificationView.alpha = 1;
+            self.notificationNumberLabel.text = [@(count) stringValue];
+        }
+        else{
+            self.notificationView.alpha = 0;
+        }
+    }];
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -37,30 +54,35 @@ int const MENU_THIRD_PROFILE = 3;
         return;
     }
 
-    UIViewController *centerViewController;
-    switch (indexPath.row) {
-        case MENU_FIRST_TASK_HOME:
-            centerViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"FIRST_TASK_HOME_VIEW_CONTROLLER"];
-            break;
-            
-        case MENU_SECOND_HOUSEHOLD:
-            centerViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"SECOND_HOUSEHOLD_VIEW_CONTROLLER"];
-            break;
-            
-        case MENU_THIRD_PROFILE:
-            centerViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"THIRD_PROFILE_VIEW_CONTROLLER"];
-            break;
-            
-        default:
-            break;
+    if(indexPath.row == 4) {
+        [self performSegueWithIdentifier:@"toNotifications" sender:self];
     }
+    else {
+        UIViewController *centerViewController;
+        switch (indexPath.row) {
+            case MENU_FIRST_TASK_HOME:
+                centerViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"FIRST_TASK_HOME_VIEW_CONTROLLER"];
+                break;
+            
+            case MENU_SECOND_HOUSEHOLD:
+                centerViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"SECOND_HOUSEHOLD_VIEW_CONTROLLER"];
+                break;
+            
+            case MENU_THIRD_PROFILE:
+                centerViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"THIRD_PROFILE_VIEW_CONTROLLER"];
+                break;
+            
+            default:
+                break;
+        }
 
     
-    if (centerViewController) {
-        self.currentIndex = indexPath.row;
-        [self.mm_drawerController setCenterViewController:centerViewController withCloseAnimation:YES completion:nil];
-    } else {
-        [self.mm_drawerController closeDrawerAnimated:YES completion:nil];
+        if (centerViewController) {
+            self.currentIndex = indexPath.row;
+            [self.mm_drawerController setCenterViewController:centerViewController withCloseAnimation:YES completion:nil];
+        } else {
+            [self.mm_drawerController closeDrawerAnimated:YES completion:nil];
+        }
     }
 }
 

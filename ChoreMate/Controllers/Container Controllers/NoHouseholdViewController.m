@@ -23,13 +23,6 @@
     
 }
 
-- (IBAction)didTapCreateHousehold:(id)sender {
-    
-}
-
-- (IBAction)didTapJoinHousehold:(id)sender {
-}
-
 
 #pragma mark - Navigation
 

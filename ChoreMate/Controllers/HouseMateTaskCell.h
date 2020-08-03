@@ -8,10 +8,14 @@
 
 #import <UIKit/UIKit.h>
 #import "Task.h"
+#import "User.h"
 
 NS_ASSUME_NONNULL_BEGIN
+@protocol HouseMateTaskCellDelegate;
 
 @interface HouseMateTaskCell : UITableViewCell <UICollectionViewDataSource, UICollectionViewDelegate>
+
+@property (nonatomic, weak) id<HouseMateTaskCellDelegate> delegate;
 
 @property (weak, nonatomic) IBOutlet UILabel *taskDescriptionLabel;
 @property (weak, nonatomic) IBOutlet UILabel *dateLabel;
@@ -24,6 +28,12 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void) setTaskValues;
 - (void) getTasksAssignees;
+
+@end
+
+@protocol HouseMateTaskCellDelegate
+
+- (void)taskCell:(HouseMateTaskCell *) taskCell didTap: (Task *)task;
 
 @end
 
