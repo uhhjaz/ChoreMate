@@ -33,6 +33,8 @@
 #import "OnceTimeTaskViewController.h"
 #import "RecurringTaskViewController.h"
 #import "RotationalTaskViewController.h"
+#import "HouseMateTaskCell.h"
+
 
 
 
@@ -117,21 +119,27 @@ int const TASK_TYPE_ROTATIONAL = 2;
                 taskFromDB.completedObject = completedObject;
                 [self.myTasks addObject:taskFromDB];
                 NSLog(@"self.housematesTasks are %@:",self.myTasks);
-                [self.tableView reloadData];
+                [self sortBasedOnCompletionDate];
+                //[self.tableView reloadData];
+                [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationFade];
             }];
         
         } else if([taskFromDB.type isEqual:@"recurring"]){
             [self makeRecurringRotationalTasks:taskFromDB completionHandler:^(NSArray *createdRecurringRotationalTasks) {
                 [self.myTasks addObjectsFromArray:createdRecurringRotationalTasks];
                 NSLog(@"self.housematesTasks are %@:",self.myTasks);
-                [self.tableView reloadData];
+                [self sortBasedOnCompletionDate];
+                //[self.tableView reloadData];
+                [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationFade];
             }];
         
         } else if([taskFromDB.type isEqual:@"rotational"]){
             [self makeRecurringRotationalTasks:taskFromDB completionHandler:^(NSArray *createdRecurringRotationalTasks) {
                 [self.myTasks addObjectsFromArray:createdRecurringRotationalTasks];
                 NSLog(@"self.housematesTasks are %@:",self.myTasks);
-                [self.tableView reloadData];
+                [self sortBasedOnCompletionDate];
+                //[self.tableView reloadData];
+                [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationFade];
             }];
         
         } else {
@@ -140,6 +148,11 @@ int const TASK_TYPE_ROTATIONAL = 2;
     }
 }
 
+- (void) sortBasedOnCompletionDate {
+    NSLog(@"sorting tasks");
+    NSSortDescriptor *sorter = [[NSSortDescriptor alloc] initWithKey:@"completedObject.endDate" ascending:YES];
+    [self.myTasks sortUsingDescriptors:[NSArray arrayWithObject:sorter]];
+}
 
 - (void) makeRecurringRotationalTasks: (Task *)taskFromDB completionHandler:(void (^)(NSArray *createdRecurringRotationalTasks))completionHandler{
     __block NSArray *allNewTasksForThisTask = [[NSArray alloc] init];
@@ -197,10 +210,11 @@ int const TASK_TYPE_ROTATIONAL = 2;
                        Assignees:assignedUsers
                completionHandler:^(Task * _Nonnull newTask) {
                 
-                // TODO: ADD COMPLETed object check here to see whether task is completed or not
-                
-                [gettingTasks addObject:newTask];
-                NSLog(@"NEWTASK IS: %@", newTask);
+                if(newTask.completedObject.isCompleted != YES){
+                    [gettingTasks addObject:newTask];
+                    NSLog(@"NEWTASK IS: %@", newTask);
+                    
+                }
                 dispatch_group_leave(group);
             }];
         }
@@ -314,6 +328,10 @@ int const TASK_TYPE_ROTATIONAL = 2;
     
 }
 
+
+- (void) taskCell:(HouseMateTaskCell *) taskCell didTap: (Task *)task {
+    
+}
 
 #pragma mark - Task TableView
 

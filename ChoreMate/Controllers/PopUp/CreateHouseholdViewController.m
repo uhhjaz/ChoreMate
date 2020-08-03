@@ -7,12 +7,16 @@
 //
 
 #import "CreateHouseholdViewController.h"
+#import "popUpHouseholdCodeController.h"
 #import "Household.h"
 #import "User.h"
+#import <Parse/Parse.h>
+#import <HWPopController/HWPop.h>
+#import <MBProgressHUD.h>
 
 
 
-@interface CreateHouseholdViewController ()
+@interface CreateHouseholdViewController () <popUpHouseholdCodeControllerDelegate>
 @property (weak, nonatomic) IBOutlet UITextField *householdNameField;
 @property (weak, nonatomic) IBOutlet UIButton *cancelButton;
 @property (weak, nonatomic) IBOutlet UIButton *createButton;
@@ -32,18 +36,37 @@
 
 
 - (IBAction)didTapCreate:(id)sender {
+    NSString *householdName = self.householdNameField.text;
     [Household postNewHousehold:self.householdNameField.text completionHandler:^(NSString * _Nonnull householdId) {
         User* currentHouseMember = [User currentUser];
         currentHouseMember.household_id = householdId;
         [currentHouseMember saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
             if(succeeded){
-                [self dismissViewControllerAnimated:true completion:^{
-                    [self.delegate didCreateHousehold];
-                }];
+                
+                popUpHouseholdCodeController *centerViewController = [popUpHouseholdCodeController new];
+                centerViewController.householdName = householdName;
+                centerViewController.householdCode = householdId;
+                centerViewController.delegate = self;
+                HWPopController *popController = [[HWPopController alloc] initWithViewController:centerViewController];
+                popController.popPosition = HWPopPositionCenter;
+                popController.popType = HWPopTypeGrowIn;
+                popController.dismissType = HWDismissTypeShrinkOut;
+                popController.shouldDismissOnBackgroundTouch = YES;
+                [popController presentInViewController:self];
+                
             }
         }];
     }];
 }
+
+
+- (void) didCreateHousehold {
+    NSLog(@"did create houehold in createhouseholdviewcontroller");
+    [self dismissViewControllerAnimated:true completion:^{
+        [self.delegate didCreateHousehold];
+    }];
+}
+
 
 /*
 #pragma mark - Navigation
