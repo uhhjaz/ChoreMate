@@ -23,7 +23,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) NSString *choreDescription;
 @property (nonatomic, assign) BOOL seen;
 @property (nonatomic, strong) NSString *dueDate;
-@property (nonatomic, strong) NSString *createdDate;
+
 
 + (void) postNotification: (NSString * _Nullable)type
                      From: (User *)fromHousemate

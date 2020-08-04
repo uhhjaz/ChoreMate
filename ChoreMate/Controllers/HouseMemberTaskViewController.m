@@ -77,10 +77,12 @@
         if([taskFromDB.type isEqual:@"one_time"]){
             [Completed createCompletedFromTask:taskFromDB AndDate:taskFromDB.endDate completionHandler:^(Completed * _Nonnull completedObject) {
                 taskFromDB.completedObject = completedObject;
+                taskFromDB.taskDatabaseId = taskFromDB.objectId;
                 if(taskFromDB.completedObject.isCompleted != YES){
                     [self.housematesTasks addObject:taskFromDB];
                     NSLog(@"self.housematesTasks are %@:",self.housematesTasks);
-                    [self.tableView reloadData];
+                    [self sortBasedOnCompletionDate];
+                    [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationFade];
                 }
             }];
         
@@ -88,14 +90,16 @@
             [self makeRecurringRotationalTasks:taskFromDB completionHandler:^(NSArray *createdRecurringRotationalTasks) {
                 [self.housematesTasks addObjectsFromArray:createdRecurringRotationalTasks];
                 NSLog(@"self.housematesTasks are %@:",self.housematesTasks);
-                [self.tableView reloadData];
+                [self sortBasedOnCompletionDate];
+                [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationFade];
             }];
         
         } else if([taskFromDB.type isEqual:@"rotational"]){
             [self makeRecurringRotationalTasks:taskFromDB completionHandler:^(NSArray *createdRecurringRotationalTasks) {
                 [self.housematesTasks addObjectsFromArray:createdRecurringRotationalTasks];
                 NSLog(@"self.housematesTasks are %@:",self.housematesTasks);
-                [self.tableView reloadData];
+                [self sortBasedOnCompletionDate];
+                [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationFade];
             }];
         
         } else {
@@ -104,6 +108,11 @@
     }
 }
 
+- (void) sortBasedOnCompletionDate {
+    NSLog(@"sorting tasks");
+    NSSortDescriptor *sorter = [[NSSortDescriptor alloc] initWithKey:@"completedObject.endDate" ascending:YES];
+    [self.housematesTasks sortUsingDescriptors:[NSArray arrayWithObject:sorter]];
+}
 
 - (void) addCompletedToOneTimeTask:(Task *)taskFromDB WithCompletionHandler:(void (^)(BOOL success))completionHandler{
     dispatch_group_t group2 = dispatch_group_create();
@@ -115,12 +124,6 @@
     }];
 }
 
-
-
-- (void) sortBasedOnCompletionDate {
-    NSSortDescriptor *sorter = [[NSSortDescriptor alloc] initWithKey:@"completedObject.endDate" ascending:YES];
-    [self.housematesTasks sortUsingDescriptors:[NSArray arrayWithObject:sorter]];
-}
 
 
 - (void) makeRecurringRotationalTasks: (Task *)taskFromDB completionHandler:(void (^)(NSArray *createdRecurringRotationalTasks))completionHandler{
@@ -315,7 +318,6 @@
 
 
 - (void)didNudge:(Task *)forChore{
-    // TODO: CREATE NOTIFICATION HERE
     NSLog(@"DID NUDGE");
     [Notification postNotification:@"reminder" From:[User currentUser] To:self.houseMate ForChore:forChore withCompletion:^(BOOL succeeded, NSError * _Nullable error) {
         if(succeeded){

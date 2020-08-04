@@ -117,11 +117,14 @@ int const TASK_TYPE_ROTATIONAL = 2;
         if([taskFromDB.type isEqual:@"one_time"]){
             [Completed createCompletedFromTask:taskFromDB AndDate:taskFromDB.endDate completionHandler:^(Completed * _Nonnull completedObject) {
                 taskFromDB.completedObject = completedObject;
-                [self.myTasks addObject:taskFromDB];
-                NSLog(@"self.housematesTasks are %@:",self.myTasks);
-                [self sortBasedOnCompletionDate];
-                //[self.tableView reloadData];
-                [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationFade];
+                taskFromDB.taskDatabaseId = taskFromDB.objectId;
+                if(taskFromDB.completedObject.isCompleted != YES){
+                    [self.myTasks addObject:taskFromDB];
+                    NSLog(@"self.housematesTasks are %@:",self.myTasks);
+                    [self sortBasedOnCompletionDate];
+                    //[self.tableView reloadData];
+                    [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationFade];
+                }
             }];
         
         } else if([taskFromDB.type isEqual:@"recurring"]){
@@ -350,6 +353,7 @@ int const TASK_TYPE_ROTATIONAL = 2;
     cell.task = self.myTasks[indexPath.row];
     [cell setTaskValues];
     [cell getTasksAssignees];
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
     
     return cell;
 }

@@ -15,7 +15,6 @@
 @dynamic type;
 @dynamic chore;
 @dynamic seen;
-@dynamic createdDate;
 @dynamic choreDescription;
 @dynamic dueDate;
 
@@ -28,19 +27,13 @@
                        To: (User *)toHousemate
                  ForChore: (Task *)chore
            withCompletion: (PFBooleanResultBlock  _Nullable)completion {
+    
     Notification *newNotif = [Notification objectWithClassName:@"Notification"];
-    
-    NSDateFormatter *dateFormatter=[[NSDateFormatter alloc] init];
-    [dateFormatter setDateFormat:@"yyyy/MM/dd"];
-    NSString *theDate = [dateFormatter stringFromDate:[NSDate date]];
-    
-    NSLog(@"the chore is: %@", chore.taskDatabaseId);
     
     [newNotif setObject:chore.taskDatabaseId forKey:@"chore"];
     [newNotif setObject:fromHousemate forKey:@"fromHousemate"];
     [newNotif setObject:toHousemate forKey:@"toHousemate"];
     [newNotif setObject:@NO forKey:@"seen"];
-    [newNotif setObject:theDate forKey:@"createdDate"];
     [newNotif setObject:chore.completedObject.endDate forKey:@"dueDate"];
     [newNotif setObject:chore.taskDescription forKey:@"choreDescription"];
     [newNotif saveInBackground];

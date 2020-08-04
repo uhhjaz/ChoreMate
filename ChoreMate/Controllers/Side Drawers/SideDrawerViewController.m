@@ -11,11 +11,18 @@
 #import "SideDrawerViewController.h"
 #import "UIViewController+MMDrawerController.h"
 #import "NotificationsViewController.h"
+#import "User.h"
+#import "Household.h"
+#import "UIImageView+AFNetworking.h"
 
 @interface SideDrawerViewController ()
 @property (weak, nonatomic) IBOutlet UIView *notificationView;
 @property (weak, nonatomic) IBOutlet UILabel *notificationNumberLabel;
 @property (strong, nonatomic) NotificationsViewController *notificationController;
+@property (weak, nonatomic) IBOutlet UIImageView *profileImageView;
+@property (weak, nonatomic) IBOutlet UILabel *nameLabel;
+@property (weak, nonatomic) IBOutlet UILabel *usernameLabel;
+@property (weak, nonatomic) IBOutlet UIImageView *facebookLogoView;
 
 @property(nonatomic) long currentIndex;
 
@@ -29,6 +36,24 @@ int const MENU_THIRD_PROFILE = 3;
 
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
+    
+    User *currUser = [User currentUser];
+    NSString *profileImageURLString = currUser.profileImageView.url;
+    NSURL *profileImageURL = [NSURL URLWithString:profileImageURLString];
+    [self.profileImageView setImageWithURL:profileImageURL];
+    self.nameLabel.text = currUser.name;
+    self.usernameLabel.text = currUser.email;
+    if(currUser.email != nil) {
+        self.usernameLabel.text = currUser.email;
+        self.facebookLogoView.alpha = 0;
+    }
+    else{
+        self.usernameLabel.text = @"facebook login";
+        self.facebookLogoView.alpha = 1;
+    }
+
+    
+    self.navigationController.navigationBarHidden = YES;
     self.notificationController = [self.storyboard instantiateViewControllerWithIdentifier:@"NOTIF_VIEW_CONTROLLER"];
     [self.notificationController getNewNotifCountWithCompletionHandler:^(int count) {
         NSLog(@"the notif count is :%d", count);
@@ -44,6 +69,8 @@ int const MENU_THIRD_PROFILE = 3;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.navigationController.navigationBarHidden = YES;
+    self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
     self.currentIndex = 0;
 }
 
