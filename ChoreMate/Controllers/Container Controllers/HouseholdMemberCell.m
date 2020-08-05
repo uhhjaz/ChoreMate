@@ -28,7 +28,6 @@
     NSString *profileImageURLString = self.houseMember.profileImageView.url;
     NSURL *profileImageURL = [NSURL URLWithString:profileImageURLString];
     [self.householdMemberProfileView setImageWithURL:profileImageURL];
-    self.householdMemberProfileView.layer.cornerRadius = self.householdMemberProfileView.frame.size.height / 2;
 }
 
 @end

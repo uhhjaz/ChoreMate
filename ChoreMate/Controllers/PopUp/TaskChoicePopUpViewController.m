@@ -7,9 +7,10 @@
 //
 
 #import "TaskChoicePopUpViewController.h"
-#import "OnceTimeTaskViewController.h"
+#import "OneTimeTaskViewController.h"
 #import <HWPopController/HWPop.h>
 #import <Masonry/View+MASAdditions.h>
+#import "CMColor.h"
 
 
 
@@ -27,7 +28,7 @@ int const TASK_CHOSEN_ROTATIONAL = 2;
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     self.view.backgroundColor = [UIColor whiteColor];
-
+    
     self.navigationItem.title = @"Task Choice";
     UIBarButtonItem *doneItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(didDismissPopUp)];
     self.navigationItem.rightBarButtonItem = doneItem;
@@ -35,14 +36,13 @@ int const TASK_CHOSEN_ROTATIONAL = 2;
     self.contentSizeInPop = CGSizeMake(CGRectGetWidth([UIScreen mainScreen].bounds) - 30, 250);
     self.contentSizeInPopWhenLandscape = CGSizeMake(315, 300);
 
-    //UIImageView *imageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"icon_cat"]];
-
     UIButton *oneTimeButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    [oneTimeButton setTitle:@"One Time Task" forState:UIControlStateNormal];
-    oneTimeButton.titleLabel.font = [UIFont boldSystemFontOfSize:25];
+    [oneTimeButton setTitle:@"One Time Chore" forState:UIControlStateNormal];
+    oneTimeButton.layer.cornerRadius = 10;
+    oneTimeButton.titleLabel.font = [UIFont systemFontOfSize:25 weight:UIFontWeightLight];
     [oneTimeButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [oneTimeButton addTarget:self action:@selector(didTapOneTimeTask) forControlEvents:UIControlEventTouchUpInside];
-    oneTimeButton.backgroundColor = [UIColor systemGray2Color];
+    oneTimeButton.backgroundColor = [CMColor oneTimeTaskColor];
     oneTimeButton.layer.masksToBounds = YES;
 
     [self.view addSubview:oneTimeButton];
@@ -55,11 +55,12 @@ int const TASK_CHOSEN_ROTATIONAL = 2;
     }];
     
     UIButton *recurringButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    [recurringButton setTitle:@"Recurring Task" forState:UIControlStateNormal];
-    recurringButton.titleLabel.font = [UIFont boldSystemFontOfSize:25];
+    [recurringButton setTitle:@"Recurring Chore" forState:UIControlStateNormal];
+    recurringButton.layer.cornerRadius = 10;
+    recurringButton.titleLabel.font = [UIFont systemFontOfSize:25 weight:UIFontWeightLight];
     [recurringButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [recurringButton addTarget:self action:@selector(didTapRecurringTask) forControlEvents:UIControlEventTouchUpInside];
-    recurringButton.backgroundColor = [UIColor systemGray2Color];
+    recurringButton.backgroundColor = [CMColor recurringTaskColor];
     recurringButton.layer.masksToBounds = YES;
 
     [self.view addSubview:recurringButton];
@@ -72,11 +73,12 @@ int const TASK_CHOSEN_ROTATIONAL = 2;
     }];
     
     UIButton *rotationalButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    [rotationalButton setTitle:@"Rotational Task" forState:UIControlStateNormal];
-    rotationalButton.titleLabel.font = [UIFont boldSystemFontOfSize:25];
+    [rotationalButton setTitle:@"Rotational Chore" forState:UIControlStateNormal];
+    rotationalButton.layer.cornerRadius = 10;
+    rotationalButton.titleLabel.font = [UIFont systemFontOfSize:25 weight:UIFontWeightLight];
     [rotationalButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [rotationalButton addTarget:self action:@selector(didTapRotationalTask) forControlEvents:UIControlEventTouchUpInside];
-    rotationalButton.backgroundColor = [UIColor systemGray2Color];
+    rotationalButton.backgroundColor = [CMColor rotationalTaskColor];
     rotationalButton.layer.masksToBounds = YES;
 
     [self.view addSubview:rotationalButton];
@@ -92,14 +94,14 @@ int const TASK_CHOSEN_ROTATIONAL = 2;
     UILabel *title = [[UILabel alloc] init];
     title.textColor = [UIColor blackColor];
     title.backgroundColor = [UIColor clearColor];
-    title.font = [UIFont boldSystemFontOfSize:30];
-    title.text= @"Choose a task type";
+    title.font = [UIFont systemFontOfSize:33 weight:UIFontWeightRegular];
+    title.text= @"Select a chore type";
     [self.view addSubview:title];
     
     [title mas_makeConstraints:^(MASConstraintMaker *make) {
         make.bottom.equalTo(@-180);
-        make.left.equalTo(@60);
-        make.right.equalTo(@-60);
+        make.left.equalTo(@50);
+        make.right.equalTo(@-50);
         make.height.mas_equalTo(40);
     }];
     

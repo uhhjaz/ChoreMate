@@ -30,6 +30,11 @@
     return [UIColor colorWithRed: 0.00 green: 0.33 blue: 0.05 alpha: 1.00];
 }
 
++ (UIColor *)unseenNotifColor {
+    return [UIColor colorWithRed: 0.87 green: 0.94 blue: 0.98 alpha: 1.00];
+}
+
+
 
 
 @end

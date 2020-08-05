@@ -17,6 +17,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (weak, nonatomic) IBOutlet UILabel *notificationTextLabel;
 @property (weak, nonatomic) IBOutlet UIView *choreBackgroundView;
 @property (weak, nonatomic) IBOutlet UILabel *choreLabel;
+@property (weak, nonatomic) IBOutlet UILabel *unseenLabel;
 
 @property (strong, nonatomic) Notification *notification;
 

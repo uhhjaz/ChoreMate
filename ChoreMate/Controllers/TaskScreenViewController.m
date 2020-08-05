@@ -30,7 +30,7 @@
 #import "TaskScreenViewController.h"
 #import "LoginViewController.h"
 #import "TaskChoicePopUpViewController.h"
-#import "OnceTimeTaskViewController.h"
+#import "OneTimeTaskViewController.h"
 #import "RecurringTaskViewController.h"
 #import "RotationalTaskViewController.h"
 #import "HouseMateTaskCell.h"
@@ -120,9 +120,7 @@ int const TASK_TYPE_ROTATIONAL = 2;
                 taskFromDB.taskDatabaseId = taskFromDB.objectId;
                 if(taskFromDB.completedObject.isCompleted != YES){
                     [self.myTasks addObject:taskFromDB];
-                    NSLog(@"self.housematesTasks are %@:",self.myTasks);
                     [self sortBasedOnCompletionDate];
-                    //[self.tableView reloadData];
                     [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationFade];
                 }
             }];
@@ -130,18 +128,14 @@ int const TASK_TYPE_ROTATIONAL = 2;
         } else if([taskFromDB.type isEqual:@"recurring"]){
             [self makeRecurringRotationalTasks:taskFromDB completionHandler:^(NSArray *createdRecurringRotationalTasks) {
                 [self.myTasks addObjectsFromArray:createdRecurringRotationalTasks];
-                NSLog(@"self.housematesTasks are %@:",self.myTasks);
                 [self sortBasedOnCompletionDate];
-                //[self.tableView reloadData];
                 [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationFade];
             }];
         
         } else if([taskFromDB.type isEqual:@"rotational"]){
             [self makeRecurringRotationalTasks:taskFromDB completionHandler:^(NSArray *createdRecurringRotationalTasks) {
                 [self.myTasks addObjectsFromArray:createdRecurringRotationalTasks];
-                NSLog(@"self.housematesTasks are %@:",self.myTasks);
                 [self sortBasedOnCompletionDate];
-                //[self.tableView reloadData];
                 [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationFade];
             }];
         
@@ -151,11 +145,12 @@ int const TASK_TYPE_ROTATIONAL = 2;
     }
 }
 
+
 - (void) sortBasedOnCompletionDate {
-    NSLog(@"sorting tasks");
     NSSortDescriptor *sorter = [[NSSortDescriptor alloc] initWithKey:@"completedObject.endDate" ascending:YES];
     [self.myTasks sortUsingDescriptors:[NSArray arrayWithObject:sorter]];
 }
+
 
 - (void) makeRecurringRotationalTasks: (Task *)taskFromDB completionHandler:(void (^)(NSArray *createdRecurringRotationalTasks))completionHandler{
     __block NSArray *allNewTasksForThisTask = [[NSArray alloc] init];
@@ -167,13 +162,11 @@ int const TASK_TYPE_ROTATIONAL = 2;
         assignees = allAssignees;
         [self createTasksForEachDate:taskFromDB :assignees WithCompletionHandler:^(NSArray *createdTasks) {
             if(createdTasks != nil) {
-                NSLog(@"createdTasks in makeRecurringTasks contains: %@", createdTasks);
                 allNewTasksForThisTask = createdTasks;
                 completionHandler(allNewTasksForThisTask);
             }
         }];
     }];
-    
 }
 
 
@@ -189,7 +182,6 @@ int const TASK_TYPE_ROTATIONAL = 2;
         
         __block User * recievedRotatingUser;
         if([taskFromDB .type isEqual:@"rotational"]){
-            NSLog(@"in the rotational equal");
             assignedUsers = [self getRotationalAssigneeForTheDate:taskFromDB :newDate];
             recievedRotatingUser = [assignedUsers objectAtIndex:0];
         }
@@ -215,7 +207,7 @@ int const TASK_TYPE_ROTATIONAL = 2;
                 
                 if(newTask.completedObject.isCompleted != YES){
                     [gettingTasks addObject:newTask];
-                    NSLog(@"NEWTASK IS: %@", newTask);
+                    NSLog(@"THE NEWTASK IS: %@", newTask);
                     
                 }
                 dispatch_group_leave(group);
@@ -223,7 +215,6 @@ int const TASK_TYPE_ROTATIONAL = 2;
         }
     }
     dispatch_group_notify(group,dispatch_get_main_queue(), ^ {
-        NSLog(@"The gettingTasks array in createTasksForDate is: %@", gettingTasks);
         completionHandler((NSArray *)gettingTasks);
     });
 }
@@ -243,7 +234,6 @@ int const TASK_TYPE_ROTATIONAL = 2;
         }];
     }
     dispatch_group_notify(group,dispatch_get_main_queue(), ^ {
-        NSLog(@"this task belongs to: %@", (NSArray*)gettingAssignees);
         completionHandler((NSArray*)gettingAssignees);
     });
 }
@@ -294,8 +284,6 @@ int const TASK_TYPE_ROTATIONAL = 2;
     else if ([repeatType isEqual:@"monthly"]){
         taskNumber = [NSDate whichNumberMonthOccurrence:taskFromDB.repetitionPoint.intValue From:startDate Til:dueDate];
     }
-    
-    NSLog(@"the task number is %d", taskNumber);
     
     NSString *taskNumToString = [@((((taskNumber)%rotationalOrder.count)+1)) stringValue];
     User *houseMember = rotationalOrder[taskNumToString];
@@ -448,7 +436,7 @@ int const TASK_TYPE_ROTATIONAL = 2;
 
 - (void)didChoose:(int)type{
 
-    OnceTimeTaskViewController* controller;
+    OneTimeTaskViewController* controller;
     switch (type) {
         case TASK_TYPE_ONETIME:
             controller = [self.storyboard instantiateViewControllerWithIdentifier:@"ONE_TIME_TASK"];
@@ -469,28 +457,10 @@ int const TASK_TYPE_ROTATIONAL = 2;
 }
 
 
-#pragma mark - Navigation
-
-- (IBAction)didTapLogout:(id)sender {
-    
-    if ([FBSDKAccessToken currentAccessToken]) {
-        FBSDKLoginManager *login = [[FBSDKLoginManager alloc] init];
-        [login logOut];
-    }
-
-    
-    NSLog(@"user clicked logout");
-    SceneDelegate *sceneDelegate = (SceneDelegate *)self.view.window.windowScene.delegate;
-    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-    LoginViewController *loginViewController = [storyboard instantiateViewControllerWithIdentifier:@"LoginViewController"];
-    sceneDelegate.window.rootViewController = loginViewController;
-    [User logOutInBackgroundWithBlock:^(NSError * _Nullable error) {
-        NSLog(@"User logged out successfully");
-    }];
-}
-
 
 /*
+#pragma mark - Navigation
+
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     // Get the new view controller using [segue destinationViewController].

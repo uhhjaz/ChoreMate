@@ -20,6 +20,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) NSString *name;
 @property (nonatomic, strong) PFFileObject *profileImageView;
 @property (nonatomic, strong) NSString *household_id;
+@property (nonatomic, assign) BOOL fb_authenticated;
 
 // MARK: Methods
 + (User *)user;

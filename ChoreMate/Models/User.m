@@ -17,6 +17,7 @@
 @dynamic name;
 @dynamic profileImageView;
 @dynamic household_id;
+@dynamic fb_authenticated;
 
 
 + (User *)user {

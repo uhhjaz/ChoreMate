@@ -29,6 +29,7 @@
 - (void) getMyNotifications {
     PFQuery *query = [PFQuery queryWithClassName:@"Notification"];
     [query whereKey:@"toHousemate" equalTo:[User currentUser]];
+    query.limit = 20;
     [query orderByDescending:@"createdAt"];
     
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
@@ -74,11 +75,11 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     NotificationCell *cell = [tableView dequeueReusableCellWithIdentifier:@"NotificationCell"];
     cell.notification = self.myNotifs[indexPath.row];
-    cell.notification.seen = @YES;
-    [cell.notification saveInBackground];
     NSLog(@"cell.notification is: %@", cell.notification);
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     [cell setNotificationData];
+    cell.notification.seen = @YES;
+    [cell.notification saveInBackground];
     [MBProgressHUD hideHUDForView:self.view animated:YES];
     return cell;
 }

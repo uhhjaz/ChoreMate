@@ -11,7 +11,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface OnceTimeTaskViewController : UIViewController<THDatePickerDelegate>
+@interface OneTimeTaskViewController : UIViewController<THDatePickerDelegate>
 
 @property (nonatomic, strong) THDatePickerViewController * datePicker;
 

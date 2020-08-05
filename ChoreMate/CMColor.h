@@ -16,6 +16,7 @@ NS_ASSUME_NONNULL_BEGIN
 + (UIColor *)recurringTaskColor;
 + (UIColor *)rotationalTaskColor;
 + (UIColor *)completedTaskColor;
++ (UIColor *)unseenNotifColor;
 
 @end
 

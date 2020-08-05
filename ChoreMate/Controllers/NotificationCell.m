@@ -26,15 +26,26 @@
 
 - (void) setNotificationData {
     
+    if(!self.notification.seen){
+        self.unseenLabel.alpha = 1;
+        self.contentView.backgroundColor = [CMColor unseenNotifColor];
+    } else {
+        self.unseenLabel.alpha = 0;
+        self.contentView.backgroundColor = [UIColor whiteColor];
+    }
+    
     [Task getTaskFromObjectId:self.notification.chore completionHandler:^(Task * _Nonnull chore) {
         if ([chore.type isEqual:@"one_time"]){
             self.choreBackgroundView.backgroundColor = [CMColor oneTimeTaskColor];
+            self.notificationImageView.tintColor = [CMColor oneTimeTaskColor];
         }
         else if ([chore.type isEqual:@"recurring"]){
             self.choreBackgroundView.backgroundColor = [CMColor recurringTaskColor];
+            self.notificationImageView.tintColor = [CMColor recurringTaskColor];
         }
         else if ([chore.type isEqual:@"rotational"]){
             self.choreBackgroundView.backgroundColor = [CMColor rotationalTaskColor];
+            self.notificationImageView.tintColor = [CMColor rotationalTaskColor];
         }
         else{
             NSLog(@"no chore type configured");
