@@ -52,19 +52,19 @@ Here's a walkthrough of current implemented user stories (as of 06/30/2020):
 * user can create new one time task (DONE)
 * user can create a new rotational task (DONE)
 * user can create a new rotational task (DONE)
-* user can create a new reoccuring task (IP)
-* user can view household (IP)
-* user can create household (IP)
-* user can join household (IP)
-* user can view housemates tasks (IP)
-* user can remind housemate of a task (IP)
+* user can create a new reoccuring task (DONE)
+* user can view household (DONE)
+* user can create household (DONE)
+* user can join household (DONE)
+* user can view housemates tasks (DONE)
+* user can remind housemate of a task (DONE)
 
 
 
 
 **Optional Nice-to-have Stories**
 * user can skip tasks ( user can mark off unavailability dates )
-* user can see reccommendations for who a task should be assigned to 
+* user can see reccommendations for who a task should be assigned to (IP)
 * user can see task feed formatted week by week
 * user can see task history
 * user can update their profile picture
@@ -209,6 +209,16 @@ Here's a walkthrough of current implemented user stories (as of 06/30/2020):
 | currentCompletionStatus | Array<UserId> | userIds of the household members who have already completed the task |
 | assignedTo | Array<UserId> | iDs of the users assigned to the task  |
 | isCompleted | Boolean | whether this task is fully completed or not |
+
+
+#### Notification Model
+| Property  |  Type | Description |
+|---|---|---|
+| objectId | String | unique ID to represent the properties of this Notification |
+| toHousemate | Pointer </_User> | the housemate to send this notification to |
+| fromHousemate | Pointer </_User> | the housemate the notification was sent by |
+| chore | NSString | the unique id representing which Chore/Task was nudged |
+| seen | Boolean | indicator of whether the receiving housemate has seen the notif or not |
 
 
 ### Networking
