@@ -168,7 +168,7 @@
 
 - (void) createTasksForEachDate:(Task *)taskFromDB :(NSArray *)assignees WithCompletionHandler:(void (^)(NSArray *createdTasks))completionHandler{
     
-    NSMutableArray *gettingTasks = [[NSMutableArray alloc] init];
+    NSMutableArray *rawTasksFromDB = [[NSMutableArray alloc] init];
     NSArray *taskDueDates = [self getArrayOfDueDates:taskFromDB];
     dispatch_group_t group = dispatch_group_create();
     for (NSDate *date in taskDueDates) {
@@ -204,7 +204,7 @@
                 
 
                 if(newTask.completedObject.isCompleted != YES){
-                    [gettingTasks addObject:newTask];
+                    [rawTasksFromDB addObject:newTask];
                     NSLog(@"NEWTASK IS: %@", newTask);
                 }
                 dispatch_group_leave(group);
@@ -212,8 +212,8 @@
         }
     }
     dispatch_group_notify(group,dispatch_get_main_queue(), ^ {
-        NSLog(@"The gettingTasks array in createTasksForDate is: %@", gettingTasks);
-        completionHandler((NSArray *)gettingTasks);
+        NSLog(@"The rawTasksFromDB array in createTasksForDate is: %@", rawTasksFromDB);
+        completionHandler((NSArray *)rawTasksFromDB);
     });
 }
 

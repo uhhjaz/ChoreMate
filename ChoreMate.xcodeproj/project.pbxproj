@@ -25,6 +25,7 @@
 		3A58190624D88C0B00D6EE60 /* Notification.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A58190524D88C0B00D6EE60 /* Notification.m */; };
 		3A58190924D8A58400D6EE60 /* NotificationsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A58190824D8A58400D6EE60 /* NotificationsViewController.m */; };
 		3A58190C24D8A64600D6EE60 /* NotificationCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A58190B24D8A64600D6EE60 /* NotificationCell.m */; };
+		3A588E6724DC7BEE001090C0 /* WeeklyCalendarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A588E6624DC7BEE001090C0 /* WeeklyCalendarViewController.m */; };
 		3A95C6B724BD29CD00C906D7 /* HouseholdViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A95C6B624BD29CD00C906D7 /* HouseholdViewController.m */; };
 		3A95C6BA24BD29D800C906D7 /* ProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A95C6B924BD29D800C906D7 /* ProfileViewController.m */; };
 		3A95C6BD24BD30F000C906D7 /* TheRootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A95C6BC24BD30F000C906D7 /* TheRootViewController.m */; };
@@ -48,6 +49,14 @@
 		3AA661FA24BCCE9000EBA89E /* SignUpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AA661F924BCCE9000EBA89E /* SignUpViewController.m */; };
 		3AA661FD24BCF0EC00EBA89E /* Task.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AA661FC24BCF0EC00EBA89E /* Task.m */; };
 		3AA6620024BCFF1800EBA89E /* TaskScreenViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AA661FF24BCFF1800EBA89E /* TaskScreenViewController.m */; };
+		3ABBE55D24DC7E3200866F83 /* NSDate+CL.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ABBE55024DC7E3200866F83 /* NSDate+CL.m */; };
+		3ABBE55E24DC7E3200866F83 /* UIImage+CL.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ABBE55124DC7E3200866F83 /* UIImage+CL.m */; };
+		3ABBE55F24DC7E3200866F83 /* NSDictionary+CL.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ABBE55224DC7E3200866F83 /* NSDictionary+CL.m */; };
+		3ABBE56024DC7E3200866F83 /* UIColor+CL.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ABBE55324DC7E3200866F83 /* UIColor+CL.m */; };
+		3ABBE56124DC7E3200866F83 /* DailyCalendarView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ABBE55724DC7E3200866F83 /* DailyCalendarView.m */; };
+		3ABBE56224DC7E3200866F83 /* CLWeeklyCalendarView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ABBE55924DC7E3200866F83 /* CLWeeklyCalendarView.m */; };
+		3ABBE56324DC7E3200866F83 /* DayTitleLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ABBE55B24DC7E3200866F83 /* DayTitleLabel.m */; };
+		3ABBE56624DCBB2B00866F83 /* DayLabelCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ABBE56524DCBB2B00866F83 /* DayLabelCell.m */; };
 		3AE09FD624C5EFE9000C3C59 /* TaskCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AE09FD524C5EFE9000C3C59 /* TaskCell.m */; };
 		3AE09FDF24C673C5000C3C59 /* AssigneeNameCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AE09FDE24C673C5000C3C59 /* AssigneeNameCell.m */; };
 		3AEB43FA24CA0A470038AED5 /* MonthlyTimePickViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AEB43F924CA0A470038AED5 /* MonthlyTimePickViewController.m */; };
@@ -118,6 +127,8 @@
 		3A58190824D8A58400D6EE60 /* NotificationsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NotificationsViewController.m; sourceTree = "<group>"; };
 		3A58190A24D8A64600D6EE60 /* NotificationCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = NotificationCell.h; path = ChoreMate/Controllers/NotificationCell.h; sourceTree = SOURCE_ROOT; };
 		3A58190B24D8A64600D6EE60 /* NotificationCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = NotificationCell.m; path = ChoreMate/Controllers/NotificationCell.m; sourceTree = SOURCE_ROOT; };
+		3A588E6524DC7BEE001090C0 /* WeeklyCalendarViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WeeklyCalendarViewController.h; sourceTree = "<group>"; };
+		3A588E6624DC7BEE001090C0 /* WeeklyCalendarViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WeeklyCalendarViewController.m; sourceTree = "<group>"; };
 		3A95C6B524BD29CD00C906D7 /* HouseholdViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HouseholdViewController.h; sourceTree = "<group>"; };
 		3A95C6B624BD29CD00C906D7 /* HouseholdViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HouseholdViewController.m; sourceTree = "<group>"; };
 		3A95C6B824BD29D800C906D7 /* ProfileViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ProfileViewController.h; sourceTree = "<group>"; };
@@ -161,6 +172,22 @@
 		3AA661FC24BCF0EC00EBA89E /* Task.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Task.m; sourceTree = "<group>"; };
 		3AA661FE24BCFF1800EBA89E /* TaskScreenViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TaskScreenViewController.h; sourceTree = "<group>"; };
 		3AA661FF24BCFF1800EBA89E /* TaskScreenViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TaskScreenViewController.m; sourceTree = "<group>"; };
+		3ABBE54F24DC7E3200866F83 /* UIColor+CL.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+CL.h"; sourceTree = "<group>"; };
+		3ABBE55024DC7E3200866F83 /* NSDate+CL.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+CL.m"; sourceTree = "<group>"; };
+		3ABBE55124DC7E3200866F83 /* UIImage+CL.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+CL.m"; sourceTree = "<group>"; };
+		3ABBE55224DC7E3200866F83 /* NSDictionary+CL.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDictionary+CL.m"; sourceTree = "<group>"; };
+		3ABBE55324DC7E3200866F83 /* UIColor+CL.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+CL.m"; sourceTree = "<group>"; };
+		3ABBE55424DC7E3200866F83 /* NSDate+CL.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+CL.h"; sourceTree = "<group>"; };
+		3ABBE55524DC7E3200866F83 /* NSDictionary+CL.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+CL.h"; sourceTree = "<group>"; };
+		3ABBE55624DC7E3200866F83 /* UIImage+CL.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+CL.h"; sourceTree = "<group>"; };
+		3ABBE55724DC7E3200866F83 /* DailyCalendarView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DailyCalendarView.m; sourceTree = "<group>"; };
+		3ABBE55824DC7E3200866F83 /* DayTitleLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DayTitleLabel.h; sourceTree = "<group>"; };
+		3ABBE55924DC7E3200866F83 /* CLWeeklyCalendarView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CLWeeklyCalendarView.m; sourceTree = "<group>"; };
+		3ABBE55A24DC7E3200866F83 /* DailyCalendarView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DailyCalendarView.h; sourceTree = "<group>"; };
+		3ABBE55B24DC7E3200866F83 /* DayTitleLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DayTitleLabel.m; sourceTree = "<group>"; };
+		3ABBE55C24DC7E3200866F83 /* CLWeeklyCalendarView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CLWeeklyCalendarView.h; sourceTree = "<group>"; };
+		3ABBE56424DCBB2B00866F83 /* DayLabelCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = DayLabelCell.h; path = ChoreMate/Controllers/DayLabelCell.h; sourceTree = SOURCE_ROOT; };
+		3ABBE56524DCBB2B00866F83 /* DayLabelCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = DayLabelCell.m; path = ChoreMate/Controllers/DayLabelCell.m; sourceTree = SOURCE_ROOT; };
 		3AE09FD424C5EFE9000C3C59 /* TaskCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = TaskCell.h; path = ChoreMate/Controllers/TaskCell.h; sourceTree = SOURCE_ROOT; };
 		3AE09FD524C5EFE9000C3C59 /* TaskCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = TaskCell.m; path = ChoreMate/Controllers/TaskCell.m; sourceTree = SOURCE_ROOT; };
 		3AE09FDD24C673C5000C3C59 /* AssigneeNameCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = AssigneeNameCell.h; path = ChoreMate/Controllers/AssigneeNameCell.h; sourceTree = SOURCE_ROOT; };
@@ -363,6 +390,8 @@
 				3A5818FC24D49B1000D6EE60 /* HouseMateTaskCell.m */,
 				3A58190A24D8A64600D6EE60 /* NotificationCell.h */,
 				3A58190B24D8A64600D6EE60 /* NotificationCell.m */,
+				3ABBE56424DCBB2B00866F83 /* DayLabelCell.h */,
+				3ABBE56524DCBB2B00866F83 /* DayLabelCell.m */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -387,6 +416,7 @@
 		3AA661F124BCC3F100EBA89E /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				3ABBE54D24DC7E3200866F83 /* CLWeeklyCalendarViewSourceCode */,
 				3AEB43F124CA09D80038AED5 /* Container Controllers */,
 				3A2D79E824C0BBBF00D2C31B /* Task Creation */,
 				3A2D79E624C0BA6300D2C31B /* Side Drawers */,
@@ -405,8 +435,40 @@
 				3A5818F924D49AB100D6EE60 /* HouseMemberTaskViewController.m */,
 				3A58190724D8A58400D6EE60 /* NotificationsViewController.h */,
 				3A58190824D8A58400D6EE60 /* NotificationsViewController.m */,
+				3A588E6524DC7BEE001090C0 /* WeeklyCalendarViewController.h */,
+				3A588E6624DC7BEE001090C0 /* WeeklyCalendarViewController.m */,
 			);
 			path = Controllers;
+			sourceTree = "<group>";
+		};
+		3ABBE54D24DC7E3200866F83 /* CLWeeklyCalendarViewSourceCode */ = {
+			isa = PBXGroup;
+			children = (
+				3ABBE54E24DC7E3200866F83 /* Misc */,
+				3ABBE55724DC7E3200866F83 /* DailyCalendarView.m */,
+				3ABBE55824DC7E3200866F83 /* DayTitleLabel.h */,
+				3ABBE55924DC7E3200866F83 /* CLWeeklyCalendarView.m */,
+				3ABBE55A24DC7E3200866F83 /* DailyCalendarView.h */,
+				3ABBE55B24DC7E3200866F83 /* DayTitleLabel.m */,
+				3ABBE55C24DC7E3200866F83 /* CLWeeklyCalendarView.h */,
+			);
+			name = CLWeeklyCalendarViewSourceCode;
+			path = ../../../CLWeeklyCalendarViewSourceCode;
+			sourceTree = "<group>";
+		};
+		3ABBE54E24DC7E3200866F83 /* Misc */ = {
+			isa = PBXGroup;
+			children = (
+				3ABBE54F24DC7E3200866F83 /* UIColor+CL.h */,
+				3ABBE55024DC7E3200866F83 /* NSDate+CL.m */,
+				3ABBE55124DC7E3200866F83 /* UIImage+CL.m */,
+				3ABBE55224DC7E3200866F83 /* NSDictionary+CL.m */,
+				3ABBE55324DC7E3200866F83 /* UIColor+CL.m */,
+				3ABBE55424DC7E3200866F83 /* NSDate+CL.h */,
+				3ABBE55524DC7E3200866F83 /* NSDictionary+CL.h */,
+				3ABBE55624DC7E3200866F83 /* UIImage+CL.h */,
+			);
+			path = Misc;
 			sourceTree = "<group>";
 		};
 		3AEB43F124CA09D80038AED5 /* Container Controllers */ = {
@@ -698,9 +760,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3ABBE55F24DC7E3200866F83 /* NSDictionary+CL.m in Sources */,
 				3A2D79EE24C0D09200D2C31B /* RecurringTaskViewController.m in Sources */,
 				3AA661FD24BCF0EC00EBA89E /* Task.m in Sources */,
 				3A95C6BD24BD30F000C906D7 /* TheRootViewController.m in Sources */,
+				3ABBE55D24DC7E3200866F83 /* NSDate+CL.m in Sources */,
 				3AA661F424BCCC7500EBA89E /* User.m in Sources */,
 				3A5818F724D3734700D6EE60 /* NSDate+CMDate.m in Sources */,
 				3A2D79EB24C0BBE500D2C31B /* OneTimeTaskViewController.m in Sources */,
@@ -712,12 +776,16 @@
 				3AEB43FA24CA0A470038AED5 /* MonthlyTimePickViewController.m in Sources */,
 				3A5818EB24D0B52F00D6EE60 /* JoinHouseholdCell.m in Sources */,
 				3A5818EE24D0C67500D6EE60 /* popUpJoinHouseholdViewController.m in Sources */,
+				3ABBE56024DC7E3200866F83 /* UIColor+CL.m in Sources */,
 				3A5818E824D0B25700D6EE60 /* JoinHouseholdViewController.m in Sources */,
 				3AE09FDF24C673C5000C3C59 /* AssigneeNameCell.m in Sources */,
 				3AE09FD624C5EFE9000C3C59 /* TaskCell.m in Sources */,
+				3ABBE55E24DC7E3200866F83 /* UIImage+CL.m in Sources */,
 				3AEB441224CFA4A90038AED5 /* CMColor.m in Sources */,
+				3ABBE56224DC7E3200866F83 /* CLWeeklyCalendarView.m in Sources */,
 				3A5818FA24D49AB100D6EE60 /* HouseMemberTaskViewController.m in Sources */,
 				3A58190324D872C800D6EE60 /* popUpNudgeHouseMateViewController.m in Sources */,
+				3ABBE56324DC7E3200866F83 /* DayTitleLabel.m in Sources */,
 				3AEB440624CA0E0D0038AED5 /* EndPickerWithOccurrenceViewController.m in Sources */,
 				3AEB440924CE7E880038AED5 /* Completed.m in Sources */,
 				3AEB43FD24CA0A5F0038AED5 /* WeeklyDayPickViewController.m in Sources */,
@@ -725,6 +793,7 @@
 				3A2D79F424C103B400D2C31B /* AssignmentCell.m in Sources */,
 				3A2D79F124C0D09F00D2C31B /* RotationalTaskViewController.m in Sources */,
 				3A58190924D8A58400D6EE60 /* NotificationsViewController.m in Sources */,
+				3ABBE56124DC7E3200866F83 /* DailyCalendarView.m in Sources */,
 				3AEB440024CA0A6B0038AED5 /* DailyTimePickViewController.m in Sources */,
 				3AA661CC24BCC3CE00EBA89E /* main.m in Sources */,
 				3A95C6B724BD29CD00C906D7 /* HouseholdViewController.m in Sources */,
@@ -733,10 +802,12 @@
 				3AA661BE24BCC3CC00EBA89E /* SceneDelegate.m in Sources */,
 				3AA661F724BCCE8400EBA89E /* LoginViewController.m in Sources */,
 				3A95C6C024BD337400C906D7 /* SideDrawerViewController.m in Sources */,
+				3A588E6724DC7BEE001090C0 /* WeeklyCalendarViewController.m in Sources */,
 				3AA6620024BCFF1800EBA89E /* TaskScreenViewController.m in Sources */,
 				3A5818FD24D49B1000D6EE60 /* HouseMateTaskCell.m in Sources */,
 				3AEB441824CFF4070038AED5 /* HouseholdMemberCell.m in Sources */,
 				3AEB440F24CF9FAA0038AED5 /* Household.m in Sources */,
+				3ABBE56624DCBB2B00866F83 /* DayLabelCell.m in Sources */,
 				3A58190024D7E0CB00D6EE60 /* popUpHouseholdCodeController.m in Sources */,
 				3AEB440324CA0DFD0038AED5 /* EndPickerWithDateViewController.m in Sources */,
 			);

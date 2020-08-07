@@ -179,7 +179,7 @@
 
 - (void) findDates:(Task *)taskFromDB :(NSString *)housemateID WithCompletionHandler:(void (^)(NSArray *foundTaskDates))completionHandler{
     
-    NSMutableArray *gettingTasks = [[NSMutableArray alloc] init];
+    NSMutableArray *rawTasksFromDB = [[NSMutableArray alloc] init];
     NSArray *taskDueDates = [self getArrayOfDueDates:taskFromDB];
     if([taskFromDB.type isEqual:@"rotational"]) {
         for (NSDate *date in taskDueDates) {
@@ -187,12 +187,12 @@
             NSString * assignedUser;
             NSDate *newDate = [date dateWithHour:00 minute:00 second:00];
             assignedUser = [self getRotationalAssigneeForTheDate:taskFromDB :newDate];
-            [gettingTasks addObject:newDate];
+            [rawTasksFromDB addObject:newDate];
         }
     } else {
-        [gettingTasks addObjectsFromArray:taskDueDates];
+        [rawTasksFromDB addObjectsFromArray:taskDueDates];
     }
-    completionHandler((NSArray *)gettingTasks);
+    completionHandler((NSArray *)rawTasksFromDB);
 }
 
 

@@ -34,8 +34,7 @@
 #import "RecurringTaskViewController.h"
 #import "RotationalTaskViewController.h"
 #import "HouseMateTaskCell.h"
-
-
+#import "WeeklyCalendarViewController.h"
 
 
 
@@ -172,7 +171,7 @@ int const TASK_TYPE_ROTATIONAL = 2;
 
 - (void) createTasksForEachDate:(Task *)taskFromDB :(NSArray *)assignees WithCompletionHandler:(void (^)(NSArray *createdTasks))completionHandler{
     
-    NSMutableArray *gettingTasks = [[NSMutableArray alloc] init];
+    NSMutableArray *rawTasksFromDB = [[NSMutableArray alloc] init];
     NSArray *taskDueDates = [self getArrayOfDueDates:taskFromDB];
     dispatch_group_t group = dispatch_group_create();
     for (NSDate *date in taskDueDates) {
@@ -206,7 +205,7 @@ int const TASK_TYPE_ROTATIONAL = 2;
                completionHandler:^(Task * _Nonnull newTask) {
                 
                 if(newTask.completedObject.isCompleted != YES){
-                    [gettingTasks addObject:newTask];
+                    [rawTasksFromDB addObject:newTask];
                     NSLog(@"THE NEWTASK IS: %@", newTask);
                     
                 }
@@ -215,7 +214,7 @@ int const TASK_TYPE_ROTATIONAL = 2;
         }
     }
     dispatch_group_notify(group,dispatch_get_main_queue(), ^ {
-        completionHandler((NSArray *)gettingTasks);
+        completionHandler((NSArray *)rawTasksFromDB);
     });
 }
 
@@ -457,15 +456,39 @@ int const TASK_TYPE_ROTATIONAL = 2;
 }
 
 
+-(NSDictionary *) createDateContainers{
+    NSMutableDictionary *dict = [[NSMutableDictionary alloc] init];
+    for(Task *task in self.myTasks){
+        NSString *dueDate = task.completedObject.endDate;
+        NSMutableArray *tasksDue = [dict objectForKey:dueDate];
+        if( tasksDue == nil){
+            NSMutableArray *tasksDueOnThisDate = [[NSMutableArray alloc] init];
+            [tasksDueOnThisDate addObject:task];
+            [dict setObject:tasksDueOnThisDate forKey:dueDate];
+        } else {
+            [tasksDue addObject:task];
+        }
+    }
+    return (NSDictionary*)dict;
+}
 
-/*
+
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
+    if([segue.identifier isEqual:@"toWeeklyView"]){
+        WeeklyCalendarViewController *weeklyCalendarViewController = [segue destinationViewController];
+        
+        NSDictionary *dateContainers = [self createDateContainers];
+        NSLog(@"the dictionary is %@", dateContainers);
+        
+        weeklyCalendarViewController.myTasks = self.myTasks;
+        weeklyCalendarViewController.myTasksByDueDate = dateContainers;
+    }
 }
-*/
+
 
 @end
