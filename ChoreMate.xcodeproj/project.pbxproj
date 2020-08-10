@@ -57,6 +57,7 @@
 		3ABBE56224DC7E3200866F83 /* CLWeeklyCalendarView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ABBE55924DC7E3200866F83 /* CLWeeklyCalendarView.m */; };
 		3ABBE56324DC7E3200866F83 /* DayTitleLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ABBE55B24DC7E3200866F83 /* DayTitleLabel.m */; };
 		3ABBE56624DCBB2B00866F83 /* DayLabelCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ABBE56524DCBB2B00866F83 /* DayLabelCell.m */; };
+		3ABBE56924E0FF4F00866F83 /* AllTasksViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ABBE56824E0FF4F00866F83 /* AllTasksViewController.m */; };
 		3AE09FD624C5EFE9000C3C59 /* TaskCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AE09FD524C5EFE9000C3C59 /* TaskCell.m */; };
 		3AE09FDF24C673C5000C3C59 /* AssigneeNameCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AE09FDE24C673C5000C3C59 /* AssigneeNameCell.m */; };
 		3AEB43FA24CA0A470038AED5 /* MonthlyTimePickViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AEB43F924CA0A470038AED5 /* MonthlyTimePickViewController.m */; };
@@ -188,6 +189,8 @@
 		3ABBE55C24DC7E3200866F83 /* CLWeeklyCalendarView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CLWeeklyCalendarView.h; sourceTree = "<group>"; };
 		3ABBE56424DCBB2B00866F83 /* DayLabelCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = DayLabelCell.h; path = ChoreMate/Controllers/DayLabelCell.h; sourceTree = SOURCE_ROOT; };
 		3ABBE56524DCBB2B00866F83 /* DayLabelCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = DayLabelCell.m; path = ChoreMate/Controllers/DayLabelCell.m; sourceTree = SOURCE_ROOT; };
+		3ABBE56724E0FF4F00866F83 /* AllTasksViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AllTasksViewController.h; sourceTree = "<group>"; };
+		3ABBE56824E0FF4F00866F83 /* AllTasksViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AllTasksViewController.m; sourceTree = "<group>"; };
 		3AE09FD424C5EFE9000C3C59 /* TaskCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = TaskCell.h; path = ChoreMate/Controllers/TaskCell.h; sourceTree = SOURCE_ROOT; };
 		3AE09FD524C5EFE9000C3C59 /* TaskCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = TaskCell.m; path = ChoreMate/Controllers/TaskCell.m; sourceTree = SOURCE_ROOT; };
 		3AE09FDD24C673C5000C3C59 /* AssigneeNameCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = AssigneeNameCell.h; path = ChoreMate/Controllers/AssigneeNameCell.h; sourceTree = SOURCE_ROOT; };
@@ -437,6 +440,8 @@
 				3A58190824D8A58400D6EE60 /* NotificationsViewController.m */,
 				3A588E6524DC7BEE001090C0 /* WeeklyCalendarViewController.h */,
 				3A588E6624DC7BEE001090C0 /* WeeklyCalendarViewController.m */,
+				3ABBE56724E0FF4F00866F83 /* AllTasksViewController.h */,
+				3ABBE56824E0FF4F00866F83 /* AllTasksViewController.m */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -761,6 +766,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3ABBE55F24DC7E3200866F83 /* NSDictionary+CL.m in Sources */,
+				3ABBE56924E0FF4F00866F83 /* AllTasksViewController.m in Sources */,
 				3A2D79EE24C0D09200D2C31B /* RecurringTaskViewController.m in Sources */,
 				3AA661FD24BCF0EC00EBA89E /* Task.m in Sources */,
 				3A95C6BD24BD30F000C906D7 /* TheRootViewController.m in Sources */,

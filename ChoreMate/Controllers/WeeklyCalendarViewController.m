@@ -10,14 +10,15 @@
 #import "CLWeeklyCalendarView.h"
 #import "TaskCell.h"
 #import "DayLabelCell.h"
+#import "NSDate+CMDate.h"
 
 
 @interface WeeklyCalendarViewController ()<CLWeeklyCalendarViewDelegate, UITableViewDelegate, UITableViewDataSource>
 
 @property (nonatomic, strong) CLWeeklyCalendarView* calendarView;
 @property (nonatomic, strong) NSMutableArray* tasksForTheDay;
-@property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (weak, nonatomic) IBOutlet UIView *noChoresView;
+@property (weak, nonatomic) IBOutlet UILabel *noChoresLabel;
 
 @end
 
@@ -44,6 +45,7 @@ static CGFloat CALENDER_VIEW_HEIGHT = 150.f;
 
 
 
+
 #pragma mark - CLWeeklyCalendarViewDelegate
 -(NSDictionary *)CLCalendarBehaviorAttributes
 {
@@ -53,6 +55,7 @@ static CGFloat CALENDER_VIEW_HEIGHT = 150.f;
 //             CLCalendarSelectedDatePrintColor : [UIColor greenColor],
              };
 }
+
 
 -(void)dailyCalendarViewDidSelect:(NSDate *)date
 {
@@ -68,16 +71,21 @@ static CGFloat CALENDER_VIEW_HEIGHT = 150.f;
         NSLog(@"NO CHORES DUE ON THIS DATE");
         self.tasksForTheDay = (NSMutableArray *)@[];
         self.noChoresView.alpha = 1;
+        
+        NSDate *date1 = [date dateWithHour:00 minute:00 second:00];
+        NSDate *date2 = [[NSDate date] dateWithHour:00 minute:00 second:00];
+        if([date1 isEqual:date2]){
+            self.noChoresLabel.text = @"You have no chores due today!";
+        } else {
+            self.noChoresLabel.text = @"You have no chores due on this day!";
+        }
         self.tableView.hidden = YES;
         
     } else {
         NSLog(@"CHORES FOUND");
         self.noChoresView.alpha = 0;
         NSLog(@"%@",tasksDue);
-        [self.tasksForTheDay addObject:dateAsString];
-        
         [self.tasksForTheDay addObjectsFromArray:tasksDue];
-        [self.tasksForTheDay addObject:dateAsString];
         self.tableView.hidden = NO;
     }
     [self.tableView reloadData];
@@ -85,24 +93,76 @@ static CGFloat CALENDER_VIEW_HEIGHT = 150.f;
     
 }
 
+
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return self.tasksForTheDay.count;
 }
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    if([self.tasksForTheDay[indexPath.row] isKindOfClass:[NSString class]]){
-        DayLabelCell *cell = [tableView dequeueReusableCellWithIdentifier:@"DayLabelCell"];
-        return cell;
-    } else {
-        TaskCell *cell = [tableView dequeueReusableCellWithIdentifier:@"TaskCell"];
-        cell.task = self.tasksForTheDay[indexPath.row];
-        [cell setTaskValues];
-        [cell getTasksAssignees];
-        cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        return cell;
+    TaskCell *cell = [tableView dequeueReusableCellWithIdentifier:@"TaskCell"];
+    cell.task = self.tasksForTheDay[indexPath.row];
+    [cell setTaskValues];
+    [cell getTasksAssignees];
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    return cell;
+
+}
+
+
+- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
+    // Return YES if you want the specified item to be editable.
+    return YES;
+}
+
+
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (editingStyle == UITableViewCellEditingStyleDelete) {
+        [self.tasksForTheDay[indexPath.row] deleteInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
+            if(succeeded){
+                NSLog(@"Task was successfully removed from the database");
+            }
+            if(error){
+                NSLog(@"There was an error deleting the task %@", error.localizedDescription);
+            }
+        }];
+        
+        [self.tasksForTheDay removeObjectAtIndex:indexPath.row];
+        [tableView reloadData];
     }
-    return nil;
+
+}
+
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(nonnull NSIndexPath *)indexPath{
+    if(![self.tasksForTheDay[indexPath.row] isKindOfClass:[NSString class]]){
+        NSMutableArray *allCells = (NSMutableArray *)[self.tableView visibleCells];
+        NSPredicate *testForCompletion = [NSPredicate predicateWithBlock:^BOOL(id  _Nullable evaluatedObject, NSDictionary<NSString *,id> * _Nullable bindings) {
+            NSLog(@"here");
+            TaskCell * cell = (TaskCell *)evaluatedObject;
+            Task * task = cell.task;
+            NSLog(@"the completed is %d:",task.completedObject.isCompleted);
+            return task.completedObject.isCompleted;
+        }];
+
+        NSArray *filteredArray = [allCells filteredArrayUsingPredicate:testForCompletion];
+
+        if (filteredArray != nil) {
+
+            [filteredArray enumerateObjectsUsingBlock:^(UITableViewCell *cell, NSUInteger idx, BOOL *stop) {
+                [cell setFrame:CGRectMake(0, cell.frame.origin.y, cell.frame.size.width, cell.frame.size.height)];
+                [UIView animateWithDuration:1.5 animations:^{
+                    [cell setFrame:CGRectMake(self.view.bounds.size.width, cell.frame.origin.y, cell.frame.size.width, cell.frame.size.height)];
+                }];
+
+                [UIView animateWithDuration:1 animations:^{
+                    [self.tasksForTheDay removeObjectAtIndex:indexPath.row];
+                }];
+            }];
+
+            [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationFade];
+        }
+    }
 }
 
 

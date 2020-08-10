@@ -22,6 +22,18 @@
 }
 
 - (void) setDate{
+    // Convert string to date object
+    NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
+    [dateFormat setDateFormat:@"yyyy/MM/dd"];
+    NSDate *date = [dateFormat dateFromString:self.dateString];
+    
+    NSDateFormatter *weekday = [[NSDateFormatter alloc] init];
+    [weekday setDateFormat: @"EEEE"];
+    NSDateFormatter *month = [[NSDateFormatter alloc] init];
+    [month setDateFormat:@"MMMM dd"];
+
+    self.dayDateLabel.text = [NSString stringWithFormat:@"  %@ -- %@  ", [weekday stringFromDate:date], [month stringFromDate:date]];
+    self.dayDateLabel.numberOfLines = 1;
     
 }
 

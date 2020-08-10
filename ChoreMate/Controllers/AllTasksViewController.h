@@ -1,8 +1,8 @@
 //
-//  WeeklyCalendarViewController.h
+//  AllTasksViewController.h
 //  ChoreMate
 //
-//  Created by Jasdeep Gill on 8/6/20.
+//  Created by Jasdeep Gill on 8/9/20.
 //  Copyright © 2020 jazgill. All rights reserved.
 //
 
@@ -10,9 +10,10 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface WeeklyCalendarViewController : UIViewController
+@interface AllTasksViewController : UIViewController
 
 @property (strong, nonatomic) NSMutableArray *myTasks;
+@property (strong, nonatomic) NSMutableArray *myTasksWithDates;
 @property (strong, nonatomic) NSDictionary *myTasksByDueDate;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 

@@ -18,6 +18,7 @@
 #import "UIViewController+MMDrawerController.h"
 #import "MMDrawerBarButtonItem.h"
 #import "NSDate+CMDate.h"
+#import "AllTasksViewController.h"
 
 // MARK: Models
 #import "Task.h"
@@ -38,16 +39,20 @@
 
 
 
-@interface TaskScreenViewController () <TaskChoiceControllerDelegate, UITableViewDelegate,UITableViewDataSource>
+@interface TaskScreenViewController () <TaskChoiceControllerDelegate>
 @property (weak, nonatomic) IBOutlet UIButton *addTaskButton;
-@property (weak, nonatomic) IBOutlet UIView *theContainer;
-@property (weak, nonatomic) IBOutlet UILabel *userWelcome;
 @property (weak, nonatomic) User *currUser;
-@property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (strong, nonatomic) NSArray *household;
 
 @property (weak, nonatomic) NSArray *allTasks;
 @property (strong, nonatomic) NSMutableArray *myTasks;
+@property (weak, nonatomic) NSArray *myTasksWithDates;
+@property (strong, nonatomic) NSMutableArray *myDates;
+@property (weak, nonatomic) IBOutlet UISegmentedControl *segmentedControl;
+@property (weak, nonatomic) IBOutlet UIView *allTasksContainer;
+@property (weak, nonatomic) IBOutlet UIView *weeklyTasksContainer;
+@property (strong, nonatomic) AllTasksViewController * allTasksViewController;
+@property (strong, nonatomic) WeeklyCalendarViewController * weeklyTasksViewController;
 
 
 @end
@@ -63,26 +68,25 @@ int const TASK_TYPE_ROTATIONAL = 2;
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.tableView.delegate = self;
-    self.tableView.dataSource = self;
-    
     [self setupLeftMenuButton];
     
-    
     self.currUser = [User currentUser];
-    NSArray* firstLastStrings = [self.currUser.name componentsSeparatedByString:@" "];
-    self.userWelcome.text = [NSString stringWithFormat:@"Hey %@!",[firstLastStrings objectAtIndex:0]];
-
-    self.tableView.separatorColor = [UIColor clearColor];
     
     if (self.currUser.household_id != nil) {
-        [self getAllTasks];
+       [self getAllTasks];
     }
     else{
         // do something incase user doesnt have household and tasks
     }
     
+    [self setChildViewControllers];
 }
+
+- (void) setChildViewControllers{
+    self.allTasksViewController = [self.childViewControllers objectAtIndex:0];
+    self.weeklyTasksViewController = [self.childViewControllers objectAtIndex:1];
+}
+
 
 
 - (void) getAllTasks{
@@ -118,9 +122,16 @@ int const TASK_TYPE_ROTATIONAL = 2;
                 taskFromDB.completedObject = completedObject;
                 taskFromDB.taskDatabaseId = taskFromDB.objectId;
                 if(taskFromDB.completedObject.isCompleted != YES){
-                    [self.myTasks addObject:taskFromDB];
-                    [self sortBasedOnCompletionDate];
-                    [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationFade];
+                    NSString *endDateString = taskFromDB.completedObject.endDate;
+                    NSDateFormatter *dateFormatter=[[NSDateFormatter alloc] init];
+                    [dateFormatter setDateFormat:@"yyyy/MM/dd"];
+                    NSDate *endDate = [dateFormatter dateFromString:endDateString];
+                    NSDate *todaysDate = [[NSDate date] dateWithHour:23 minute:59 second:59];
+                    if(endDate.timeIntervalSince1970 > todaysDate.timeIntervalSince1970){
+                        [self.myTasks addObject:taskFromDB];
+                        [self sortBasedOnCompletionDate];
+                        [self updateTables];
+                    }
                 }
             }];
         
@@ -128,14 +139,16 @@ int const TASK_TYPE_ROTATIONAL = 2;
             [self makeRecurringRotationalTasks:taskFromDB completionHandler:^(NSArray *createdRecurringRotationalTasks) {
                 [self.myTasks addObjectsFromArray:createdRecurringRotationalTasks];
                 [self sortBasedOnCompletionDate];
-                [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationFade];
+                [self updateTables];
+
             }];
         
         } else if([taskFromDB.type isEqual:@"rotational"]){
             [self makeRecurringRotationalTasks:taskFromDB completionHandler:^(NSArray *createdRecurringRotationalTasks) {
                 [self.myTasks addObjectsFromArray:createdRecurringRotationalTasks];
                 [self sortBasedOnCompletionDate];
-                [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationFade];
+                [self updateTables];
+
             }];
         
         } else {
@@ -144,6 +157,25 @@ int const TASK_TYPE_ROTATIONAL = 2;
     }
 }
 
+- (void) updateTables {
+    
+    NSDictionary *dateContainers = [self createDateContainers];
+    NSLog(@"the dictionary is %@", dateContainers);
+
+    NSMutableArray *tasksWithDates = [[NSMutableArray alloc] init];
+    for (NSString* key in self.myDates){
+        [tasksWithDates addObject:key];
+        [tasksWithDates addObjectsFromArray: [dateContainers objectForKey:key]];
+    }
+    
+    NSLog(@"the tasksWithDates is: %@", tasksWithDates);
+    self.myTasksWithDates = (NSArray*)tasksWithDates;
+    
+    self.weeklyTasksViewController.myTasks = self.myTasks;
+    self.allTasksViewController.myTasksWithDates = self.myTasksWithDates;
+    [self.allTasksViewController.tableView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationFade];
+    self.weeklyTasksViewController.myTasksByDueDate = dateContainers;
+}
 
 - (void) sortBasedOnCompletionDate {
     NSSortDescriptor *sorter = [[NSSortDescriptor alloc] initWithKey:@"completedObject.endDate" ascending:YES];
@@ -205,9 +237,15 @@ int const TASK_TYPE_ROTATIONAL = 2;
                completionHandler:^(Task * _Nonnull newTask) {
                 
                 if(newTask.completedObject.isCompleted != YES){
-                    [rawTasksFromDB addObject:newTask];
-                    NSLog(@"THE NEWTASK IS: %@", newTask);
-                    
+                    NSString *endDateString = newTask.completedObject.endDate;
+                    NSDateFormatter *dateFormatter=[[NSDateFormatter alloc] init];
+                    [dateFormatter setDateFormat:@"yyyy/MM/dd"];
+                    NSDate *endDate = [dateFormatter dateFromString:endDateString];
+                    NSDate *todaysDate = [[NSDate date] dateWithHour:23 minute:59 second:59];
+                    if(endDate.timeIntervalSince1970 > todaysDate.timeIntervalSince1970){
+                        [rawTasksFromDB addObject:newTask];
+                        NSLog(@"THE NEWTASK IS: %@", newTask);
+                    }
                 }
                 dispatch_group_leave(group);
             }];
@@ -308,7 +346,6 @@ int const TASK_TYPE_ROTATIONAL = 2;
                 NSLog(@"Successfully got household members");
             
                 self.household = users;
-                [self.tableView reloadData];
             
             } else {
                 NSLog(@"%@", error.localizedDescription);
@@ -317,90 +354,6 @@ int const TASK_TYPE_ROTATIONAL = 2;
     }
     
 }
-
-
-- (void) taskCell:(HouseMateTaskCell *) taskCell didTap: (Task *)task {
-    
-}
-
-#pragma mark - Task TableView
-
--(void)refreshTable {
-    [self.tableView reloadData];
-}
-
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return self.myTasks.count;
-}
-
-
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-     
-    TaskCell *cell = [tableView dequeueReusableCellWithIdentifier:@"TaskCell"];
-    cell.task = self.myTasks[indexPath.row];
-    [cell setTaskValues];
-    [cell getTasksAssignees];
-    cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    
-    return cell;
-}
-
-
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return YES if you want the specified item to be editable.
-    return YES;
-}
-
-
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        [self.myTasks[indexPath.row] deleteInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
-            if(succeeded){
-                NSLog(@"Task was successfully removed from the database");
-            }
-            if(error){
-                NSLog(@"There was an error deleting the task %@", error.localizedDescription);
-            }
-        }];
-        [self.myTasks removeObjectAtIndex:indexPath.row];
-        [tableView reloadData];
-    }
-    
-}
-
-
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(nonnull NSIndexPath *)indexPath{
-    
-    NSMutableArray *allCells = (NSMutableArray *)[self.tableView visibleCells];
-    NSPredicate *testForCompletion = [NSPredicate predicateWithBlock:^BOOL(id  _Nullable evaluatedObject, NSDictionary<NSString *,id> * _Nullable bindings) {
-        TaskCell * cell = (TaskCell *)evaluatedObject;
-        Task * task = cell.task;
-        __block BOOL isCompleted = NO;
-        [task isTaskFullyCompleted:task completionHandler:^(BOOL allTasksCompleted) {
-            isCompleted = allTasksCompleted;
-        }];
-        return isCompleted;
-    }];
-    
-    NSArray *filteredArray = [allCells filteredArrayUsingPredicate:testForCompletion];
-    
-    if (filteredArray != nil) {
-    
-        [filteredArray enumerateObjectsUsingBlock:^(UITableViewCell *cell, NSUInteger idx, BOOL *stop) {
-            [cell setFrame:CGRectMake(0, cell.frame.origin.y, cell.frame.size.width, cell.frame.size.height)];
-            [UIView animateWithDuration:1.5 animations:^{
-                [cell setFrame:CGRectMake(self.view.bounds.size.width, cell.frame.origin.y, cell.frame.size.width, cell.frame.size.height)];
-            }];
-        
-            [UIView animateWithDuration:1 animations:^{
-                [self.myTasks removeObjectAtIndex:indexPath.row];
-            }];
-        }];
-    
-        [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationFade];
-    }
-}
-
 
 
 #pragma mark - Navigation Drawer
@@ -415,6 +368,31 @@ int const TASK_TYPE_ROTATIONAL = 2;
     [self.mm_drawerController toggleDrawerSide:MMDrawerSideLeft animated:YES completion:nil];
 }
 
+- (IBAction)didChangeTaskView:(UISegmentedControl *)sender {
+    //[self getAllTasks];
+    switch (sender.selectedSegmentIndex) {
+        case 0: {
+            [UIView animateWithDuration:0.2 animations:^{
+                self.allTasksContainer.alpha = 1;
+                self.weeklyTasksContainer.alpha = 0;
+            }];
+            [self.allTasksViewController.tableView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationFade];
+            
+            break;
+        }
+        case 1: {
+            [UIView animateWithDuration:0.2 animations:^{
+                self.allTasksContainer.alpha = 0;
+                self.weeklyTasksContainer.alpha = 1;
+            }];
+            [self.weeklyTasksViewController.tableView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationFade];
+
+            break;
+        }
+        default:
+            break;
+    }
+}
 
 #pragma mark - Task Choice
 
@@ -458,10 +436,12 @@ int const TASK_TYPE_ROTATIONAL = 2;
 
 -(NSDictionary *) createDateContainers{
     NSMutableDictionary *dict = [[NSMutableDictionary alloc] init];
+    self.myDates = [[NSMutableArray alloc] init];
     for(Task *task in self.myTasks){
         NSString *dueDate = task.completedObject.endDate;
         NSMutableArray *tasksDue = [dict objectForKey:dueDate];
         if( tasksDue == nil){
+            [self.myDates addObject:dueDate];
             NSMutableArray *tasksDueOnThisDate = [[NSMutableArray alloc] init];
             [tasksDueOnThisDate addObject:task];
             [dict setObject:tasksDueOnThisDate forKey:dueDate];
@@ -473,22 +453,13 @@ int const TASK_TYPE_ROTATIONAL = 2;
 }
 
 
+
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-    if([segue.identifier isEqual:@"toWeeklyView"]){
-        WeeklyCalendarViewController *weeklyCalendarViewController = [segue destinationViewController];
-        
-        NSDictionary *dateContainers = [self createDateContainers];
-        NSLog(@"the dictionary is %@", dateContainers);
-        
-        weeklyCalendarViewController.myTasks = self.myTasks;
-        weeklyCalendarViewController.myTasksByDueDate = dateContainers;
-    }
-}
+//- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+//
+//}
 
 
 @end

@@ -42,7 +42,10 @@
 
 
 - (void) setHeader {
-    self.headerLabel.text = [self.houseMate.name stringByAppendingString:@"'s Chores"];
+    NSArray* firstLastStrings = [self.houseMate.name componentsSeparatedByString:@" "];
+    NSString *firstName = [NSString stringWithFormat:@"%@",[firstLastStrings objectAtIndex:0]];
+    
+    self.headerLabel.text = [firstName stringByAppendingString:@"'s Uncompleted Chores"];
 }
 
 
@@ -79,10 +82,12 @@
                 taskFromDB.completedObject = completedObject;
                 taskFromDB.taskDatabaseId = taskFromDB.objectId;
                 if(taskFromDB.completedObject.isCompleted != YES){
-                    [self.housematesTasks addObject:taskFromDB];
-                    NSLog(@"self.housematesTasks are %@:",self.housematesTasks);
-                    [self sortBasedOnCompletionDate];
-                    [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationFade];
+                    if(![taskFromDB.completedObject.currentCompletionStatus containsObject:self.houseMate.objectId]){
+                        [self.housematesTasks addObject:taskFromDB];
+                        NSLog(@"self.housematesTasks are %@:",self.housematesTasks);
+                        [self sortBasedOnCompletionDate];
+                        [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationFade];
+                    }
                 }
             }];
         
@@ -204,8 +209,10 @@
                 
 
                 if(newTask.completedObject.isCompleted != YES){
-                    [rawTasksFromDB addObject:newTask];
-                    NSLog(@"NEWTASK IS: %@", newTask);
+                    if(![newTask.completedObject.currentCompletionStatus containsObject:currentHousemate.objectId]){
+                        [rawTasksFromDB addObject:newTask];
+                        NSLog(@"NEWTASK IS: %@", newTask);
+                    }
                 }
                 dispatch_group_leave(group);
             }];

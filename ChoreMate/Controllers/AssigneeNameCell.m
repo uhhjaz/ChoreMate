@@ -9,6 +9,7 @@
 #import "AssigneeNameCell.h"
 #import <Parse/Parse.h>
 #import "Completed.h"
+#import "CMColor.h"
 
 @implementation AssigneeNameCell
 
@@ -33,7 +34,7 @@
 
 
 - (void) setNameForCompletion{
-    self.nameLabel.textColor = [UIColor greenColor];
+    self.nameLabel.textColor = [CMColor completedTaskColor];
 }
 
 - (void) setNameForNotYetCompleted{

@@ -43,13 +43,13 @@ int const MENU_THIRD_PROFILE = 3;
     [self.profileImageView setImageWithURL:profileImageURL];
     self.nameLabel.text = currUser.name;
     self.usernameLabel.text = currUser.email;
-    if(currUser.email != nil) {
-        self.usernameLabel.text = currUser.email;
-        self.facebookLogoView.alpha = 0;
-    }
-    else{
+    if(currUser.fb_authenticated == YES) {
         self.usernameLabel.text = @"facebook login";
         self.facebookLogoView.alpha = 1;
+    }
+    else{
+        self.usernameLabel.text = currUser.email;
+        self.facebookLogoView.alpha = 0;
     }
 
     
