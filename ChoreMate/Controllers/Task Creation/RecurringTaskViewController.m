@@ -19,6 +19,7 @@
 #import "EndPickerWithDateViewController.h"
 #import "EndPickerWithOccurrenceViewController.h"
 #import "RotationalTaskViewController.h"
+#import <MBProgressHUD.h>
 
 @interface RecurringTaskViewController ()<UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout>
 @property (weak, nonatomic) IBOutlet UIView *monthlyTimeContainer;
@@ -289,8 +290,9 @@ int const DO_NOT_SHOW_VIEW = 0;
     NSLog(@"the num of occurrences is: %@",self.chosenOccurrences);
     NSLog(@"the task is assigned to: %@",self.taskAssignees);
     
-    
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     [Task postTask:self.descriptionField.text OfType:@"recurring" WithRepeatType:self.chosenRepeat Point:self.chosenWhenToRepeat NumOfTimes:self.chosenOccurrences Ending:endDate Assignees:self.taskAssignees DueDates:endDates RotationalOrder:nil withCompletion:^(BOOL succeeded, NSError * _Nullable error) {
+        [MBProgressHUD hideHUDForView:self.view animated:YES];
         
         if(succeeded){
             NSLog(@"posting reoccuring task success");

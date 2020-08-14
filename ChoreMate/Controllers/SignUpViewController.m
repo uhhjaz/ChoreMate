@@ -26,6 +26,7 @@
 @property (weak, nonatomic) IBOutlet UITextField *usernameField;
 @property (weak, nonatomic) IBOutlet UITextField *passwordField;
 @property (weak, nonatomic) IBOutlet PFImageView *imageView;
+@property (weak, nonatomic) IBOutlet UIImageView *imagePickerIconView;
 
 @end
 
@@ -135,7 +136,10 @@
     self.imageView.image = [self resizeImage:originalImage withSize:CGSizeMake(300, 300)];
     
     // Dismiss UIImagePickerController to go back to your original view controller
-    [self dismissViewControllerAnimated:YES completion:nil];
+    [self dismissViewControllerAnimated:YES completion:^{
+        self.imagePickerIconView.alpha = 0;
+        self.imagePickerIconView.hidden = YES;
+    }];
 }
 
 

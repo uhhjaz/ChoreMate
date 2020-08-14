@@ -18,6 +18,7 @@
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (nonatomic, strong) NSArray *allHouseholds;
 @property (nonatomic, strong) NSArray *filteredHouseholds;
+@property (nonatomic, assign) BOOL SEARCH;
 
 @end
 
@@ -25,6 +26,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.SEARCH = NO;
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
     self.searchBar.delegate = self;
@@ -96,19 +98,26 @@
 
 -(BOOL)searchBarShouldBeginEditing:(UISearchBar *)searchBar
 {
-    [self.tableView setHidden:NO];
     return YES;
 }
 
+
 -(void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText
 {
-    [self.tableView setHidden:NO];
-    self.filteredHouseholds = ([searchText isEqualToString:@""])? self.allHouseholds : [self filterArrayUsingSearchText:searchText];
-    [self.tableView reloadData];
+    if(self.SEARCH == YES){
+        [self.tableView setHidden:NO];
+        self.filteredHouseholds = ([searchText isEqualToString:@""])? self.allHouseholds : [self filterArrayUsingSearchText:searchText];
+        [self.tableView reloadData];
+        
+    }
 }
 
 - (void)searchBarTextDidBeginEditing:(UISearchBar *)searchBar {
     searchBar.showsCancelButton = YES;
+}
+
+- (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar{
+    self.SEARCH = YES;
 }
 
 - (void)searchBarCancelButtonClicked:(UISearchBar *)searchBar {
@@ -122,7 +131,7 @@
 -(NSArray *) filterArrayUsingSearchText:(NSString*) searchText
 {
     NSPredicate *resultPredicate = [NSPredicate
-                                    predicateWithFormat:@"objectId contains[c] %@",
+                                    predicateWithFormat:@"objectId ==[c] %@",
                                     searchText];
 
     return [self.allHouseholds filteredArrayUsingPredicate:resultPredicate];

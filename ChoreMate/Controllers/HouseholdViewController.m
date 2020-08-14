@@ -45,10 +45,12 @@
         self.noHouseholdViewController.delegate = self;
     }
     else{
+        
         self.noHouseholdContainer.alpha = 0;
         [self getHousehold];
-        [self getHouseholdMembers];
-        
+        [self getHouseholdMembersWithCompletion:^(BOOL succeeded, NSError * _Nullable error) {
+            [self.tableView reloadData];
+        }];
     }
 }
 
@@ -56,6 +58,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self setupLeftMenuButton];
+    self.tableView.delegate = self;
+    self.tableView.dataSource = self;
     
     User * currUser = [User currentUser];
     if(currUser.household_id == nil){
@@ -64,13 +68,12 @@
         self.noHouseholdViewController.delegate = self;
     }
     else{
-        self.tableView.delegate = self;
-        self.tableView.dataSource = self;
         self.tableView.separatorColor = [UIColor clearColor];
         self.noHouseholdContainer.alpha = 0;
         [self getHousehold];
-        [self getHouseholdMembers];
-        
+        [self getHouseholdMembersWithCompletion:^(BOOL succeeded, NSError * _Nullable error) {
+            [self.tableView reloadData];
+        }];
     }
 }
 
@@ -96,7 +99,7 @@
     }];
 }
 
-- (void)getHouseholdMembers {
+- (void)getHouseholdMembersWithCompletion: (PFBooleanResultBlock  _Nullable)completion; {
 
     User *curr = [User currentUser];
         
@@ -149,16 +152,18 @@
     
     self.noHouseholdContainer.alpha = 0;
     [self getHousehold];
-    [self getHouseholdMembers];
-    [self.tableView reloadData];
+    [self getHouseholdMembersWithCompletion:^(BOOL succeeded, NSError * _Nullable error) {
+        [self.tableView reloadData];
+    }];
 }
 
 - (void)didJoinHousehold {
     
     self.noHouseholdContainer.alpha = 0;
     [self getHousehold];
-    [self getHouseholdMembers];
-    [self.tableView reloadData];
+    [self getHouseholdMembersWithCompletion:^(BOOL succeeded, NSError * _Nullable error) {
+        [self.tableView reloadData];
+    }];
 }
 
 

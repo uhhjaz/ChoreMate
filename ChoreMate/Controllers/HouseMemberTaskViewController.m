@@ -195,7 +195,7 @@
         
         if((![taskFromDB.type isEqual:@"rotational"]) || ([recievedRotatingUser.objectId isEqual:currentHousemate.objectId])) {
             dispatch_group_enter(group);
-            
+            [MBProgressHUD showHUDAddedTo:self.view animated:YES];
             [Task createTaskCopy:taskFromDB.objectId
                             From:taskFromDB
                              For:taskFromDB.taskDescription
@@ -206,7 +206,7 @@
                           Ending:newDate
                        Assignees:assignedUsers
                completionHandler:^(Task * _Nonnull newTask) {
-                
+                [MBProgressHUD hideHUDForView:self.view animated:YES];
 
                 if(newTask.completedObject.isCompleted != YES){
                     if(![newTask.completedObject.currentCompletionStatus containsObject:currentHousemate.objectId]){

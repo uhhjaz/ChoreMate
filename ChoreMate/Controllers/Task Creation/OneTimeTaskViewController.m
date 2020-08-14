@@ -398,7 +398,7 @@
     
     NSLog(@"the suggestion is: %@", suggestedHousemate.name);
     
-    NSString *suggestionPrompt = [NSString stringWithFormat:@"Based on the selected due date, we highly suggest you assign this chore to %@", suggestedHousemate.name];
+    NSString *suggestionPrompt = [NSString stringWithFormat:@"Based on the selected due date, we suggest you assign this chore to %@", suggestedHousemate.name];
     
     self.viewPopTipView = [[CMPopTipView alloc] initWithMessage:suggestionPrompt];
     self.viewPopTipView.preferredPointDirection = PointDirectionUp;

@@ -53,7 +53,7 @@
 @property (weak, nonatomic) IBOutlet UIView *weeklyTasksContainer;
 @property (strong, nonatomic) AllTasksViewController * allTasksViewController;
 @property (strong, nonatomic) WeeklyCalendarViewController * weeklyTasksViewController;
-
+@property (strong, nonatomic) NSMutableDictionary *myHouseholdDict;
 
 @end
 
@@ -74,6 +74,7 @@ int const TASK_TYPE_ROTATIONAL = 2;
     
     if (self.currUser.household_id != nil) {
        [self getAllTasks];
+       [self getHousehold];
     }
     else{
         // do something incase user doesnt have household and tasks
@@ -323,11 +324,12 @@ int const TASK_TYPE_ROTATIONAL = 2;
     }
     
     NSString *taskNumToString = [@((((taskNumber)%rotationalOrder.count)+1)) stringValue];
-    User *houseMember = rotationalOrder[taskNumToString];
+    __block User *houseMember = rotationalOrder[taskNumToString];
     PFQuery *query = [PFUser query];
-    houseMember = (User *)[query getObjectWithId:houseMember.objectId];
-    
+    //houseMember = (User *)[query getObjectWithId:houseMember.objectId];
+    houseMember = self.myHouseholdDict[houseMember.objectId];
     [assignedTo addObject:houseMember];
+    //[assignedTo addObject:houseMember];
     return (NSArray *)assignedTo;
 }
 
@@ -346,6 +348,7 @@ int const TASK_TYPE_ROTATIONAL = 2;
                 NSLog(@"Successfully got household members");
             
                 self.household = users;
+                [self setHouseholdDict];
             
             } else {
                 NSLog(@"%@", error.localizedDescription);
@@ -353,6 +356,14 @@ int const TASK_TYPE_ROTATIONAL = 2;
         }];
     }
     
+}
+
+
+- (void)setHouseholdDict {
+    self.myHouseholdDict = [[NSMutableDictionary alloc] init];
+    for(User* housemate in self.household){
+        [self.myHouseholdDict setValue:housemate forKey:housemate.objectId];
+    }
 }
 
 
